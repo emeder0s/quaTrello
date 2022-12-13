@@ -1,32 +1,36 @@
 const DataTypes = require('sequelize');
 
-WorkspacesModel = {
+ActivitiesModel = {
     create: async (sequelize) => {
-        const Workspaces = sequelize.define('workspaces', {
+        const Activities = sequelize.define('activities', {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
-            name_: {
+            text_: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            visibility: {
-                type: DataTypes.STRING,
+            date_:{
+                type: DataTypes.DATE,
                 allowNull: false
             },
-            configuration: {
-                type: DataTypes.STRING,
+            fk_id_card: {
+                type: DataTypes.INTEGER,
                 allowNull: true
-            }
+            },            
+            fk_id_user: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            },
         }, {
             timestamps: false
         });
 
-        return Workspaces;
+        return Activities;
 
     }
 }
 
-module.exports = WorkspacesModel;
+module.exports = ActivitiesModel;

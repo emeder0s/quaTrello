@@ -1,37 +1,46 @@
 const DataTypes = require('sequelize');
 
-tablesModel = {
+CardsModel = {
     create: async (sequelize) => {
-        const Tables = sequelize.define('tables', {
+        const Cards = sequelize.define('cards', {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
-            name_: {
+            title: {
                 type: DataTypes.STRING,
-                unique: true,
                 allowNull: false
             },
-            visibility: {
+            description: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true
+            },
+            checklist: {
+                type: DataTypes.STRING,
+                allowNull: true
             },
             configuration: {
                 type: DataTypes.STRING,
-                allowNull: false
-            },
-            fk_id_workspace: {
-                type: DataTypes.STRING,
                 allowNull: true
-            }
+            },
+            date_:{
+                type: DataTypes.DATE,
+                allowNull: true
+            },
+            fk_id_list: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            }            
+
+
         }, {
             timestamps: false
         });
 
-        return Tables;
+        return Cards;
 
     }
 }
 
-module.exports = TablesModel;
+module.exports = CardsModel;
