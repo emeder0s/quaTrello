@@ -1,8 +1,8 @@
 const DataTypes = require('sequelize');
 
-WorkspacesModel = {
+ListsModel = {
     create: async (sequelize) => {
-        const Workspaces = sequelize.define('workspaces', {
+        const Lists = sequelize.define('lists', {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
@@ -12,21 +12,17 @@ WorkspacesModel = {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            visibility: {
-                type: DataTypes.STRING,
-                allowNull: false
-            },
-            configuration: {
-                type: DataTypes.STRING,
+            fk_id_board: {
+                type: DataTypes.INTEGER,
                 allowNull: true
             }
         }, {
             timestamps: false
         });
 
-        return Workspaces;
+        return Lists;
 
     }
 }
 
-module.exports = WorkspacesModel;
+module.exports = ListsModel;

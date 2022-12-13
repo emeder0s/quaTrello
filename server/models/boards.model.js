@@ -1,50 +1,40 @@
 const DataTypes = require('sequelize');
 
-userModel = {
+BoardsModel = {
     create: async (sequelize) => {
-        const Users = sequelize.define('users', {
+        const Boards = sequelize.define('boards', {
             id: {
                 type: DataTypes.INTEGER,
                 autoIncrement: true,
                 primaryKey: true
             },
-            email: {
-                type: DataTypes.STRING,
-                unique: true,
-                allowNull: false
-            },
-            first_name: {
-                type: DataTypes.STRING,
-                unique: true,
-                allowNull: false
-            },
-            last_name: {
+            name_: {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            pass: {
+            visibility: {
                 type: DataTypes.STRING,
                 allowNull: false
-            },
-            sector: {
-                type: DataTypes.STRING,
-                allowNull: true
-            },
-            avatar: {
-                type: DataTypes.STRING,
-                allowNull: true
             },
             configuration: {
                 type: DataTypes.STRING,
+                allowNull: true
+            },
+            fk_id_workspace: {
+                type: DataTypes.INTEGER,
+                allowNull: true
+            },
+            fk_id_user: {
+                type: DataTypes.INTEGER,
                 allowNull: true
             }
         }, {
             timestamps: false
         });
 
-        return Users;
+        return Boards;
 
     }
 }
 
-module.exports = userModel;
+module.exports = BoardsModel;
