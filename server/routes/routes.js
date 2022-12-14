@@ -4,6 +4,7 @@ const message = require("../controllers/messages.controllers");
 const user = require("../controllers/user.controllers");
 const workspace = require("../controllers/workspace.controllers");
 const board = require("../controllers/board.controllers");
+const list = require("../controllers/list.controllers");
 
 //WORKSPACE
 router.get("/all-workspaces", workspace.getAll);
@@ -20,6 +21,12 @@ router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
 router.delete("/delete-board", board.delete);
 // router.get("get-workspaces-by-user", board.getByUser);
+
+//LISTS
+router.get("/all-lists", list.getAll);
+router.post("/insert-list", list.insert);
+router.post("/update-list", list.update);
+router.delete("/delete-list", list.delete);
 
 //MESSAGES
 router.post("/insertmessage", message.insert);
