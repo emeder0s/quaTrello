@@ -60,7 +60,7 @@ const workspace = {
         const workspaceM = await workspacesModel.create(con);
         const workspace = await workspaceM.findOne({ where: { id } });
         if (workspace) {
-            await workspaceM.update({ id, name_, visibility, configuration },{ where: { id } });
+            await workspaceM.update({ name_, visibility, configuration },{ where: { id } });
             res.json(true);
         }else{
             res.json({msn:"no existe"});
@@ -88,15 +88,15 @@ const workspace = {
     }
   },
 
-  getByUser:async (req, res) => {
-    try{
-        const workspaces = await userWorkspace.getWorkspacesByUser(user.getId());
-        res.json(workspaces);
-    }catch(e){
-        console.log(e);
-        res.json(false);
-    }
-  }
+  // getByUser:async (req, res) => {
+  //   try{
+  //       const workspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+  //       res.json(workspaces);
+  //   }catch(e){
+  //       console.log(e);
+  //       res.json(false);
+  //   }
+  // }
 };
 
 
