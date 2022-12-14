@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS cards(
         title VARCHAR(25) NOT NULL, 
         description_ TEXT, 
         checklist TEXT,
-		date_ DATE, 
+	date_ DATE, 
         fk_id_list INT,
         PRIMARY KEY(id),
         FOREIGN KEY (fk_id_list) REFERENCES lists(id) ON DELETE SET NULL

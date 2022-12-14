@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const user = require("../controllers/user.mysql.controllers");
-const workspace = require("../controllers/workspace.mysql.controllers");
+const workspace = require("../controllers/workspace.controllers");
 
 //WORKSPACE
 router.get("all-workspaces", workspace.getAll);
