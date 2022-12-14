@@ -1,6 +1,6 @@
 const router = require("express").Router();
-const user = require("../controllers/user.mysql.controllers");
-const tarea = require("../controllers/mongo.controllers/tarea.mongo.controllers");
+const user = require("../controllers/user.controllers");
+
 
 //! USERS Sequelize
 
