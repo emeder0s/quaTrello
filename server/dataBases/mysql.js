@@ -1,7 +1,6 @@
 conexion = {
   abrir: async () => {
       const Sequelize = require('sequelize')
-
       const sequelize = new Sequelize('prueba', 'root', 'root', {
           host: 'localhost',
           dialect: 'mysql',
