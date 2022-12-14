@@ -1,11 +1,14 @@
 const router = require("express").Router();
-const msg = require("../controllers/messages.controllers");
+const user = require("../controllers/user.mysql.controllers");
+const workspace = require("../controllers/workspace.controllers");
 
-router.post("/insertmessage", msg.insert);
-router.post("/getmessages", msg.getMsgs);
-
-
-
+//WORKSPACE
+router.get("all-workspaces", workspace.getAll);
+router.post("insert-workspace", workspace.insert);
+router.get("show-workspace", workspace.show);
+router.post("update-workspace", workspace.update);
+router.delete("delete-workspace", workspace.delete);
+// router.get("get-workspaces-by-user", workspace.getByUser);
 
 
 module.exports = router;
