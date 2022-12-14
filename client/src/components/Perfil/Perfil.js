@@ -1,5 +1,6 @@
 import React from 'react'
 import imagenPerfil from '../../img/imagenPerfil.png'
+import { NavPerfil } from './NavPerfil'
 
 export const Perfil = () => {
 
@@ -34,6 +35,7 @@ export const Perfil = () => {
     return (
 
         <div className='info'>
+            <NavPerfil />
 
             <img src={imagenPerfil} alt="" />
 
