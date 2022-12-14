@@ -1,8 +1,8 @@
 conexion = {
   abrir: async () => {
       const Sequelize = require('sequelize')
-
       const sequelize = new Sequelize('quatrello', 'root', 'root', {
+
           host: 'localhost',
           dialect: 'mysql',
           port: 3306
