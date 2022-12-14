@@ -1,21 +1,20 @@
 var nodemailer = require('nodemailer');
-const Users = require("../models/user.model");
-const fs = require("fs")
-const path = require("path")
+
 const smtpConfig = {
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false,
-    auth: {
-        user: "quatrellothebridge@gmail.com",
-        pass: "tvqxolkufsuwmbna"
-    }
+  host: 'smtp.gmail.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: "quatrellothebridge@gmail.com",
+    pass: "kvygzxqgdachkjoe"
+  }
 };
 const transporter = nodemailer.createTransport(smtpConfig);
 
 const email = {
 
     emailToRegister: async (jwt, email) => {
+      console.log("Enviando...")
         var mailOptions = {
             from: 'quatrellothebridge@gmail.com',
             to: email,
@@ -29,19 +28,20 @@ const email = {
                   <body>
                     <h1>Confirmación de email:</h1>
                     <h3>Bienvenido a quaTrello</h3>
-                    <p>Con este enlace confirmarás tu correo electrónico y podras completar los datos de registro: <a href="http://127.0.0.1:3000/forgetpassword/${jwt}">haz click Aqui</a></p>
+                    <p>Con este enlace confirmarás tu correo electrónico y podras completar los datos de registro: <a href="http://127.0.0.1:3000/account-verify/${jwt}">haz click Aqui</a></p>
                     <p>Si no has sido tú quien se ha registrado, ignora este mensaje.</p>
                     <p>Gracias por confiar en quaTrello.</p>
                   </body>
                 </html>`
         };
         transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                console.log(error);
-            } else {
-                console.log('Email enviado: ' + info.response);
-            }
-            return info
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email enviado: ' + info.response);
+            console.log(info.accepted)
+          }
+          return info
         });
     },
 
