@@ -1,0 +1,58 @@
+aside.asideHome {
+    display: flex;
+    flex-flow: column wrap;
+    width: 200px;
+    margin-top: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 200px;
+}
+
+aside ul {
+    display: flex;
+    flex-flow: column wrap;
+    list-style: none;
+    width: 100%;
+}
+
+aside ul li {
+    width: 100%;
+    margin-bottom: 4px;
+    padding: 5px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+aside ul:first-child li:last-child {
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid #E1E1E2;
+}
+
+aside ul li a {
+    text-decoration: none;
+    color: #172B4D;
+}
+
+.addWorkSpaceLi{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.addWorkSpaceLi span {
+    font-weight: 500;
+    color: #5E6C84;
+    font-size: 13px;
+    margin-left: 0px;
+}
+
+.addWorkSpaceLi .addWorkSpaceButton{
+    margin-right: 0px;
+    background-color: white;
+    border: 0px;
+    font-size: 25px;
+    color: #5E6C84;
+}
