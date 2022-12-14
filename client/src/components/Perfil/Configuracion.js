@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavPerfil } from './NavPerfil'
 
 export const Configuración = () => {
 
@@ -9,6 +10,7 @@ export const Configuración = () => {
 
     return (
         <div className='config'>
+            <NavPerfil />
 
                 <h2>Detalles de la cuenta</h2>
                 <hr/>
