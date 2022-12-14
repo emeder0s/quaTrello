@@ -2,7 +2,7 @@ conexion = {
   abrir: async () => {
       const Sequelize = require('sequelize')
 
-      const sequelize = new Sequelize('prueba', 'root', 'root', {
+      const sequelize = new Sequelize('quatrello', 'root', 'root', {
           host: 'localhost',
           dialect: 'mysql',
           port: 3306
@@ -12,8 +12,6 @@ conexion = {
           .then(() => {
               console.log("Abierta Sequelize")
           })
-
-
       return sequelize;
 
   },
