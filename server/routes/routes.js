@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const user = require("../controllers/user.mysql.controllers");
+const user = require("../controllers/user.controllers");
 const workspace = require("../controllers/workspace.controllers");
 
 //WORKSPACE
