@@ -14,7 +14,7 @@ ActivitiesModel = {
             },
             date_:{
                 type: DataTypes.DATE,
-                allowNull: false
+                allowNull: true
             },
             fk_id_card: {
                 type: DataTypes.INTEGER,
