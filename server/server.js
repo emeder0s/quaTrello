@@ -1,8 +1,5 @@
 const express = require("express");
 const router = require("./routes/routes");
-
-require("./dataBases/mysql");
-
 const app = express();
 
 app.use(express.json());
