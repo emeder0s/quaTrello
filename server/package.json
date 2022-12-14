@@ -15,6 +15,7 @@
     "bcryptjs": "^2.4.3",
     "chromedriver": "^108.0.0",
     "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "geckodriver": "^3.2.0",
