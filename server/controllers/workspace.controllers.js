@@ -1,4 +1,3 @@
-const sequelize = require("../dataBases/mysql");
 const workspacesModel = require("../models/workspace.model");
 const userWorkspace = require ("./user_workspace.controllers");
 const user = require ("./user.controllers");
