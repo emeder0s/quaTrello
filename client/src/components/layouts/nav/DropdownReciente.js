@@ -1,5 +1,5 @@
 import React from 'react'
-import './dropdown.scss'
+
 export const DropdownReciente = () => {
   return (
     <div className='dropdown2'>
