@@ -1,15 +1,17 @@
 import ReactDOM from 'react-dom/client';
-import './styles/styles.scss';
-import { BrowserRouter } from 'react-router-dom'
-import Home from './components/Tableros/Home';
+
+import { BrowserRouter, Routes } from 'react-router-dom'
 import { Rutas } from './router/Rutas';
+import "./styles/styles.scss"
+
+
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <BrowserRouter>
-    <Rutas/>
-  </BrowserRouter>
+
+ <Rutas></Rutas>
+
 );
 
