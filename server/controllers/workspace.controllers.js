@@ -21,12 +21,12 @@ const workspace = {
 
   insert: async (req, res) => {
     try{
-        const { id, name_, visibility, configuration } = req.body;
+        const { name_, visibility, configuration } = req.body;
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         const workspace = await workspaceM.findOne({ where: { name_ } });
         if (!workspace) {
-            await workspaceM.create({ id, name_, visibility, configuration });
+            await workspaceM.create({ name_, visibility, configuration });
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
