@@ -1,5 +1,5 @@
 const sequelize = require("../dataBases/mysql");
-const workspacesModel = require("../models/workspaces.model");
+const workspacesModel = require("../models/workspace.model");
 const userWorkspace = require ("./user_workspace.mysql.controllers");
 const user = require ("./user.mysql.controllers");
 
