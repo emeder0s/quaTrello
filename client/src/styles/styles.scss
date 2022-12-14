@@ -1,3 +1,14 @@
+// Navbar and header
 @import "./layouts/navbar/nav.scss";
 @import "./layouts/navbar/header.scss";
 @import "./layouts/navbar/dropdown.scss";
+
+// Perfil
+@import "./layouts/perfil.scss";
+@import "./layouts/configuracion.scss";
+
+// Aside and form
+@import './base/general';
+@import './layouts/aside';
+@import './layouts/addWorkSpace.scss';
+@import './layouts/home';

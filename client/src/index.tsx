@@ -1,6 +1,5 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom'
+import { Rutas } from './router/Rutas';
 import { Header } from './components/layouts/Header';
 import  "./styles/styles.scss"
 
@@ -9,6 +8,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
 
-   <Header />  
+ <>
+ <Header />  
+ <Rutas></Rutas>
+ </>
 );
 
