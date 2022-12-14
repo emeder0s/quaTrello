@@ -7,14 +7,11 @@ import { Perfil } from '../components/Perfil/Perfil'
 import { Actividad } from '../components/Perfil/Actividad'
 import { Tarjetas } from '../components/Perfil/Tarjetas'
 import { Configuración } from '../components/Perfil/Configuracion'
-import { NavPerfil } from '../components/Perfil/NavPerfil'
 import Home from '../components/Tableros/Home'
 
 export const Rutas = () => {
     return (
         <BrowserRouter>
-
-            <NavPerfil />
             <div>
                 <Routes>
 

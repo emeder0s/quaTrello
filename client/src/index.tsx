@@ -1,12 +1,14 @@
 import ReactDOM from 'react-dom/client';
-import { Rutas } from './router/Rutas;
+import { Rutas } from './router/Rutas';
 import { Header } from './components/layouts/Header';
-import  "./styles/styles.scss"
+import "./styles/styles.scss"
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
- <Header />  
- <Rutas></Rutas>
+  <div>
+    <Header />
+    <Rutas />
+  </div>
 );
