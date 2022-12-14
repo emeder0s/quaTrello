@@ -6,10 +6,9 @@ USE quatrello;
 CREATE TABLE IF NOT EXISTS users(
         id INT AUTO_INCREMENT NOT NULL,
         email VARCHAR (25) UNIQUE NOT NULL,
-        first_name VARCHAR(25) NOT NULL, 
-        last_name VARCHAR(25) NOT NULL, 
-        pass VARCHAR(25) NOT NULL,
-        sector VARCHAR(15),
+        full_name VARCHAR(25) NOT NULL,
+        bio TEXT, 
+        pass CHAR(64) NOT NULL,
         avatar VARCHAR(550),
         configuration TEXT,
         PRIMARY KEY(id)

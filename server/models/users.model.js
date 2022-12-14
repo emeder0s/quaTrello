@@ -13,22 +13,19 @@ userModel = {
                 unique: true,
                 allowNull: false
             },
-            first_name: {
+            full_name: {
                 type: DataTypes.STRING,
                 unique: true,
                 allowNull: false
             },
-            last_name: {
+           
+            bio: {
                 type: DataTypes.STRING,
-                allowNull: false
+                allowNull: true
             },
             pass: {
                 type: DataTypes.STRING,
                 allowNull: false
-            },
-            sector: {
-                type: DataTypes.STRING,
-                allowNull: true
             },
             avatar: {
                 type: DataTypes.STRING,
