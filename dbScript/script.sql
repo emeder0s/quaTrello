@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS cards(
         title VARCHAR(25) NOT NULL, 
         description_ TEXT, 
         checklist TEXT,
-		date_ DATE, 
+	date_ DATE, 
         fk_id_list INT,
         PRIMARY KEY(id),
         FOREIGN KEY (fk_id_list) REFERENCES lists(id) ON DELETE SET NULL
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS cards(
 CREATE TABLE IF NOT EXISTS activities(
         id INT AUTO_INCREMENT NOT NULL,
         text_ TEXT NOT NULL,
-        date_ DATE DEFAULT now(),
+        date_ DATETIME DEFAULT now(),
         fk_id_card INT,
         fk_id_user INT,
         PRIMARY KEY(id),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS activities(
 
 CREATE TABLE IF NOT EXISTS messages(
         id INT AUTO_INCREMENT NOT NULL,
-        date_ DATE DEFAULT now(),
+        date_ DATETIME DEFAULT now(),
         text_ TEXT NOT NULL,
         fk_id_board INT,
         fk_id_user INT,
