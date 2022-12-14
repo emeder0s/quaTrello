@@ -1,0 +1,45 @@
+{
+    "id": "01",
+    "name": "Michael",
+    "workspaces": [
+        {
+            "ws_name": "Google Project",
+            "boards": [
+                {
+                    "name": "UX/UI Design",
+                    "recent" : "true"
+                },
+                {
+                    "name": "Frontend",
+                    "recent" : "false"
+                },
+                {
+                    "name": "Backend",
+                    "recent" : "false"
+                }
+            ]
+        },
+        {
+            "ws_name": "Amazon Project",
+            "boards": [
+                {
+                    "name": "UX/UI Design",
+                    "recent" : "false"
+                },
+                {
+                    "name": "Frontend",
+                    "recent" : "true"
+                }
+            ]
+        },
+        {
+            "ws_name": "Apple Project",
+            "boards": [
+                {
+                    "name": "UX/UI Design",
+                    "recent" : "true"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,21 @@
+.body {
+    background-color: #FAFBFC;
+}
+.boards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+.box { 
+    box-sizing: border-box;
+    width: 20%;
+    background-color: #0279BF;
+    color: white;
+    margin: 0 2% 2% 0;
+    padding: 1% 6% 6% 1%;   
+}
+.add {
+    background-color: #091e420a;
+    color: grey;
+    padding: 1% 6% 6% 1%;   
+}
