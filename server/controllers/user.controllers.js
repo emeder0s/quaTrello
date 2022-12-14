@@ -1,3 +1,4 @@
+const conexion = require("../dataBases/mysql")
 const Users = require("../models/users.model");
 const bcyptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
@@ -5,11 +6,10 @@ const sendemail = require("./email.controllers");
 const SendmailTransport = require("nodemailer/lib/sendmail-transport");
 const user = {
   /**
-   * 
+   * Envia al email un enlace de acceso al registro.
    * @param {json} req 
    * @param {json} res 
    */
-
   confirmEmail: async (req, res) => {
     const { email } = req.body;
 
@@ -31,12 +31,30 @@ const user = {
       let email = jwtVerify.email;
       const { full_name, bio, pass } = req.body;
       const pass_hash = await bcyptjs.hash(pass, 8);
-      const user = await Users.create({ email, full_name, bio, "pass": pass_hash, avatar: "../resources/img/fotoperfil.png", configuration: {} })
+      let con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      const user = await Usr.create({ email, full_name, bio, "pass": pass_hash, avatar: "../resources/img/fotoperfil.png", configuration: {} })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
+      await conexion.cerrar(con);
       res.cookie("session", infoJwt);
-      res.json("ok");
-    } catch (ValidationError) {
-      res.json("Email o DNI repetido");
+      res.json(user);
+    } catch (error) {
+      res.json(error);
+    }
+  },
+  /**
+   * Devuelve la id del usuario que tiene sesion iniciada
+   * @param {json} req 
+   * @param {json} res 
+   * @returns 
+   */
+  getIdFromCookie: (req, res) => {
+    try {
+      let jwtVerify = jwt.verify(req.cookies.session, "m1c4s4")
+      res.json(jwtVerify.id)
+      return jwtVerify.id
+    } catch (error) {
+      res.json("Usuario no loggeado")
     }
   },
 
@@ -47,33 +65,17 @@ const user = {
    */
   update: async (req, res) => {
     try {
+      let id = this.getIdFromCookie(req,res)
       const { full_name, bio } = req.body;
-      const userr = await Users.findOne({ where: { email } })
-      userr.update({ full_name, bio })
-      userr.save();
-      res.redirect("back");
+      let con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      res.json(await Usr.update({ full_name, bio },{where:{id}}));
     } catch (ValidationError) {
       res.json("Email o DNI repetido");
     }
   },
 
-  /**
-  * Función que comprueba que un usuario tiene la sesion iniciada recogiendo el Json web token de las cookies.
-  * @param {json} req 
-  * @param {json} res 
-  */
 
-  isAuthorized: (req, res) => {
-    var cookies = req.cookies;
-    var token = cookies.infoJwt;
-    try {
-      let jwtVerify = jwt.verify(token, "m1c4s4")
-      res.json(jwtVerify)
-      return jwtVerify
-    } catch (error) {
-      res.json("Usuario no loggeado")
-    }
-  },
 
   /**
    * Funcion que comprueba email y contraseña de usuario para iniciar sesion, al comprobar que es correcto inserta una cookie en el navegador.
@@ -219,3 +221,5 @@ const user = {
   }
 
 }
+
+module.exports = user;
