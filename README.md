@@ -23,3 +23,43 @@
 | `DELETE` | `/delete-workspace` | | { }  |  |
 | `GET` | `/get-workspaces-by-user` | | { }  |  |
 
+### Controlador de boards
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `DELETE` | `/` | | { }  |  |
+| `GET` | `/` | | { }  |  |
+
+### Controlador de lists
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `DELETE` | `/` | | { }  |  |
+| `GET` | `/` | | { }  |  |
+
+### Controlador de messages
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `DELETE` | `/` | | { }  |  |
+| `GET` | `/` | | { }  |  |
+
+### Controlador de activities
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `GET` | `/` | | { }  | |
+| `POST` | `/` | | { }  |  |
+| `DELETE` | `/` | | { }  |  |
+| `GET` | `/` | | { }  |  |
+
