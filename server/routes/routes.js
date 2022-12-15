@@ -12,7 +12,7 @@ router.post("/insert-workspace", workspace.insert);
 router.get("/show-workspace/:id", workspace.show);
 router.post("/update-workspace", workspace.update);
 router.delete("/delete-workspace", workspace.delete);
-router.get("get-workspaces-by-user", workspace.getByUser);
+router.get("/get-workspaces-by-user", workspace.getByUser);
 
 //BOARDS
 router.get("/all-boards", board.getAll);
@@ -20,7 +20,7 @@ router.post("/insert-board", board.insert);
 router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
 router.delete("/delete-board", board.delete);
-// router.get("get-workspaces-by-user", board.getByUser);
+// router.get("/get-workspaces-by-user", board.getByUser);
 
 //LISTS
 router.get("/all-lists", list.getAll);
