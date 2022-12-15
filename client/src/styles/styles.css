@@ -1,1 +1,5 @@
-@import url(../styles/boards.scss);/*# sourceMappingURL=styles.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url(../styles/boards.scss);
+body {
+  font-family: "Roboto", sans-serif;
+}/*# sourceMappingURL=styles.css.map */
