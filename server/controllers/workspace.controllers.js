@@ -27,7 +27,9 @@ const workspace = {
         const workspaceM = await workspacesModel.create(con);
         const workspace = await workspaceM.findOne({ where: { name_ } });
         if (!workspace) {
-            await workspaceM.create({ name_, visibility, configuration });
+            var ws = await workspaceM.create({ name_, visibility, configuration });
+            // await userWorkspace.insert("editor",user.getIdFromCookie(req),workspace.id)
+            await userWorkspace.insert("editor",req.body.id,ws.dataValues.id)
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
