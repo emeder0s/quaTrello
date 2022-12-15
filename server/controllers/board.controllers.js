@@ -101,7 +101,10 @@ const board = {
   getByWorkspaceAndUser: async (fk_id_workspace,fk_id_user) => {
     var con = await conexion.abrir();
     const boardM = await boardsModel.create(con);
-    const boards = await boardM.findAll({ where: { fk_id_workspace,fk_id_user } });
+    var  boards = await boardM.findAll({ where: { fk_id_workspace,fk_id_user } });
+    boards = boards.map(board => { return board.dataValues})
+    console.log(boards)
+    await conexion.cerrar(con);
     return boards;
   }
 };

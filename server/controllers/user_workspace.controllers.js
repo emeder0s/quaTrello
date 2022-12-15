@@ -2,25 +2,25 @@ const conexion = require("../dataBases/mysql");
 const userWorkspacesModel = require("../models/users_workspaces.model");
 
 const userWorkspace = {
-  getWorkspacesByUser: async (id) => {
+  getWorkspacesByUser: async (fk_id_user) => {
     var con = await conexion.abrir();
     const userWorkspacesM = await userWorkspacesModel.create(con);
-    const userWorkspaces = await userWorkspacesM.findAll({ where: { id } });
+    const userWorkspaces = await userWorkspacesM.findAll({ where: { fk_id_user } });
     await conexion.cerrar(con);
     return userWorkspaces;
   },
 
-  // insert: async (role, fk_id_user, fk_id_workspace) => {
-  //   try{
-  //       var con = await conexion.abrir();
-  //       const userWorkspacesM = userWorkspacesModel.create(con);
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }finally{
-  //     await conexion.cerrar(con);
-  //   }
-  // },
+  insert: async (role, fk_id_user, fk_id_workspace) => {
+    try{
+        var con = await conexion.abrir();
+        const userWorkspacesM = userWorkspacesModel.create(con);
+    }catch(e){
+        console.log(e);
+        res.json(false);
+    }finally{
+      await conexion.cerrar(con);
+    }
+  },
 
   // show: async (req, res) => {
   //   try{

@@ -71,6 +71,8 @@ const list = {
       await conexion.cerrar(con);
     }
   }
+
+  // getByBoard: 
 };
 
 
