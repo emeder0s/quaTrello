@@ -3,6 +3,8 @@ const Users = require("../models/users.model");
 const bcyptjs = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const sendemail = require("./email.controllers");
+const Sequelize = require("sequelize")
+const Op = Sequelize.Op;
 
 /* Abrir y cerrar conexion
 
@@ -37,17 +39,18 @@ const user = {
     try {
       let jwtVerify = jwt.verify(req.body.jwt, "m1c4s4");
       let email = jwtVerify.email;
-      const { full_name, bio, pass } = req.body;
+      const { full_name, pass } = req.body;
       const pass_hash = await bcyptjs.hash(pass, 8);
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio, "pass": pass_hash, avatar: "../resources/img/fotoperfil.png", configuration: {} })
+      const user = await Usr.create({ email, full_name, bio:"", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
-      await conexion.cerrar(con);
       res.cookie("session", infoJwt);
       res.json(user);
     } catch (error) {
       res.json(error);
+    } finally {
+      await conexion.cerrar(con);
     }
   },
   /**
@@ -195,11 +198,11 @@ const user = {
       await conexion.cerrar(con);
     }
   },
-/**
- * Devuelve el usuario que tiene la sesion iniciada a partir de la cookie
- * @param {JSON} req 
- * @param {JSON} res 
- */
+  /**
+   * Devuelve el usuario que tiene la sesion iniciada a partir de la cookie
+   * @param {JSON} req 
+   * @param {JSON} res 
+   */
   getUserbyCookie: async (req, res) => {
     try {
       var con = await conexion.abrir();
@@ -222,10 +225,11 @@ const user = {
       var { user } = req.body;
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
+      console.log(user)
       if (user.includes("@")) {
-        res.json(await Usr.findAll({ where: { email: { [Op.like]: req.body.user } } }))
+        res.json(await Usr.findAll({ where: { email: { [Op.like]: `%${user}%` } } }))
       } else {
-        res.json(await Usr.findAll({ where: { full_name: { [Op.like]: req.body.user } } }))
+        res.json(await Usr.findAll({ where: { full_name: { [Op.like]: `%${user}%` } } }))
       }
     } catch (error) {
       res.send(error)
