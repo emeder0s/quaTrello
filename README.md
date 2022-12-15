@@ -16,9 +16,9 @@
 ### Controlador de workspaces
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/all-workspaces` | | { }  | |
-| `POST` | `/insert-workspace` | | { }  |  |
-| `GET` | `/show-workspace/:id` | | { }  | |
+| `GET` | `/all-workspaces` | Devuelve todos los workspaces | { }  | |
+| `POST` | `/insert-workspace` | Inserta un workspace | { }  |  |
+| `GET` | `/show-workspace/:id` | Devuelve un  | { }  | |
 | `POST` | `/update-workspace` | | { }  |  |
 | `DELETE` | `/delete-workspace` | | { }  |  |
 | `GET` | `/get-workspaces-by-user` | | { }  |  |
