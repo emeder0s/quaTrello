@@ -1,0 +1,57 @@
+.dropdown1 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 93px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown2 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 205px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown3 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 270px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown4 {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 337px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.title {
+  color: rgb(146, 146, 146);
+  font-size: 8px;
+}
+
+.espacio {
+  color: black;
+  font-size: 8px;
+}/*# sourceMappingURL=dropdown.css.map */
