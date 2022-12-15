@@ -1,8 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 @import url(../styles/boards.scss);
 
-$body-font-family: 'Roboto', sans-serif;
+// Navbar and header
+@import "./layouts/navbar/nav.scss";
+@import "./layouts/navbar/header.scss";
+@import "./layouts/navbar/dropdown.scss";
 
-body {
-    font-family:$body-font-family;
-}
+// Perfil
+@import "./layouts/perfil.scss";
+@import "./layouts/configuracion.scss";
+
+// Aside and form
+@import './base/general';
+@import './layouts/aside';
+@import './layouts/addWorkSpace.scss';
+@import './layouts/home';

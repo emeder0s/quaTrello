@@ -17,6 +17,10 @@ export const taskSlice = createSlice({
     incrementByAmount: (state, action) => {
       state.value += action.payload
     },
+    addTask: (state, action) => {
+      console.log(state, action)
+      state.push(action.payload)
+  }
   },
 })
 
