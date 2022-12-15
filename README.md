@@ -36,7 +36,7 @@
 ### Controlador de lists
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/all-lists` | | { }  | |
+| `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   |  |
 | `POST` | `/insert-list` | | { }  |  |
 | `POST` | `/update-list` | | { }  |  |
 | `DELETE` | `/delete-list` | | { }  |  |
