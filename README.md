@@ -20,8 +20,8 @@
 | `POST` | `/insert-workspace` | Inserta un workspace | { "name_":"Nombre del Workspace", "visibility":"public/private", "configuration":"la configuracion en un JSON" }  | true (si todo va bien)/false(si algo fallta)/json{msn: "Existe con ese nombre"} |
 | `GET` | `/show-workspace/:id` | Devuelve los datos de un workspace | {"id":"el id del workspace a mostrar" } | json (con los datos del workspace) |
 | `POST` | `/update-workspace` | Modifica los datos de un workspace | { "id":"id del workspace a modificar", "name_":"name del workspace", "visibility":"public/private", "configuration":"la configuracion de un ws" }  |  |
-| `DELETE` | `/delete-workspace` | Borra un workspace | { "id":  } |  |
-| `GET` | `/get-workspaces-by-user` | | { }  |  |
+| `DELETE` | `/delete-workspace` | Borra un workspace | { "id": "id del workspace a eliminar" } | boolean - true (si todo va bien)/false(si algo fallta) |
+| `GET` | `/get-workspaces-by-user` | Devuelve todos los workspace (y los sus boards) del usuario logueado  |  |  json (array de workspace)  |
 
 ### Controlador de boards
 | Tipo de petición | End Point | Descripción   | req.body | res |
