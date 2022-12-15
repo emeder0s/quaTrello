@@ -4,14 +4,14 @@
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `POST` | `/insert-user` | Inserta un registro en la tabla users de la base de datos y encripta la contraseña| { }  | el usuario que se ha insertado o el error que se haya producido |
-| `POST` | `/confirmEmail` | | { }  |  |
-| `POST` | `/update-user` | | { }  | |
-| `POST` | `/login` | | { }  |  |
-| `POST` | `/passToEmail` | | { }  | |
-| `POST` | `/resetPass/:token` | | { }  | |
-| `POST` | `/searchUser` | | { }  |  |
-| `DELETE` | `/delete-user` | | { }  |  |
-| `GET` | `/logout` | | { }  |  |
+| `POST` | `/confirmEmail` | Envia al email un enlace de acceso al registro. | { }  |  |
+| `POST` | `/update-user` | Actualiza un usuario | { }  | |
+| `POST` | `/login` | Comprueba email y contraseña de usuario para iniciar sesion, al comprobar que es correcto inserta una cookie en el navegador. | { }  |  |
+| `POST` | `/passToEmail` | Devuelve un Json Web Token que contiene la dirección de email del usuario para comprobar la identidad al cambiar la contraseña. | { }  | |
+| `POST` | `/resetPass/:token` | Verifica la validez del json web token, recoge la nueva contraseña introducida por el usuario y la actualiza en la base de datos. | ```{"token":{"email":"ejemplo@ejemplo.es"} }```  | |
+| `POST` | `/searchUser` | Devuelve una lista de usuarios que coincidan con la busqueda. Admite tanto Nombre de usuario como e-mail.| { }  |  |
+| `DELETE` | `/delete-user` | Borra a un usuario de la base de datos. Para realizar esta operación el usuario debe confirmar su identidad introduciendo sus credenciales.| { }  |  |
+| `GET` | `/logout` | Log out del usuario - limpia la cookie con el json web token del navegador | { }  |  |
 
 ### Controlador de workspaces
 | Tipo de petición | End Point | Descripción   | req.body | res |
