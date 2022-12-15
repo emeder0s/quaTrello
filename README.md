@@ -18,9 +18,9 @@
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `GET` | `/all-workspaces` | Devuelve todos los workspaces | { }  | |
 | `POST` | `/insert-workspace` | Inserta un workspace | { "name_":"Nombre del Workspace", "visibility":"public/private", "configuration":"la configuracion en un JSON" }  | true (si todo va bien)/false(si algo fallta)/json{msn: "Existe con ese nombre"} |
-| `GET` | `/show-workspace/:id` | Devuelve los datos de un workspace | {id:"el id del workspace a mostrar" } | json (con los datos del workspace) |
-| `POST` | `/update-workspace` | | { }  |  |
-| `DELETE` | `/delete-workspace` | | { }  |  |
+| `GET` | `/show-workspace/:id` | Devuelve los datos de un workspace | {"id":"el id del workspace a mostrar" } | json (con los datos del workspace) |
+| `POST` | `/update-workspace` | Modifica los datos de un workspace | { "id":"id del workspace a modificar", "name_":"name del workspace", "visibility":"public/private", "configuration":"la configuracion de un ws" }  |  |
+| `DELETE` | `/delete-workspace` | Borra un workspace | { "id":  } |  |
 | `GET` | `/get-workspaces-by-user` | | { }  |  |
 
 ### Controlador de boards
