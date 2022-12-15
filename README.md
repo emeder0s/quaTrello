@@ -43,7 +43,7 @@
 ### Controlador de messages
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `POST` | `/insertmessage` | Inserta un registro en la tabla "messages" de la base de datos. | { text_: "texto...", fk_id_board: "id_board" }  | el mensaje que se ha insertado o el error que se haya producido |
+| `POST` | `/insertmessage` | Inserta un registro en la tabla "messages" de la base de datos. | ```{ text_: "texto...", fk_id_board: "id_board" }```  | el mensaje que se ha insertado o el error que se haya producido |
 | `POST` | `/getmessages` | Muestra todos los mensajes del chat perteneciente al board cuyo id se pasa en el body de la peticion.| { fk_id_board: "id_board" }  | todos los mensajes del chat o el error que se haya producido. |
 
 ### Controlador de activities
