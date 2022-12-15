@@ -43,6 +43,7 @@ router.post("/deleteactivities", activities.delete);
 router.post("/confirmEmail",user.confirmEmail);
 router.post("/insert-user", user.insert);
 router.post("/update-user",user.update);
+router.get("/setAvatar/:avatar",user.setAvatar);
 router.post("/login", user.login);
 router.post("/passToEmail",user.passToEmail);
 router.post("/resetPass/:token", user.resetPass);

@@ -79,13 +79,30 @@ const user = {
       const { full_name, bio } = req.body;
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      res.json(await Usr.update({ full_name, bio }, { where: { id } }));
-    } catch (ValidationError) {
-      res.json("Email o DNI repetido");
+      await Usr.update({ full_name, bio }, { where: { id } })
+      res.json("Actualización completa");
+    } catch (error) {
+      res.json(error);
     }
   },
 
-
+  /**
+   * Modifica en la base de datos el campo avatar
+   * @param {JSON} req 
+   * @param {JSON} res 
+   */
+  setAvatar: async (req, res) => {
+    try {
+      let id = this.getIdFromCookie(req)
+      const avatar = req.params.avatar;
+      var con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      await Usr.update({ avatar }, { where: { id } })
+      res.json("Actualización completa");
+    } catch (error) {
+      res.json(error);
+    }
+  },
 
   /**
    * Funcion que comprueba email y contraseña de usuario para iniciar sesion, al comprobar que es correcto inserta una cookie en el navegador.
@@ -172,16 +189,15 @@ const user = {
   },
   /**
    * Devuelve en un JSON la informacion de un usuario buscado por ID.
-   * @param {JSON} req ejemplo: req.body={id:"1"}
-   * @param {JSON} res 
+   * @param {JSON} id
    */
-  getUserbyId: async (req, res) => {
+  getUserbyId: async (id) => {
     try {
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      res.json(await Usr.findOne({ where: { id: req.body.id } }));
+      return await Usr.findOne({ where: { id } });
     } catch (error) {
-      res.json(error);
+      return error;
     } finally {
       await conexion.cerrar(con);
     }
