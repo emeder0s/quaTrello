@@ -1,8 +1,12 @@
-const sequelize = require("../dataBases/mysql");
-// const userWorkspacesModel = require("../models/user_Workspaces.model");
+const conexion = require("../dataBases/mysql");
+const userWorkspacesModel = require("../models/user_Workspaces.model");
 
 const userWorkspace = {
-  // getAll: async (req, res) => {
+  getWorkspacesByUser: async (id) => {
+    var con = await conexion.abrir();
+    const userWorkspacesM = userWorkspacesModel.create(con);
+    return await userWorkspacesM.findAll({ where: { id } });
+  }
   //   const userWorkspaces = await userWorkspacesModel.findAll();
   //   res.json(userWorkspaces);
   // },

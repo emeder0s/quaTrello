@@ -88,15 +88,15 @@ const workspace = {
     }
   },
 
-  // getByUser:async (req, res) => {
-  //   try{
-  //       const workspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
-  //       res.json(workspaces);
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }
-  // }
+  getByUser:async (req, res) => {
+    try{
+        const workspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+        res.json(workspaces);
+    }catch(e){
+        console.log(e);
+        res.json(false);
+    }
+  }
 };
 
 
