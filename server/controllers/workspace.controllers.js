@@ -90,7 +90,8 @@ const workspace = {
 
   getByUser:async (req, res) => {
     try{
-        const workspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+       // const workspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+        const workspaces = await userWorkspace.getWorkspacesByUser(req.body.id);
         res.json(workspaces);
     }catch(e){
         console.log(e);
@@ -98,6 +99,5 @@ const workspace = {
     }
   }
 };
-
 
 module.exports = workspace;

@@ -20,7 +20,7 @@ router.post("/insert-board", board.insert);
 router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
 router.delete("/delete-board", board.delete);
-// router.get("get-workspaces-by-user", board.getByUser);
+// router.get("/get-workspaces-by-user", board.getByUser);
 
 //LISTS
 router.get("/all-lists", list.getAll);
