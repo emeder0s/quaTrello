@@ -5,6 +5,7 @@ const user = require("../controllers/user.controllers");
 const workspace = require("../controllers/workspace.controllers");
 const board = require("../controllers/board.controllers");
 const list = require("../controllers/list.controllers");
+const user_board = require("../controllers/user_board.controllers");
 
 //WORKSPACE
 router.get("/all-workspaces", workspace.getAll);
@@ -12,7 +13,7 @@ router.post("/insert-workspace", workspace.insert);
 router.get("/show-workspace/:id", workspace.show);
 router.post("/update-workspace", workspace.update);
 router.delete("/delete-workspace", workspace.delete);
-router.get("get-workspaces-by-user", workspace.getByUser);
+router.get("/get-workspaces-by-user", workspace.getByUser);
 
 //BOARDS
 router.get("/all-boards", board.getAll);
@@ -20,7 +21,7 @@ router.post("/insert-board", board.insert);
 router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
 router.delete("/delete-board", board.delete);
-// router.get("get-workspaces-by-user", board.getByUser);
+// router.get("/get-workspaces-by-user", board.getByUser);
 
 //LISTS
 router.get("/all-lists", list.getAll);
@@ -50,6 +51,10 @@ router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
 //router.get("/logout", user.logout);
+
+//USER_BOARD
+router.post("/insertuserboard", user_board.insert);
+router.post("/getusersboard", user_board.get);
 
 
 module.exports = router;

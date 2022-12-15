@@ -4,26 +4,21 @@ const userWorkspacesModel = require("../models/users_workspaces.model");
 const userWorkspace = {
   getWorkspacesByUser: async (id) => {
     var con = await conexion.abrir();
-    const userWorkspacesM = userWorkspacesModel.create(con);
-    return await userWorkspacesM.findAll({ where: { id } });
-  }
-  //   const userWorkspaces = await userWorkspacesModel.findAll();
-  //   res.json(userWorkspaces);
-  // },
+    const userWorkspacesM = await userWorkspacesModel.create(con);
+    const userWorkspaces = await userWorkspacesM.findAll({ where: { id } });
+    await conexion.cerrar(con);
+    return userWorkspaces;
+  },
 
   // insert: async (role, fk_id_user, fk_id_workspace) => {
   //   try{
-  //       const userWorkspace = await userWorkspacesModel.findByPk(id);
-  //       if (userWorkspace == "") {
-  //           await userWorkspacesModel.create({ role, fk_id_user, fk_id_workspace });
-  //           res.json(true);
-  //       }else{
-  //           res.json({msn:" ya existe"});
-  //       }
-        
+  //       var con = await conexion.abrir();
+  //       const userWorkspacesM = userWorkspacesModel.create(con);
   //   }catch(e){
   //       console.log(e);
   //       res.json(false);
+  //   }finally{
+  //     await conexion.cerrar(con);
   //   }
   // },
 
