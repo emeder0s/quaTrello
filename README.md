@@ -3,7 +3,7 @@
 ### Controlador de users
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `POST` | `/insert-user` | Inserta un registro en la tabla users de la base de datos y encripta la contraseña| {{
+| `POST` | `/insert-user` | Inserta un registro en la tabla users de la base de datos y encripta la contraseña| {
     "jwt":"jwt, viene en params del email de registro",
     "full_name":"Nombre completo",
     "pass":"1234"
