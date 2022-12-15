@@ -22,11 +22,11 @@ const userWorkspace = {
    * @param {*} fk_id_user id del usuario
    * @param {*} fk_id_workspace id de workspace
    */
-  insert: async (role, fk_id_user, fk_id_workspace) => {
+  insert: async (role_, fk_id_user, fk_id_workspace) => {
     try{
         var con = await conexion.abrir();
-        const userWorkspacesM = userWorkspacesModel.create(con);
-        await userWorkspacesM.create({ role, fk_id_user, fk_id_workspace });
+        const userWorkspacesM = await userWorkspacesModel.create(con);
+        await userWorkspacesM.create({ role_, fk_id_user, fk_id_workspace });
     }catch(e){
         console.log(e);
     }finally{
@@ -34,5 +34,6 @@ const userWorkspace = {
     }
   },
 };
+
 
 module.exports = userWorkspace;
