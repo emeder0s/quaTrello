@@ -29,4 +29,4 @@ Users_boardsModel = {
     }
 }
 
-module.exports = MessagesModel;
+module.exports = Users_boardsModel;
