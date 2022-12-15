@@ -36,7 +36,7 @@ const user = {
    */
   insert: async (req, res) => {
     try {
-      let jwtVerify = jwt.verify(req.params.jwt, "m1c4s4");
+      let jwtVerify = jwt.verify(req.body.jwt, "m1c4s4");
       let email = jwtVerify.email;
       const { full_name, bio, pass } = req.body;
       const pass_hash = await bcyptjs.hash(pass, 8);
@@ -190,6 +190,22 @@ const user = {
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
       res.json(await Usr.findOne({ where: { email: req.body.email } }));
+    } catch (error) {
+      res.json(error);
+    } finally {
+      await conexion.cerrar(con);
+    }
+  },
+/**
+ * Devuelve el usuario que tiene la sesion iniciada a partir de la cookie
+ * @param {JSON} req 
+ * @param {JSON} res 
+ */
+  getUserbyCookie: async (req, res) => {
+    try {
+      var con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      res.json(await Usr.findOne({ where: { id: this.getIdFromCookie(req) } }));
     } catch (error) {
       res.json(error);
     } finally {
