@@ -14,11 +14,11 @@
 
 
 ### Controlador de workspaces
-| Tipo de petición | End Point | Descripción   | req.body | res |
+| Tipo de petición | End Point | Descripción   | req.body/req.params | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `GET` | `/all-workspaces` | Devuelve todos los workspaces | { }  | |
-| `POST` | `/insert-workspace` | Inserta un workspace | { }  |  |
-| `GET` | `/show-workspace/:id` | Devuelve un  | { }  | |
+| `POST` | `/insert-workspace` | Inserta un workspace | { "name_":"Nombre del Workspace", "visibility":"public/private", "configuration":"la configuracion en un JSON" }  | true (si todo va bien)/false(si algo fallta)/json{msn: "Existe con ese nombre"} |
+| `GET` | `/show-workspace/:id` | Devuelve los datos de un workspace | {id:"el id del workspace a mostrar" } | json (con los datos del workspace) |
 | `POST` | `/update-workspace` | | { }  |  |
 | `DELETE` | `/delete-workspace` | | { }  |  |
 | `GET` | `/get-workspaces-by-user` | | { }  |  |
