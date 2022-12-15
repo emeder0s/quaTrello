@@ -37,7 +37,7 @@ export const Perfil = () => {
         <div className='info'>
             <NavPerfil />
 
-            <img src={imagenPerfil} alt="" />
+            <img src={imagenPerfil} className="imgPerfil" />
 
             <h1 className='h1Info'>Gestione su información personal</h1>
 

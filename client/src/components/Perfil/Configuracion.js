@@ -4,15 +4,12 @@ import { NavPerfil } from './NavPerfil'
 export const Configuración = () => {
 
 
-   
-
-
 
     return (
         <div className='config'>
             <NavPerfil />
-
-                <h2>Detalles de la cuenta</h2>
+            <div className='divCuenta'>
+                <h2 className='detCuenta'>Detalles de la cuenta</h2>
                 <hr/>
                 <p>Cambiar idioma</p>
                 <br/>
@@ -28,6 +25,7 @@ export const Configuración = () => {
                 <hr/>
                 <p>Habilitar el modo óptico para daltónicos</p>
                 <br/>
+                </div>
         </div>
     )
 }

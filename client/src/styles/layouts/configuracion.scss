@@ -1,11 +1,23 @@
 
 
 .config{
-    margin: 0 auto;
     padding-top: 100px;
     flex-direction: column;
     justify-content: center;
     text-align: center;
-    width: 500px;
+}
+
+.divCuenta{
+    padding-top: 150px;
+    width: 550px;
+    padding: 20px;
+    align-items: center;
+    margin: 0 auto;
     font-size: x-large;
+    display: flexbox;
+    justify-content: space-between;
+}
+
+.detCuenta{
+    margin-top: 100px;
 }
