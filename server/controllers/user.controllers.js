@@ -21,7 +21,6 @@ const user = {
    */
   confirmEmail: async (req, res) => {
     const { email } = req.body;
-
     const infoJwt = jwt.sign({ email }, "m1c4s4", {
       expiresIn: "1000s",
     });
