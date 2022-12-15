@@ -2,6 +2,7 @@ const conexion = require("../dataBases/mysql");
 const workspacesModel = require("../models/workspace.model");
 const userWorkspace = require ("./user_workspace.controllers");
 const user = require ("./user.controllers");
+const board = require ("./board.controllers");
 
 const workspace = {
   getAll: async (req, res) => {
@@ -75,7 +76,7 @@ const workspace = {
 
   delete: async (req, res) => {
     try{
-        const { id } = req.body;
+        const { id } = req.params.id;
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         await workspaceM.destroy({ where: { id } });
@@ -96,7 +97,10 @@ const workspace = {
         const workspaceM = await workspacesModel.create(con);
         const workspaces = await Promise.all(
           userWorkspaces.map(async (userWorkspace) => {
-            return await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
+            var ws = await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
+            // ws.boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
+            ws.boards = await board.getByWorkspaceAndUser(userWorkspace.fk_id_workspace,req.body.id);
+            return ws;
           })
         )
         res.json(workspaces);
