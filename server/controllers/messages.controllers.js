@@ -24,7 +24,7 @@ const message = {
             await conexion.cerrar(con);
         }
     },
-    
+
     /**
      * Muestra todos los mensajes del chat perteneciente al board cuyo
      * id se pasa en el body de la peticion.
