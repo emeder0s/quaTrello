@@ -1,0 +1,30 @@
+
+.board-bg {
+    width: 200px;
+    height: 120px;
+    // background: url(/client/src/components/Board/board-preview-skeleton.svg);
+    background-color: darkslategray;
+    display: flex;
+    justify-content: center;
+}
+ul.images,
+ul.colors {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+ul.images li {
+    width: 64px;
+    height: 40px;
+    background-color: mediumorchid;
+}
+ul.colors li {
+    width: 40px;
+    height: 32px;
+    background-color: greenyellow;
+    
+}
+.chooseBG {
+    display: flex;
+    justify-content: center;
+}

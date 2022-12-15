@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import user from "./userData.json"
 
 export const Boards = () => {

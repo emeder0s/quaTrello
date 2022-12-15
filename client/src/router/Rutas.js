@@ -8,6 +8,7 @@ import { Tarjetas } from '../components/Perfil/Tarjetas'
 import { Configuración } from '../components/Perfil/Configuracion'
 import Home from '../components/Tableros/Home'
 import { Boards } from '../components/Boards/Boards'
+import { CreateBoard } from '../components/Board/CreateBoard'
 import { Registro } from '../pages/Registro'
 
 export const Rutas = () => {
@@ -26,6 +27,7 @@ export const Rutas = () => {
                     <Route path="/perfil/configuracion" element={<Configuración />} />
 
                     <Route path="/boards" element={<Boards />} />
+                    <Route path="/create-board" element={<CreateBoard />} />
                     <Route path="*" element={<Error />} />
 
                 </Routes>
