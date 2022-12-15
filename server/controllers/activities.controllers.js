@@ -1,5 +1,6 @@
 const conexion = require("../dataBases/mysql");
 const ActivitiesModel = require("../models/activities.model")
+const user = require("./user.controllers");
 
 const activities = {
 
@@ -8,14 +9,14 @@ const activities = {
      * @param {*} req  ej: 
      * req.body = {
      *     text_: "texto...",
-     *     fk_id_card: "id_card",
-     *     fk_id_user: "id_user"
+     *     fk_id_card: "id_card"
      * }
      * @param {*} res 
      */
     insert: async (req, res) => {
         try {
-            const { text_, fk_id_card, fk_id_user } = req.body;
+            var fk_id_user = user.getIdFromCookie(req);
+            const { text_, fk_id_card } = req.body;
             var con = await conexion.abrir();
             const act = await ActivitiesModel.create(con);
             res.json(await act.create({ text_, fk_id_card, fk_id_user }));

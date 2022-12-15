@@ -2,6 +2,7 @@ const conexion = require("../dataBases/mysql");
 const User_cardModel = require("../models/user_cards.model");
 
 const user_card = {
+    
     /**
      * Inserta un registro en la tabla "user_cards" de la base de datos.
      * @param {*} req  ej: 
