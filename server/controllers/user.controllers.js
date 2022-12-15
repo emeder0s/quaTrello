@@ -22,12 +22,16 @@ const user = {
    * @param {json} res 
    */
   confirmEmail: async (req, res) => {
-    const { email } = req.body;
-    const infoJwt = jwt.sign({ email }, "m1c4s4", {
-      expiresIn: "1000s",
-    });
-    var sendMail = sendemail.emailToRegister(infoJwt, email);
-    res.json(sendMail);
+    try {
+      const { email } = req.body;
+      const infoJwt = jwt.sign({ email }, "m1c4s4", {
+        expiresIn: "1000s",
+      });
+      await sendemail.emailToRegister(infoJwt, email);
+      res.json(`Email enviado a ${email}`);  
+    } catch (error) {
+      res.json(error)
+    }
   },
 
   /**
@@ -60,7 +64,7 @@ const user = {
    * @returns 
    */
   getIdFromCookie: (req) => {
-    let jwtVerify = jwt.verify(req.cookies.session, "m1c4s4")
+    let jwtVerify = jwt.verify(req.cookies.session, "m1c4s4");
     return jwtVerify.id
   },
 
@@ -130,9 +134,9 @@ const user = {
           expiresIn: "1000s",
         });
         sendemail.passrequest(infoJwt, email);
-        res.json(infoJwt);
+        res.json(`email enviado a ${email}`);
       } else {
-        res.json(infoUser.dataValues);
+        res.json("La dirección de email no se encuentra en la base de datos");
       }
     } catch (error) {
       res.json(error)
@@ -159,7 +163,7 @@ const user = {
       const Usr = await Users.create(con);
       const infoUser = await Usr.update({ pass }, { where: { email } });
       sendemail.passconfirm(email);
-      res.json(true);
+      res.json("Contraseña actualizada");
     } catch (error) {
       res.json(error);
     } finally {
@@ -245,23 +249,24 @@ const user = {
    */
   delete: async (req, res) => {
     try {
-      const { pass } = req.body;
-      let id = this.getIdFromCookie(req)
+      var id = user.getIdFromCookie(req)
+      console.log(id)
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      const user = await Usr.findOne({ where: { id } })
-      let hashSaved = user.dataValues.pass;
-      let compare = bcyptjs.compareSync(pass, hashSaved);
-      if (compare) {
-        user.destroy();
-        res.json({ msg: "Usuario Borrado" })
+      const usrToDelete = await Usr.findOne({ where: { id } })
+      if(!usrToDelete){
+        res.json("No existe el usuario")
       } else {
-        res.json({ msg: "La contraseña no coincide" })
-      }
+      let hashSaved = usrToDelete.dataValues.pass;
+      let compare = bcyptjs.compareSync(req.body.pass, hashSaved);
+      if (compare) {
+       await Usr.destroy({ where: { id } });
+        res.json("usuario borrado")
+      } else {
+        res.json("La contraseña no coincide")
+      }}
     } catch (error) {
       res.json(error)
-    } finally {
-      await conexion.cerrar(con);
     }
   },
 

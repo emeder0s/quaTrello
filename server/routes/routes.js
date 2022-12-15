@@ -47,8 +47,8 @@ router.post("/login", user.login);
 router.post("/passToEmail",user.passToEmail);
 router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
-router.delete("/delete-user", user.delete);
-router.get("/logout", user.logout);
+router.post("/delete-user", user.delete);
+//router.get("/logout", user.logout);
 
 
 module.exports = router;
