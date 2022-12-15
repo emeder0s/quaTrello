@@ -1,5 +1,5 @@
 import React from 'react'
-import './dropdown.scss'
+
 export const DropdownPlantillas = () => {
   return (
     <div className='dropdown4'>

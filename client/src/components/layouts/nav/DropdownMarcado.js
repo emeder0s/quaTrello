@@ -1,5 +1,5 @@
 import React from 'react'
-import './dropdown.scss'
+
 export const DropdownMarcado = () => {
   return (
     <div className='dropdown3'>
