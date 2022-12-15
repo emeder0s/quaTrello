@@ -231,7 +231,7 @@ header {
 }
 
 * {
-  margin: 0px auto;
+  margin: 0px;
   padding: 0px;
   text-decoration: none;
   list-style: none;
