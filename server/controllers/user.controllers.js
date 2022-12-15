@@ -126,7 +126,7 @@ const user = {
           res.json(false);
         }
       } else {
-        res.json(user.dataValues);
+        res.json("no existe el usuario");
       }
     } catch (error) {
       res.json(error)
