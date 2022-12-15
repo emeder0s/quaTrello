@@ -28,7 +28,7 @@ const user = {
         expiresIn: "1000s",
       });
       await sendemail.emailToRegister(infoJwt, email);
-      res.json(`Email enviado a ${email}`);  
+      res.json(`Email enviado a ${email}`);
     } catch (error) {
       res.json(error)
     }
@@ -47,7 +47,7 @@ const user = {
       const pass_hash = await bcyptjs.hash(pass, 8);
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio:"", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
+      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
       res.cookie("session", infoJwt);
       res.json(user);
@@ -175,13 +175,13 @@ const user = {
    * @param {JSON} req ejemplo: req.body={id:"1"}
    * @param {JSON} res 
    */
-  getUserbyId: async (req, res) => {
+  getUserbyId: async (id) => {
     try {
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      res.json(await Usr.findOne({ where: { id: req.body.id } }));
+      return await Usr.findOne({ where: { id } });
     } catch (error) {
-      res.json(error);
+      return error;
     } finally {
       await conexion.cerrar(con);
     }
@@ -254,17 +254,18 @@ const user = {
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
       const usrToDelete = await Usr.findOne({ where: { id } })
-      if(!usrToDelete){
+      if (!usrToDelete) {
         res.json("No existe el usuario")
       } else {
-      let hashSaved = usrToDelete.dataValues.pass;
-      let compare = bcyptjs.compareSync(req.body.pass, hashSaved);
-      if (compare) {
-       await Usr.destroy({ where: { id } });
-        res.json("usuario borrado")
-      } else {
-        res.json("La contraseña no coincide")
-      }}
+        let hashSaved = usrToDelete.dataValues.pass;
+        let compare = bcyptjs.compareSync(req.body.pass, hashSaved);
+        if (compare) {
+          await Usr.destroy({ where: { id } });
+          res.json("usuario borrado")
+        } else {
+          res.json("La contraseña no coincide")
+        }
+      }
     } catch (error) {
       res.json(error)
     }

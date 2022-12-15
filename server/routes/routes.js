@@ -5,6 +5,7 @@ const user = require("../controllers/user.controllers");
 const workspace = require("../controllers/workspace.controllers");
 const board = require("../controllers/board.controllers");
 const list = require("../controllers/list.controllers");
+const user_board = require("../controllers/user_board.controllers");
 
 //WORKSPACE
 router.get("/all-workspaces", workspace.getAll);
@@ -49,6 +50,10 @@ router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
 //router.get("/logout", user.logout);
+
+//USER_BOARD
+router.post("/insertuserboard", user_board.insert);
+router.post("/getusersboard", user_board.get);
 
 
 module.exports = router;
