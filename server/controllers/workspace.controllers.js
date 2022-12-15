@@ -91,7 +91,14 @@ const workspace = {
   getByUser:async (req, res) => {
     try{
        // const workspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
-        const workspaces = await userWorkspace.getWorkspacesByUser(req.body.id);
+        const userWorkspaces = await userWorkspace.getWorkspacesByUser(req.body.id);
+        var con = await conexion.abrir();
+        const workspaceM = await workspacesModel.create(con);
+        const workspaces = await Promise.all(
+          userWorkspaces.map(async (userWorkspace) => {
+            return await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
+          })
+        )
         res.json(workspaces);
     }catch(e){
         console.log(e);
