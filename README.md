@@ -27,7 +27,7 @@
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `GET` | `/all-boards` | | { }  | |
-| `POST` | `/insert-board` | | { }  |  |
+| `POST` | `/insert-board` | | { "background": "Color o imagen de fondo", "board_title": "Nombre de tablero", "ws_name": "Nombre del Workspace, "visibility": "Private, Workspace o Public" }  |  |
 | `GET` | `/show-board/:id` | | { }  | |
 | `POST` | `/update-board` | | { }  |  |
 | `DELETE` | `/delete-board` | | { }  |  |
