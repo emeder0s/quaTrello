@@ -5,9 +5,9 @@ const userWorkspace = {
   getWorkspacesByUser: async (id) => {
     var con = await conexion.abrir();
     const userWorkspacesM = await userWorkspacesModel.create(con);
-    const workspaces = await userWorkspacesM.findAll({ where: { id } });
+    const userWorkspaces = await userWorkspacesM.findAll({ where: { id } });
     await conexion.cerrar(con);
-    return workspaces
+    return userWorkspaces;
   },
 
   // insert: async (role, fk_id_user, fk_id_workspace) => {
