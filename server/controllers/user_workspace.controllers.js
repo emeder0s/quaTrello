@@ -1,12 +1,12 @@
 const conexion = require("../dataBases/mysql");
-const userWorkspacesModel = require("../models/user_Workspaces.model");
+const userWorkspacesModel = require("../models/users_workspaces.model");
 
 const userWorkspace = {
-  getWorkspacesByUser: async (id) => {
+  /* getWorkspacesByUser: async (id) => {
     var con = await conexion.abrir();
     const userWorkspacesM = userWorkspacesModel.create(con);
     return await userWorkspacesM.findAll({ where: { id } });
-  }
+  } */
   //   const userWorkspaces = await userWorkspacesModel.findAll();
   //   res.json(userWorkspaces);
   // },
