@@ -17,25 +17,25 @@
   .navPerfil{
     display: flex;
     justify-content: center;
-    padding-top: 150px;
+    
   }
   
   
   .userName{
-    width: 500px;
+    width: 550px;
     height: 30px;
     background-color: rgb(241, 240, 255);
   }
   
   .bio{
-    width: 500px;
+    width: 550px;
     background-color: rgb(241, 240, 255);
     margin-bottom: 20px;
   }
   
   .personal{
-    width: 620px;
-    padding: 20px;
+    width: 750px;
+    padding: 25px;
     align-items: center;
     margin: 0 auto;
     background-color:rgb(203, 211, 216);
@@ -62,7 +62,7 @@
   
   
   .btnInfo{
-    width: 500px;
+    width: 550px;
     height: 30px;
     margin-bottom: 20px;
   }
@@ -79,18 +79,29 @@
   .pName{
     font-size:x-large;
     color: rgb(96, 8, 118);
+    margin-bottom: 10px;
   }
   
   .pBio{
     font-size:x-large;
     color: rgb(96, 8, 118);
+    margin-bottom: 10px;
   }
   
   .pAce{
     font-size: xx-large;
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
   
   .hr{
     margin: 0 auto;
     width: 650px;
+    margin-bottom: 30px;
+  }
+
+  .imgPerfil{
+    width: 550px;
+    height: 120px;
+    padding-top: 20px;
   }
