@@ -16,7 +16,8 @@ CREATE TABLE IF NOT EXISTS users(
     
 CREATE TABLE IF NOT EXISTS workspaces(
         id INT AUTO_INCREMENT,
-        name_ VARCHAR(50) NOT NULL, 
+        name_ VARCHAR(50) NOT NULL,
+        last_access DATETIME DEFAULT now(),
         visibility VARCHAR(50) NOT NULL, 
 		configuration TEXT,
         PRIMARY KEY(id)
