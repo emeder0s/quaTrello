@@ -26,40 +26,31 @@
 ### Controlador de boards
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `DELETE` | `/` | | { }  |  |
-| `GET` | `/` | | { }  |  |
+| `GET` | `/all-boards` | | { }  | |
+| `POST` | `/insert-board` | | { }  |  |
+| `GET` | `/show-board/:id` | | { }  | |
+| `POST` | `/update-board` | | { }  |  |
+| `DELETE` | `/delete-board` | | { }  |  |
 
 ### Controlador de lists
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `DELETE` | `/` | | { }  |  |
-| `GET` | `/` | | { }  |  |
+| `GET` | `/all-lists` | | { }  | |
+| `POST` | `/insert-list` | | { }  |  |
+| `POST` | `/update-list` | | { }  |  |
+| `DELETE` | `/delete-list` | | { }  |  |
 
 ### Controlador de messages
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `DELETE` | `/` | | { }  |  |
-| `GET` | `/` | | { }  |  |
+| `POST` | `/insertmessage` | | { }  | |
+| `POST` | `/getmessages` | | { }  |  |
 
 ### Controlador de activities
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `GET` | `/` | | { }  | |
-| `POST` | `/` | | { }  |  |
-| `DELETE` | `/` | | { }  |  |
-| `GET` | `/` | | { }  |  |
+| `POST` | `/getactivities` | | { }  |  |
+| `POST` | `/insertactivities` | | { }  |  |
+| `POST` | `/updateactivities` | | { }  |  |
+| `POST` | `/deleteactivities` | | { }  |  |
 
