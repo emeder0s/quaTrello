@@ -1,5 +1,6 @@
 const conexion = require("../dataBases/mysql");
 const Message = require("../models/messages.model");
+const user = require("../controllers/user.controllers");
 
 const message = {
     /**
@@ -7,14 +8,14 @@ const message = {
      * @param {*} req  ej: 
      * req.body = {
      *     text_: "texto...",
-     *     fk_id_board: "id_board",
-     *     fk_id_user: "id_user"
+     *     fk_id_board: "id_board"
      * }
      * @param {*} res 
      */
     insert: async (req, res) => {
         try {
-            const { text_, fk_id_board, fk_id_user } = req.body;
+            var fk_id_user = user.getIdFromCookie(req);
+            const { text_, fk_id_board } = req.body;
             var con = await conexion.abrir();
             const msg = await Message.create(con);
             res.json(await msg.create({ text_, fk_id_board, fk_id_user }));
