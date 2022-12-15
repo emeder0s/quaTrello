@@ -2,7 +2,7 @@ import React from 'react'
 
 export const DropdownCrear = () => {
     return (
-        <div className='dropdown1'>
+        <div className='dropdown5'>
             <h6 className='title'>Espacio de trabajo actual</h6>
             <p className='espacio'>Mi espacio 1</p>
             <hr />

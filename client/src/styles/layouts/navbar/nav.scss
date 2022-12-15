@@ -1,22 +1,30 @@
-nav {
-    margin: 0;
+.nav-user {
+    margin-left: 0;
     display: flex;
     flex-direction: row;
-    background-color: antiquewhite;
     justify-content:space-between;
     background-color: #0075b9;
     color: white;
 }
 
-img {
+.nav-logo {
     width: 8px;
-    margin: 0 10px 0 0;
+    margin: 0 10px 0 10px;
     background-color: white;
     border: 1px solid white;
     border-radius: 1px;
 }
 
-button, input {
+.buscar{
+    background-color: #6f95ad;
+    color: white;
+    border-radius: 3px;
+    padding: 6px;
+    margin: 3px;
+    border: none;
+}
+
+.menu {
     background-color: #0075b9;
     color: white;
     border-radius: 3px;
@@ -25,7 +33,7 @@ button, input {
     border: none;
 }
 
-button:hover{
+.menu:hover{
     background-color: #00659f;
 }
 
@@ -33,7 +41,8 @@ button:hover{
     background-color: yellow;
     border: none;
     border-radius: 50px;
-    color: rgb(6, 6, 66)
+    color: rgb(6, 6, 66);
+    margin-right: 10px;
 }
 
 .notificaciones {
@@ -49,12 +58,9 @@ button:hover{
     background-color: #01598c;
 }
 
-input {
-    background-color: #338abc;
-}
+
 
 ::placeholder{
-
     color: white;
     border: none;
 }
