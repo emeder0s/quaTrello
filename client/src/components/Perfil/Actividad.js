@@ -14,7 +14,7 @@ export const Actividad = () => {
             <NavPerfil />
 
             
-                   <img src={espacio} alt="" />
+                   <img src={espacio} className="imgSpace"/>
                 
 
         </div>
