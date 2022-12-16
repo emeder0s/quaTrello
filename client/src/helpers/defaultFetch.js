@@ -1,4 +1,4 @@
-export const defaultFetch = (endPoint, metodo, datos) => {
+export const defaultFetch = async (endPoint, metodo, datos) => {
     let metaData = {
         method: metodo,
         body: JSON.stringify(datos),
@@ -8,13 +8,13 @@ export const defaultFetch = (endPoint, metodo, datos) => {
           "Content-type": "application/json",
         },
       };
-  
-      fetch(endPoint, metaData)
-      .then((res) => console.log(res))
+
+      const res = (await fetch(endPoint, metaData)).json();
+        return res;
 }
 
 
-export const getFetch = (endPoint,datos) => {
+export const getFetch = async (endPoint,datos) => {
     let metaData = {
         method: 'GET',
         body: JSON.stringify(datos),
@@ -25,7 +25,7 @@ export const getFetch = (endPoint,datos) => {
         },
       };
   
-      fetch(endPoint, metaData)
+      await fetch(endPoint, metaData)
       .then((res) => res.json())
       .then(res=>{return res})
 }

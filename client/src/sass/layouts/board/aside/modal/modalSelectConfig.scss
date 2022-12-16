@@ -1,0 +1,20 @@
+.modalSelectConfig {
+    position: absolute;
+    color: #172B4D;
+    background-color: white;
+    border-radius: 3px;
+    margin-left: 220px;
+    padding: 15px 0px;
+    top: 220px;
+    width: 350px;
+}
+
+.modalSelectConfig ul li{
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.modalSelectConfig ul li:hover{
+    background-color: rgba(143, 143, 143, 0.345);
+}
+
