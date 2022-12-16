@@ -2,6 +2,11 @@ const conexion = require("../dataBases/mysql");
 const listsModel = require("../models/lists.model");
 
 const list = {
+  /**
+   * Devuelve todas las listas de un tablero
+   * @param {json} req la petición
+   * @param {json} res la repuesta de la petición
+   */
   getListsByBoard: async (req, res) => {
     try {
       var con = await conexion.abrir();
@@ -16,6 +21,11 @@ const list = {
     }
   },
 
+  /**
+   * Inserta una lista en un tablero
+   * @param {json} req  la petición 
+   * @param {json} res  la respuesta a la petición 
+   */
   insert: async (req, res) => {
     try{
         const { name_,  fk_id_board } = req.body;
@@ -35,7 +45,12 @@ const list = {
       await conexion.cerrar(con);
     }
   },
-
+  
+  /**
+   * Actualiza una lista. El id se pasa en el body.
+   * @param {json} req  la petición 
+   * @param {json} res la resputa a la petición 
+   */
   update: async (req, res) => {
     try{
         const { id, name_ } = req.body;
@@ -56,6 +71,11 @@ const list = {
     }
   },
 
+  /**
+   * Borra una lista. El id se pasa en el body.
+   * @param {json} req  la petición 
+   * @param {json} res la resputa a la petición 
+   */
   delete: async (req, res) => {
     try{
         const { id } = req.body;
@@ -70,8 +90,6 @@ const list = {
       await conexion.cerrar(con);
     }
   }
-
-  // getByBoard: 
 };
 
 
