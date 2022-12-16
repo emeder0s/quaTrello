@@ -26,11 +26,10 @@ const workspace = {
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         // userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req));   
-        const available = await workspace.availableWorkspaceName(name_,req.body.id);  
-        if (available) {
+        if (await workspace.availableWorkspaceName(name_,req.body.id)) {
             var ws = await workspaceM.create({ name_, visibility, configuration });
-            // await userWorkspace.insert("editor",user.getIdFromCookie(req),ws.dataValues.id)
-            await userWorkspace.insert("editor",req.body.id,ws.dataValues.id);
+            // await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
+            await userWorkspace.insert("admin",req.body.id,ws.dataValues.id);
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
@@ -127,7 +126,6 @@ const workspace = {
           return await workspace.getName(w.dataValues.id);
       })
     )
-    console.log(names);
     return !names.includes(name_);
   }
 };
