@@ -2,12 +2,11 @@ const conexion = require("../dataBases/mysql");
 const listsModel = require("../models/lists.model");
 
 const list = {
-  getAll: async (req, res) => {
+  getListsByBoard: async (req, res) => {
     try {
       var con = await conexion.abrir();
       const listM = await listsModel.create(con);
-      const lists = await listM.findAll();
-      res.json(lists);
+      res.json(await listM.findAll({where:{fk_id_board:req.params.board}}));
     } catch (e) {
       console.log(e);
       res.json(false);
@@ -71,6 +70,8 @@ const list = {
       await conexion.cerrar(con);
     }
   }
+
+  // getByBoard: 
 };
 
 

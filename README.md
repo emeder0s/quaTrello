@@ -5,7 +5,8 @@
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `POST` | `/insert-user` | Inserta un registro en la tabla users de la base de datos y encripta la contraseña | {"jwt":"jwt, viene en params del email de registro","full_name":"Nombre completo","pass":"1234"} | {"id": 1,"email": "email@email.com","full_name": "Nombre completo","pass": "encrypted pass","avatar": "1","configuration": "{}"} |
 | `POST` | `/confirmEmail` | Envia al email un enlace de acceso al registro. |{"email":"email@email.com"} | "Email enviado a email@email.com" |
-| `POST` | `/update-user` | Actualiza un usuario | { }  | |
+| `POST` | `/update-user` | Actualiza un usuario | {"full_name":"Nombre Completo", "bio":"Lorem ipsum" } | "Actualización correcta" o error |
+| `GET` | `/setAvatar/:avatar` | Actualiza avatar de un usuario | avatar = req.params.avatar | "Actualización correcta" o error |
 | `POST` | `/login` | Comprueba email y contraseña de usuario para iniciar sesion, al comprobar que es correcto inserta una cookie en el navegador. |{"email":"email@email.com","pass":"1234"} | boolean |
 | `POST` | `/passToEmail` | Devuelve un Json Web Token que contiene la dirección de email del usuario para comprobar la identidad al cambiar la contraseña. | {"email":"email@email.com" }  |"Email enviado a email@email.com" o "La dirección de email no se encuentra en la base de datos"|
 | `POST` | `/resetPass/:token` | Verifica la validez del json web token, recoge la nueva contraseña introducida por el usuario y la actualiza en la base de datos. | body: {"password":"password"} params: token | "Contraseña actualizada" o error |
@@ -35,7 +36,7 @@
 ### Controlador de lists
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/all-lists` | | { }  | |
+| `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   |  |
 | `POST` | `/insert-list` | | { }  |  |
 | `POST` | `/update-list` | | { }  |  |
 | `DELETE` | `/delete-list` | | { }  |  |

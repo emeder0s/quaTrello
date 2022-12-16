@@ -2,68 +2,37 @@ const conexion = require("../dataBases/mysql");
 const userWorkspacesModel = require("../models/users_workspaces.model");
 
 const userWorkspace = {
-  getWorkspacesByUser: async (id) => {
+  /**
+   * Devuelve los registros que tengan el fk_id_user del usuario que se pasa como parámetro
+   * Por ello podemos conocer los workspaces del usuario registrado
+   * @param {*} fk_id_user  Id de un usuario
+   * @returns userWorkspaces 
+   */
+  getWorkspacesByUser: async (fk_id_user) => {
     var con = await conexion.abrir();
     const userWorkspacesM = await userWorkspacesModel.create(con);
-    const workspaces = await userWorkspacesM.findAll({ where: { id } });
+    const userWorkspaces = await userWorkspacesM.findAll({ where: { fk_id_user } });
     await conexion.cerrar(con);
-    return workspaces
+    return userWorkspaces;
   },
 
-  // insert: async (role, fk_id_user, fk_id_workspace) => {
-  //   try{
-  //       var con = await conexion.abrir();
-  //       const userWorkspacesM = userWorkspacesModel.create(con);
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }finally{
-  //     await conexion.cerrar(con);
-  //   }
-  // },
-
-  // show: async (req, res) => {
-  //   try{
-  //       const { id } = req.body;
-  //       const userWorkspace = await userWorkspacesModel.findByPk(id);
-  //       res.json(userWorkspace)
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }
-  // },
-
-  // update: async (req, res) => {
-  //   try{
-  //       const { id, name_, visibility, configuration } = req.body;
-  //       await userWorkspacesModel.update({ id, name_, visibility, configuration },{ where: { id } });
-  //       res.json(true);
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }
-  // },
-
-  // delete: async (req, res) => {
-  //   try{
-  //       const { id } = req.body;
-  //       await userWorkspacesModel.destroy({ where: { id } });
-  //       res.json(true);
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }
-  // },
-
-//   getByUser:async (req, res) => {
-//     try{
-//         const userWorkspaces = await useruserWorkspace.getuserWorkspacesByUser(user.getId());
-//         res.json(userWorkspaces);
-//     }catch(e){
-//         console.log(e);
-//         res.json(false);
-//     }
-//   }
+  /**
+   * Inserta un user_workspace con el usuario, el workspace y el rol del usuario para ese workspace
+   * @param {*} role rol del usuario para ese workspace
+   * @param {*} fk_id_user id del usuario
+   * @param {*} fk_id_workspace id de workspace
+   */
+  insert: async (role_, fk_id_user, fk_id_workspace) => {
+    try{
+        var con = await conexion.abrir();
+        const userWorkspacesM = await userWorkspacesModel.create(con);
+        await userWorkspacesM.create({ role_, fk_id_user, fk_id_workspace });
+    }catch(e){
+        console.log(e);
+    }finally{
+      await conexion.cerrar(con);
+    }
+  },
 };
 
 

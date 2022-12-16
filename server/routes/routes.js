@@ -4,7 +4,9 @@ const message = require("../controllers/messages.controllers");
 const user = require("../controllers/user.controllers");
 const workspace = require("../controllers/workspace.controllers");
 const board = require("../controllers/board.controllers");
+const card = require("../controllers/card.controllers");
 const list = require("../controllers/list.controllers");
+const user_board = require("../controllers/user_board.controllers");
 
 //WORKSPACE
 router.get("/all-workspaces", workspace.getAll);
@@ -23,10 +25,16 @@ router.delete("/delete-board", board.delete);
 // router.get("/get-workspaces-by-user", board.getByUser);
 
 //LISTS
-router.get("/all-lists", list.getAll);
+router.get("/lists/:board", list.getListsByBoard);
 router.post("/insert-list", list.insert);
 router.post("/update-list", list.update);
 router.delete("/delete-list", list.delete);
+
+//CARDS
+router.get("/cards/:list", card.getCardsByList);
+router.post("/insert-card", card.insert);
+router.post("/update-card", card.update);
+router.delete("/delete-card", card.delete);
 
 //MESSAGES
 router.post("/insertmessage", message.insert);
@@ -43,12 +51,18 @@ router.post("/deleteactivities", activities.delete);
 router.post("/confirmEmail",user.confirmEmail);
 router.post("/insert-user", user.insert);
 router.post("/update-user",user.update);
+router.get("/setAvatar/:avatar",user.setAvatar);
 router.post("/login", user.login);
 router.post("/passToEmail",user.passToEmail);
 router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
+router.post("/insert-user-Trapala", user.insertTrapala);
 //router.get("/logout", user.logout);
+
+//USER_BOARD
+router.post("/insertuserboard", user_board.insert);
+router.post("/getusersboard", user_board.get);
 
 
 module.exports = router;

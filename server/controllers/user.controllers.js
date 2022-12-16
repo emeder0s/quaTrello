@@ -28,7 +28,7 @@ const user = {
         expiresIn: "1000s",
       });
       await sendemail.emailToRegister(infoJwt, email);
-      res.json(`Email enviado a ${email}`);  
+      res.json(`Email enviado a ${email}`);
     } catch (error) {
       res.json(error)
     }
@@ -47,9 +47,23 @@ const user = {
       const pass_hash = await bcyptjs.hash(pass, 8);
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio:"", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
+      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
-      res.cookie("session", infoJwt);
+      res.json({validation:true, "jwt": infoJwt});
+    } catch (error) {
+      res.json(error);
+    } finally {
+      await conexion.cerrar(con);
+    }
+  },
+
+  insertTrapala: async (req, res) => {
+    try {
+      const { full_name, pass, email } = req.body;
+      const pass_hash = await bcyptjs.hash(pass, 8);
+      var con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       res.json(user);
     } catch (error) {
       res.json(error);
@@ -57,6 +71,7 @@ const user = {
       await conexion.cerrar(con);
     }
   },
+  
   /**
    * Devuelve la id del usuario que tiene sesion iniciada
    * @param {json} req 
@@ -79,13 +94,30 @@ const user = {
       const { full_name, bio } = req.body;
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      res.json(await Usr.update({ full_name, bio }, { where: { id } }));
-    } catch (ValidationError) {
-      res.json("Email o DNI repetido");
+      await Usr.update({ full_name, bio }, { where: { id } })
+      res.json("Actualización completa");
+    } catch (error) {
+      res.json(error);
     }
   },
 
-
+  /**
+   * Modifica en la base de datos el campo avatar
+   * @param {JSON} req 
+   * @param {JSON} res 
+   */
+  setAvatar: async (req, res) => {
+    try {
+      let id = this.getIdFromCookie(req)
+      const avatar = req.params.avatar;
+      var con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      await Usr.update({ avatar }, { where: { id } })
+      res.json("Actualización completa");
+    } catch (error) {
+      res.json(error);
+    }
+  },
 
   /**
    * Funcion que comprueba email y contraseña de usuario para iniciar sesion, al comprobar que es correcto inserta una cookie en el navegador.
@@ -103,13 +135,12 @@ const user = {
         let compare = bcyptjs.compareSync(pass, hashSaved);
         const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
         if (compare) {
-          res.cookie("session", infoJwt);
-          res.json(true);
+          res.json({validation:true, "jwt": infoJwt});
         } else {
-          res.json(false);
+          res.json({validation:false, "jwt": ""});
         }
       } else {
-        res.json(user.dataValues);
+        res.json("no existe el usuario");
       }
     } catch (error) {
       res.json(error)
@@ -172,16 +203,15 @@ const user = {
   },
   /**
    * Devuelve en un JSON la informacion de un usuario buscado por ID.
-   * @param {JSON} req ejemplo: req.body={id:"1"}
-   * @param {JSON} res 
+   * @param {JSON} id
    */
-  getUserbyId: async (req, res) => {
+  getUserbyId: async (id) => {
     try {
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
-      res.json(await Usr.findOne({ where: { id: req.body.id } }));
+      return await Usr.findOne({ where: { id } });
     } catch (error) {
-      res.json(error);
+      return error;
     } finally {
       await conexion.cerrar(con);
     }
@@ -254,17 +284,18 @@ const user = {
       var con = await conexion.abrir();
       const Usr = await Users.create(con);
       const usrToDelete = await Usr.findOne({ where: { id } })
-      if(!usrToDelete){
+      if (!usrToDelete) {
         res.json("No existe el usuario")
       } else {
-      let hashSaved = usrToDelete.dataValues.pass;
-      let compare = bcyptjs.compareSync(req.body.pass, hashSaved);
-      if (compare) {
-       await Usr.destroy({ where: { id } });
-        res.json("usuario borrado")
-      } else {
-        res.json("La contraseña no coincide")
-      }}
+        let hashSaved = usrToDelete.dataValues.pass;
+        let compare = bcyptjs.compareSync(req.body.pass, hashSaved);
+        if (compare) {
+          await Usr.destroy({ where: { id } });
+          res.json("usuario borrado")
+        } else {
+          res.json("La contraseña no coincide")
+        }
+      }
     } catch (error) {
       res.json(error)
     }
