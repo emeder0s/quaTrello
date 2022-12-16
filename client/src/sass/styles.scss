@@ -1,9 +1,11 @@
 @import './layouts/boards.scss';
+@import './layouts/generalStyles.scss';
 
 // Navbar and header
 @import "./layouts/navbar/nav.scss";
 @import "./layouts/navbar/header.scss";
 @import "./layouts/navbar/dropdown.scss";
+@import "./layouts/navbar/navLogin.scss";
 
 // Perfil
 @import "./layouts/perfil.scss";

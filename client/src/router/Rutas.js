@@ -9,6 +9,8 @@ import { Configuración } from '../components/Perfil/Configuracion'
 import Home from '../components/Tableros/Home'
 import { Boards } from '../components/Boards/Boards'
 import { Registro } from '../pages/Registro'
+import { Login } from '../pages/Login'
+import { AcountVeryfy } from '../pages/AcountVeryfy'
 
 export const Rutas = () => {
     return (
@@ -18,6 +20,8 @@ export const Rutas = () => {
                     <Route path="*" element={<Error />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/registro" element={<Registro />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/account-verify/:token" element={<AcountVeryfy />}/>
 
                     {/* Rutas del perfil del usuario */}
                     <Route path="/perfil" element={<Perfil />} />

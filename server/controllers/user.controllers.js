@@ -33,23 +33,29 @@ const user = {
    * @param {json} req 
    * @param {json} res 
    */
-  insert: async (req, res) => {
-    try {
-      let jwtVerify = jwt.verify(req.body.jwt, "m1c4s4");
-      let email = jwtVerify.email;
-      const { full_name, bio, pass } = req.body;
-      const pass_hash = await bcyptjs.hash(pass, 8);
-      var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio, "pass": pass_hash, avatar: "../resources/img/fotoperfil.png", configuration: {} })
-      const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
-      await conexion.cerrar(con);
-      res.cookie("session", infoJwt);
-      res.json(user);
-    } catch (error) {
-      res.json(error);
-    }
-  },
+/**
+   * Registra un usuario en la base de datos, Encripta la contraseña.
+   * @param {json} req 
+   * @param {json} res 
+   */
+insert: async (req, res) => {
+  try {
+    let jwtVerify = jwt.verify(req.body.jwt, "m1c4s4");
+    let email = jwtVerify.email;
+    const { full_name, pass } = req.body;
+    const pass_hash = await bcyptjs.hash(pass, 8);
+    var con = await conexion.abrir();
+    const Usr = await Users.create(con);
+    const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
+    const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
+    res.cookie("session", infoJwt);
+    res.json({validation:true, "jwt": infoJwt});
+  } catch (error) {
+    res.json(error);
+  } finally {
+    await conexion.cerrar(con);
+  }
+},
   /**
    * Devuelve la id del usuario que tiene sesion iniciada
    * @param {json} req 
@@ -85,6 +91,11 @@ const user = {
    * @param {json} req 
    * @param {json} res 
    */
+  /**
+   * Funcion que comprueba email y contraseña de usuario para iniciar sesion, al comprobar que es correcto inserta una cookie en el navegador.
+   * @param {json} req 
+   * @param {json} res 
+   */
   login: async (req, res) => {
     try {
       var con = await conexion.abrir();
@@ -97,12 +108,12 @@ const user = {
         const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
         if (compare) {
           res.cookie("session", infoJwt);
-          res.json(true);
+          res.json({validation:true, "jwt": infoJwt});
         } else {
-          res.json(false);
+          res.json({validation:false, "jwt": ""});
         }
       } else {
-        res.json(user.dataValues);
+        res.json("no existe el usuario");
       }
     } catch (error) {
       res.json(error)
