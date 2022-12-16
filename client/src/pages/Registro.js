@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { NavLogin } from '../components/layouts/NavLogin'
 import FirstWorkSpace from '../components/registro/FirstWorkSpace'
 import { MetodoRegistro } from '../components/registro/MetodoRegistro'
 import Premium from '../components/registro/Premium'
@@ -24,15 +25,18 @@ export const Registro = () => {
 
     
     return (
-      <div >
+      <div>
+        <NavLogin/>
         <h1>
           quaTrello unifica tus tareas, compañeros de equipo y herramientas
         </h1>
-        <h6>Mantenlo todo en el mismo lugar, aunque tu equipo no lo esté.</h6>
+        <p>Mantenlo todo en el mismo lugar, aunque tu equipo no lo esté.</p>
+        <div   className='registro'>
         <form onSubmit={sendEmail}>
           <input type="email" name='email' placeholder='Correo electrónico' required></input>
           <button type="submit">Regístrate es gratuito</button>
         </form>
+        </div>
       </div>
     )
   }

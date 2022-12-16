@@ -1,4 +1,4 @@
-aside.asideHome {
+.asideHome {
   display: flex;
   flex-flow: column wrap;
   width: 200px;
@@ -8,14 +8,14 @@ aside.asideHome {
   margin-left: 200px;
 }
 
-aside ul {
+.asideHome ul {
   display: flex;
   flex-flow: column wrap;
   list-style: none;
   width: 100%;
 }
 
-aside ul li {
+.asideHome ul li {
   width: 100%;
   margin-bottom: 4px;
   padding: 5px;
@@ -24,12 +24,12 @@ aside ul li {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-aside ul:first-child li:last-child {
+.asideHome ul:first-child li:last-child {
   padding-bottom: 10px;
   border-bottom: 1.5px solid #E1E1E2;
 }
 
-aside ul li a {
+.asideHome ul li a {
   text-decoration: none;
   color: #172B4D;
 }
