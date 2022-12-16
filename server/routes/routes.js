@@ -74,4 +74,5 @@ router.post("/getUsersCard", user_card.get);
 router.post("/updateCardNotifications", user_card.update);
 router.post("/deleteUserFromCard", user_card.delete);
 
+
 module.exports = router;
