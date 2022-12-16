@@ -29,7 +29,7 @@
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `POST` | `/insert-board` | Crea un nuevo tablero | { name_:"Nombre del tablero", visibility:"Private, Workspace o Public", configuration:"{}", fk_id_workspace:"id"}   | boolean o error |
 | `GET` | `/show-board/:id` | devuelve un tablero por ID | /show-board/3 | {"id":3,"name_":"Board 3","visibility":"privado","configuration":"{}","fk_id_workspace":2,"fk_id_user":3} |
-| `GET` | `/show-board/:id` | devuelve un tablero por ID | /show-board/3 | {"id":3,"name_":"Board 3","visibility":"privado","configuration":"{}","fk_id_workspace":2,"fk_id_user":3} |
+| `GET` | `/show-boardByWs/:workspace` | devuelve un tablero por workspace | /show-boardByWs/2 | [{"id":3,"name_":"Board 3","visibility":"privado","configuration":"{}","fk_id_workspace":2,"fk_id_user":3}] |
 | `POST` | `/update-board` | Actualiza la informacion de un tablero | req.body = { id, name_, visibility, configuration }   | boolean o error |
 | `DELETE` | `/delete-board` | Borra un tablero por su ID | req.body = { id }| boolean |
 
