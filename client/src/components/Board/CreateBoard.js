@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
+import boardPreview from './board-preview.svg';
 
 export const CreateBoard = (props) => {
 
 
     return (
         <section className="create-board">
-            <h3>Create board</h3>
+            <header>
+                <h3>Create board</h3>
+                <button className="close">X</button>
+            </header>
             <hr></hr>
             <div className="chooseBG">
-                <figure className="board-bg"></figure>
+                <div className="board-bg"><img src={boardPreview}></img></div>
+                
             </div>
             <h4>Background</h4>
-            <form  >
+            <form >
                 <ul className="images" >
                     <li><button className="image #1"></button></li>
                     <li><button className="image #2"></button></li>
@@ -26,9 +31,23 @@ export const CreateBoard = (props) => {
                     <li><button className="bg c5"></button></li>
                     <li><button className="bg plus"></button></li>
                 </ul>
-                <label>Board title</label>
+                <label><h4>Board title</h4></label>
                 <input type="text" />
-
+                <label><h4>Workspaces</h4></label>
+                <select>
+                    <option>Workspace 1</option>
+                    <option>Workspace 2</option>
+                    <option>Workspace 3</option>
+                </select>
+                <label><h4>Visibility</h4></label>
+                <select>
+                    <option>Workspace</option>
+                    <option>Private</option>
+                    <option>Public</option>
+                </select>
+                <div>
+                <button className="submit" type="submit">Create</button>
+                </div>
             </form>
         </section>
     );
