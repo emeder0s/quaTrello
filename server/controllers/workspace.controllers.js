@@ -25,9 +25,11 @@ const workspace = {
         const { name_, visibility, configuration } = req.body;
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
-        const workspace = await workspaceM.findOne({ where: { name_ } });
-        if (!workspace) {
-            await workspaceM.create({ name_, visibility, configuration });
+        // userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req));   
+        if (await workspace.availableWorkspaceName(name_,req.body.id)) {
+            var ws = await workspaceM.create({ name_, visibility, configuration });
+            // await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
+            await userWorkspace.insert("admin",req.body.id,ws.dataValues.id);
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
@@ -45,7 +47,7 @@ const workspace = {
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         const workspace = await workspaceM.findOne({ where: { id:req.params.id } });
-        res.json(workspace)
+        res.json(workspace.dataValues)
     }catch(e){
         console.log(e);
         res.json(false);
@@ -108,6 +110,23 @@ const workspace = {
         console.log(e);
         res.json(false);
     }
+  }, 
+
+  getName: async (id) =>{
+      var con = await conexion.abrir();
+      const workspaceM = await workspacesModel.create(con);
+      const workspace = await workspaceM.findOne({ where: {id} });
+      await conexion.cerrar(con);
+      return workspace.dataValues.name_;
+  },
+
+  availableWorkspaceName: async (name_,id) =>{
+    const workspaces = await userWorkspace.getWorkspacesByUser(id);
+    const names = await Promise.all(workspaces.map(async w => {
+          return await workspace.getName(w.dataValues.id);
+      })
+    )
+    return !names.includes(name_);
   }
 };
 
