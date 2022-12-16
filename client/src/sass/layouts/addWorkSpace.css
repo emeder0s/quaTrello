@@ -1,0 +1,47 @@
+.addWorkSpaceModal {
+  display: flex;
+  position: absolute;
+  background-color: white;
+  flex-flow: row wrap;
+  width: 95%;
+  align-self: center;
+  top: 50px;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 5px;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.addWorkSpaceForm {
+  display: flex;
+  flex-flow: column wrap;
+  width: 50%;
+}
+
+.addWorkSpaceDeco {
+  display: flex;
+  flex-flow: column wrap;
+  width: 50%;
+  background-color: #E4F7FA;
+}
+
+.addWorkSpaceModal form {
+  display: flex;
+  flex-flow: column wrap;
+  padding: 10px 50px;
+}
+
+.addWorkSpaceModal h2 {
+  margin-bottom: 20px;
+  font-weight: 500;
+  font-size: 23px;
+}
+
+.addWorkSpaceModal h4 {
+  margin-bottom: 30px;
+  color: #6B778C;
+  text-align: justify;
+  font-size: 17px;
+  font-weight: 500;
+}/*# sourceMappingURL=addWorkSpace.css.map */
