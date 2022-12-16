@@ -3,12 +3,13 @@ const User_cardModel = require("../models/user_cards.model");
 const userr = require("./user.controllers");
 
 const user_card = {
-    
+
     /**
      * Inserta un registro en la tabla "user_cards" de la base de datos.
      * @param {*} req  ej: 
      * req.body = {
-     * 
+     *  fk_id_card: "id_card",
+     *  fk_id_user: "id_user"
      * }
      * @param {*} res 
      */
@@ -25,6 +26,25 @@ const user_card = {
         }
     },
 
+    /**
+     * Muestra todos los usuarios que estan en la card junto con su estado de las notificaciones.
+     * @param {*} req  ej: 
+     * req.body = {
+     *     fk_id_card: "id_card"
+     * }
+     * @param {*} res = [
+     *{
+     *  "id": 1,
+     *  "email": "1",
+     *  "full_name": "1",
+     *  "bio": null,
+     *  "pass": "1",
+     *  "avatar": null,
+     *  "configuration": null,
+     *  "notifications": 0
+     *},...
+     *]
+     */
     get: async (req, res) => {
         try {
             var con = await conexion.abrir();
@@ -44,6 +64,15 @@ const user_card = {
         }
     },
 
+    /**
+     * Elimina un registro en la tabla "user_card" de la base de datos cuyo
+     * id se pasa en el body de la peticion.
+     * @param {*} req  ej: 
+     * req.body = {
+     *     id: "id..."
+     * }
+     * @param {*} res 
+     */
     delete: async (req, res) => {
         try {
             var con = await conexion.abrir();
@@ -56,6 +85,15 @@ const user_card = {
         }
     },
 
+    /**
+     * Actualiza el rol de un usuario en un board cuyo id se pasa en el body de la peticion,
+     * @param {*} req  ej: 
+     * req.body = {
+     *     role_: "nuevo role...",
+     *     id: "id..."
+     * }
+     * @param {*} res 
+     */
     update: async (req, res) => {
         try {
             const { notifications, id } = req.body;

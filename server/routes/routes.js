@@ -7,6 +7,7 @@ const board = require("../controllers/board.controllers");
 const card = require("../controllers/card.controllers");
 const list = require("../controllers/list.controllers");
 const user_board = require("../controllers/user_board.controllers");
+const user_card = require("../controllers/user_card.controllers");
 
 //WORKSPACE
 router.get("/all-workspaces", workspace.getAll);
@@ -61,8 +62,16 @@ router.post("/insert-user-Trapala", user.insertTrapala);
 //router.get("/logout", user.logout);
 
 //USER_BOARD
-router.post("/insertuserboard", user_board.insert);
-router.post("/getusersboard", user_board.get);
+router.post("/insertUserBoard", user_board.insert);
+router.post("/getUsersBoard", user_board.get);
+router.post("/rolUserSesionBoard", user_board.rolUserSesionBoard);
+router.post("/updateRolBoard", user_board.update);
+router.post("/deleteUserFromBoard", user_board.delete);
 
+//USER_CARD
+router.post("/insertUserCard", user_card.insert);
+router.post("/getUsersCard", user_card.get);
+router.post("/updateCardNotifications", user_card.update);
+router.post("/deleteUserFromCard", user_card.delete);
 
 module.exports = router;
