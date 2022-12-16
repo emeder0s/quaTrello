@@ -2,6 +2,7 @@ const conexion = require("../dataBases/mysql");
 const listsModel = require("../models/lists.model");
 
 const list = {
+  
   getListsByBoard: async (req, res) => {
     try {
       var con = await conexion.abrir();

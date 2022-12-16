@@ -6,11 +6,8 @@ const user_card = {
     
     /**
      * Inserta un registro en la tabla "user_cards" de la base de datos.
-     * @param {*} req  ej: 
-     * req.body = {
-     * 
-     * }
-     * @param {*} res 
+     * @param {JSON} req  ej:  req.body = { fk_id_card, fk_id_user }
+     * @param {JSON} res 
      */
     insert: async (req, res) => {
         try {
@@ -25,6 +22,11 @@ const user_card = {
         }
     },
 
+    /**
+     * 
+     * @param {JSON} req 
+     * @param {JSON} res 
+     */
     get: async (req, res) => {
         try {
             var con = await conexion.abrir();

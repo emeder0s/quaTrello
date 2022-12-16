@@ -4,29 +4,20 @@ const boardsModel = require("../models/boards.model");
 const user = require ("./user.controllers");
 
 const board = {
-  getAll: async (req, res) => {
-    try {
-      var con = await conexion.abrir();
-      const boardM = await boardsModel.create(con);
-      const boards = await boardM.findAll();
-      res.json(boards);
-    } catch (e) {
-      console.log(e);
-      res.json(false);
-    }
-    finally {
-      await conexion.cerrar(con);
-    }
-  },
-
+  /**
+   * Función que inserta en la BD un tablero nuevo con id del usuario que la ha creado.
+   * @param {JSON} req ej: { name_:"Nombre del tablero", visibility:"Private, Workspace o Public", configuration:"{}", fk_id_workspace:"id"}
+   * @param {JSON} res 
+   */
   insert: async (req, res) => {
     try{
-        const { name_, visibility, configuration, fk_id_workspace, fk_id_user } = req.body;
+        const { name_, visibility, configuration, fk_id_workspace } = req.body;
+        var fk_id_user = user.getIdFromCookie(req);
         var con = await conexion.abrir();
         const boardM = await boardsModel.create(con);
-        const board = await boardM.findOne({ where: { name_ } });
+        const board = await boardM.findOne({ where: { name_, fk_id_workspace } });
         if (!board) {
-            await boardM.create({ name_, visibility, configuration, fk_id_workspace, fk_id_user });
+            await boardM.create({ name_, visibility, configuration, fk_id_workspace, fk_id_user }); //fk_id_user es la id del usuario que crea el tablero
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
@@ -39,6 +30,11 @@ const board = {
     }
   },
 
+  /**
+   * Muestra un tablero a parti de su ID 
+   * @param {JSON} req ej:  /show-board/3 => req.params.id = 3
+   * @param {JSON} res 
+   */
   show: async (req, res) => {
     try{
         var con = await conexion.abrir();
@@ -53,6 +49,11 @@ const board = {
     }
   },
 
+  /**
+   * Actualiza el tablero por ID
+   * @param {JSON} req ej: req.body = { id, name_, visibility, configuration }  
+   * @param {JSON} res 
+   */
   update: async (req, res) => {
     try{
         const { id, name_, visibility, configuration } = req.body;
@@ -72,7 +73,11 @@ const board = {
       await conexion.cerrar(con);
     }
   },
-
+/**
+ * 
+ * @param {JSON} req ej:  req.body = { id: 3 }
+ * @param {JSON} res 
+ */
   delete: async (req, res) => {
     try{
         const { id } = req.body;
@@ -88,16 +93,13 @@ const board = {
     }
   },
 
-  // getByUser:async (req, res) => {
-  //   try{
-  //       const boards = await userboard.getboardsByUser(user.getId());
-  //       res.json(boards);
-  //   }catch(e){
-  //       console.log(e);
-  //       res.json(false);
-  //   }
-  // }
 
+/**
+ * Funcion que devuelve un array con la informacion de todos los tableros de un usuario
+ * @param {INTEGER} fk_id_workspace 
+ * @param {INTEGER} fk_id_user 
+ * @returns ARRAY con datavalues
+ */
   getByWorkspaceAndUser: async (fk_id_workspace,fk_id_user) => {
     var con = await conexion.abrir();
     const boardM = await boardsModel.create(con);

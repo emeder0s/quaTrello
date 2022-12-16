@@ -56,21 +56,6 @@ const user = {
       await conexion.cerrar(con);
     }
   },
-
-  insertTrapala: async (req, res) => {
-    try {
-      const { full_name, pass, email } = req.body;
-      const pass_hash = await bcyptjs.hash(pass, 8);
-      var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
-      res.json(user);
-    } catch (error) {
-      res.json(error);
-    } finally {
-      await conexion.cerrar(con);
-    }
-  },
   
   /**
    * Devuelve la id del usuario que tiene sesion iniciada
