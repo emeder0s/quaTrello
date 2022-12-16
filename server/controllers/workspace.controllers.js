@@ -35,12 +35,10 @@ const workspace = {
         var { name_, visibility, configuration } = req.body;
         name_= name_.replace("  "," ").trim();
         var con = await conexion.abrir();
-        const workspaceM = await workspacesModel.create(con);
-        // userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req));   
-        if (await workspace.availableWorkspaceName(name_,req.body.id)) {
+        const workspaceM = await workspacesModel.create(con); 
+        if (await userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req))) {
             var ws = await workspaceM.create({ name_, visibility, configuration });
-            // await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
-            await userWorkspace.insert("admin",req.body.id,ws.dataValues.id);
+            await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
@@ -124,16 +122,14 @@ const workspace = {
    */
   getByUser:async (req, res) => {
     try{
-      //  const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
-      const userWorkspaces = await userWorkspace.getWorkspacesByUser(req.body.id);
+       const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         const workspaces = await Promise.all(
           userWorkspaces.map(async (userWorkspace) => {
             var ws = await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
             ws = ws.dataValues;
-            //ws.boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
-            var boards = await board.getByWorkspaceAndUser(userWorkspace.fk_id_workspace,req.body.id);
+            var boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
             ws.boards = boards;
             return ws;
           })
