@@ -5,6 +5,11 @@ const user = require ("./user.controllers");
 const board = require ("./board.controllers");
 
 const workspace = {
+  /**
+   * Devuelve todos los workspaces
+   * @param {json} req  la petición
+   * @param {json} res  la respuesta a la petición
+   */
   getAll: async (req, res) => {
     try {
       var con = await conexion.abrir();
@@ -19,10 +24,16 @@ const workspace = {
       await conexion.cerrar(con);
     }
   },
-
+  /**
+   * Inserta un workspace en la base de datos, si el usuario no tiene
+   * otro workspace con el mismo nombre
+   * @param {json} req  la petición
+   * @param {json} res  la respuesta a la petición
+   */
   insert: async (req, res) => {
     try{
-        const { name_, visibility, configuration } = req.body;
+        var { name_, visibility, configuration } = req.body;
+        name_= name_.replace("  "," ").trim();
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         // userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req));   
@@ -42,6 +53,11 @@ const workspace = {
     }
   },
 
+  /**
+   * Devuelve los datos de un workspace. Se pasa el id del mismo en los params. 
+   * @param {json} req  la petición
+   * @param {json} res  la respuesta a la petición
+   */
   show: async (req, res) => {
     try{
         var con = await conexion.abrir();
@@ -56,6 +72,11 @@ const workspace = {
     }
   },
 
+  /**
+   * Se modifican los datos de un workspace. Se pasa el id del mismo en el body de la petición
+   * @param {json} req  la petición
+   * @param {json} res  la respuesta a la petición
+   */
   update: async (req, res) => {
     try{
         const { id, name_, visibility, configuration } = req.body;
@@ -76,6 +97,11 @@ const workspace = {
     }
   },
 
+  /**
+   * Se elimina un workspace. Se pasa el id del mismo en el body de la petición
+   * @param {json} req  la petición
+   * @param {json} res  la respuesta a la petición
+   */
   delete: async (req, res) => {
     try{
         const { id } = req.params.id;
@@ -91,16 +117,23 @@ const workspace = {
     }
   },
 
+  /**
+   * Devuelve todos los workspace, y sus respectivos boards, de un usuario 
+   * @param {json} req  la petición
+   * @param {json} res  la respuesta a la petición
+   */
   getByUser:async (req, res) => {
     try{
-       const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+      //  const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+      const userWorkspaces = await userWorkspace.getWorkspacesByUser(req.body.id);
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         const workspaces = await Promise.all(
           userWorkspaces.map(async (userWorkspace) => {
             var ws = await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
             ws = ws.dataValues;
-            ws.boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
+            //ws.boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
+            var boards = await board.getByWorkspaceAndUser(userWorkspace.fk_id_workspace,req.body.id);
             ws.boards = boards;
             return ws;
           })
@@ -112,6 +145,11 @@ const workspace = {
     }
   }, 
 
+  /**
+   * Devuelve el nombre de un workspace
+   * @param {int} id identificador del workspace
+   * @returns {string}
+   */
   getName: async (id) =>{
       var con = await conexion.abrir();
       const workspaceM = await workspacesModel.create(con);
@@ -119,14 +157,20 @@ const workspace = {
       await conexion.cerrar(con);
       return workspace.dataValues.name_;
   },
-
+/**
+ * Devuelve si un nombre de workspace está disponible o no. Eso depende de si el usuario
+ * tiene otro workspace con el mismo nombre que se pasa como parámetro
+ * @param {string} name_ nombre del workspace
+ * @param {int} id identificador del usuario
+ * @returns {boolean}
+ */
   availableWorkspaceName: async (name_,id) =>{
     const workspaces = await userWorkspace.getWorkspacesByUser(id);
     const names = await Promise.all(workspaces.map(async w => {
           return await workspace.getName(w.dataValues.id);
       })
     )
-    return !names.includes(name_);
+    return !names.includes(name_.replace("  "," ").trim());
   }
 };
 
