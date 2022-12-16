@@ -36,7 +36,7 @@ const workspace = {
         name_= name_.replace("  "," ").trim();
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con); 
-        if (await userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req))) {
+        if (await workspace.checkIfAvailableWorkspace(name_,user.getIdFromCookie(req))) {
             var ws = await workspaceM.create({ name_, visibility, configuration });
             await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
             res.json(true);
