@@ -1,3 +1,14 @@
+.modalLayer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 95.2vh;
+    background-color: rgba(103, 103, 103, 0.518);
+    color: #172B4D;
+}
+
 .addWorkSpaceModal {
     display: flex;
     position: absolute;
@@ -17,6 +28,8 @@
     display: flex;
     flex-flow: column wrap;
     width: 50%;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
 .addWorkSpaceDeco {
@@ -29,7 +42,7 @@
 .addWorkSpaceModal form {
     display: flex;
     flex-flow: column wrap;
-    padding: 10px 50px;
+    padding: 10px 70px;
 }
 
 .addWorkSpaceModal h2 {
@@ -45,3 +58,22 @@
     font-size: 17px;
     font-weight: 500;
 }
+
+.closeWorkSpaceModal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-self: flex-end;
+    margin-top: 20px;
+    margin-right: 20px;
+    font-size: 30px;
+    width: 28px;
+    height: 28px;
+    border-radius: 5px;
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+}
+
+// img

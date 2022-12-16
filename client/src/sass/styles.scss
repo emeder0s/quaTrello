@@ -16,3 +16,14 @@
 @import './layouts/aside';
 @import './layouts/addWorkSpace.scss';
 @import './layouts/home';
+
+// Board
+@import './layouts/board/board.scss';
+// Aside
+@import './layouts/board/aside/asideBoard.scss';
+@import './layouts/board/aside/invisibleAside.scss';
+@import './layouts/board/aside/visibleAside.scss';
+// Aside Modal
+@import './layouts/board/aside/modal/modalAddMemb';
+@import './layouts/board/aside/modal/modalSelectConfig.scss';
+@import './layouts/board/aside/modal/modalShowUsers';
