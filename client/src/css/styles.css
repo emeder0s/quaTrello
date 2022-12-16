@@ -53,6 +53,7 @@ h3 {
   padding: 6px;
   margin: 3px;
   border: none;
+  font-size: 15px;
 }
 
 .menu {
@@ -62,6 +63,7 @@ h3 {
   padding: 6px;
   margin: 3px;
   border: none;
+  font-size: 15px;
 }
 
 .menu:hover {
@@ -78,7 +80,7 @@ h3 {
 
 .notificaciones {
   background-color: #00d1f6;
-  font-size: 12px;
+  font-size: 15px;
   padding: 3px 6px 5px 6px;
 }
 
@@ -218,6 +220,51 @@ header {
   font-size: 8px;
 }
 
+.nav-login {
+  margin-left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #ebebeb;
+  color: #0075b9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav-login-logo {
+  width: 8px;
+  margin: 0 10px 0 10px;
+  background-color: #ebebeb;
+  border: 1px solid #ebebeb;
+  border-radius: 1px;
+}
+
+.login-button {
+  background-color: #ebebeb;
+  color: #0075b9;
+  font-weight: bold;
+  border-radius: 3px;
+  margin: 9px;
+  border: none;
+  font-size: 15px;
+}
+
+a.login-link {
+  background-color: #0075b9;
+  color: #fcfcfc;
+  padding: 13px;
+  margin-top: 5px;
+  margin-right: 20px;
+  border: none;
+  font-size: 15px;
+  position: absolute;
+  top: q0;
+}
+
+a.login-link:hover {
+  background-color: #009cf6;
+  color: #fcfcfc;
+}
+
 .info {
   padding-top: 100px;
   flex-direction: column;
@@ -344,9 +391,10 @@ header {
   padding: 0px;
   text-decoration: none;
   list-style: none;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-aside.asideHome {
+.asideHome {
   display: flex;
   flex-flow: column wrap;
   width: 200px;
@@ -356,14 +404,14 @@ aside.asideHome {
   margin-left: 200px;
 }
 
-aside ul {
+.asideHome ul {
   display: flex;
   flex-flow: column wrap;
   list-style: none;
   width: 100%;
 }
 
-aside ul li {
+.asideHome ul li {
   width: 100%;
   margin-bottom: 4px;
   padding: 5px;
@@ -372,12 +420,12 @@ aside ul li {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-aside ul:first-child li:last-child {
+.asideHome ul:first-child li:last-child {
   padding-bottom: 10px;
   border-bottom: 1.5px solid #E1E1E2;
 }
 
-aside ul li a {
+.asideHome ul li a {
   text-decoration: none;
   color: #172B4D;
 }
@@ -457,6 +505,238 @@ aside ul li a {
   display: flex;
   flex-flow: row wrap;
   width: 100%;
+}
+
+.board {
+  background-color: #da9d48;
+}
+
+.asideBoard {
+  height: 100%;
+}
+
+.invisibleAside {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.137);
+  width: 20px;
+  height: 95.2vh;
+  transition: 300ms all;
+  border: 0px;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.301);
+}
+
+.invisibleAside:hover {
+  background-color: rgba(195, 195, 195, 0.392);
+}
+
+.invisibleAside:hover button {
+  background-color: rgba(195, 195, 195, 0.392);
+}
+
+.invisibleAside button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.137);
+  border: 0.5px solid rgba(255, 255, 255, 0.395);
+  width: 28px;
+  height: 28px;
+  margin-top: 15px;
+  margin-left: 6px;
+  border-radius: 999px;
+  font-weight: bold;
+  color: white;
+  transition: 300ms all;
+}
+
+.visibleAside {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(54, 54, 54, 0.14);
+  width: 250px;
+  height: 95.2vh;
+  transition: 300ms all;
+  border: 0px;
+  border-right: 0.5px solid rgba(255, 255, 255, 0.301);
+  color: white;
+}
+
+.visibleAside .asideHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.219);
+  padding: 12px 16px;
+}
+
+.visibleAside .asideHeader h2 {
+  font-size: 14px;
+}
+
+.visibleAside .asideHeader button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border: 0px;
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
+
+.visibleAside .asideHeader button:hover {
+  background-color: rgba(255, 255, 255, 0.248);
+}
+
+.visibleAside .asideOptions ul {
+  margin-top: 10px;
+}
+
+.visibleAside .asideOptions ul li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 20px;
+  padding: 10px 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.visibleAside .asideOptions ul li:hover {
+  background-color: rgba(255, 255, 255, 0.248);
+}
+
+.visibleAside .asideOptions ul li .asideIcon {
+  margin-right: 10px;
+}
+
+.visibleAside .asideOptions ul li:nth-child(2) button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  color: white;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+}
+
+.visibleAside .asideOptions ul li:nth-child(2) button:hover {
+  background-color: rgba(90, 90, 90, 0.352);
+}
+
+.visibleAside .asideOptions ul li:nth-child(2) {
+  justify-content: space-between;
+}
+
+.visibleAside .asideOptions ul li:nth-child(3) {
+  justify-content: space-between;
+}
+
+.modalAddMember {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 95.2vh;
+  background-color: rgba(103, 103, 103, 0.518);
+  color: #172B4D;
+}
+
+.modalAddMember .form {
+  background-color: white;
+  border-radius: 5px;
+  color: #172B4D;
+  width: 600px;
+  height: 160px;
+  padding: 20px;
+}
+
+.modalAddMember .form h2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.modalAddMember .form button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  background-color: transparent;
+  border: 0px;
+  cursor: pointer;
+}
+
+.modalAddMember .form .inputContainer {
+  border: 1.5px solid #0079BF;
+  box-shadow: 0px 0px 1px 1px #0079BF inset;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+
+.modalAddMember .form input {
+  color: #172B4D;
+  border: 0px;
+  width: 90%;
+}
+
+.modalAddMember .form input::placeholder {
+  color: rgba(23, 43, 77, 0.6235294118);
+}
+
+.modalAddMember .form input:focus {
+  outline: none;
+}
+
+.modalSelectConfig {
+  position: absolute;
+  color: #172B4D;
+  background-color: white;
+  border-radius: 3px;
+  margin-left: 220px;
+  padding: 15px 0px;
+  top: 220px;
+  width: 350px;
+}
+
+.modalSelectConfig ul li {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.modalSelectConfig ul li:hover {
+  background-color: rgba(143, 143, 143, 0.345);
+}
+
+.modalShowUsers {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 5px;
+  border: 0.5px solid #DCDEE4;
+  box-shadow: 0px 0px 0.5px 0.5px #DCDEE4;
+  color: #7A869A;
+  padding: 20px;
+  margin-top: 15px;
+  width: 93%;
 }
 
 /*# sourceMappingURL=styles.css.map */
