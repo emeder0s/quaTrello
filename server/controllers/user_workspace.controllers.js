@@ -5,7 +5,7 @@ const userWorkspace = {
   /**
    * Devuelve los registros que tengan el fk_id_user del usuario que se pasa como parámetro
    * Por ello podemos conocer los workspaces del usuario registrado
-   * @param {*} fk_id_user  Id de un usuario
+   * @param {int} fk_id_user  Id de un usuario
    * @returns userWorkspaces 
    */
   getWorkspacesByUser: async (fk_id_user) => {
@@ -18,9 +18,9 @@ const userWorkspace = {
 
   /**
    * Inserta un user_workspace con el usuario, el workspace y el rol del usuario para ese workspace
-   * @param {*} role rol del usuario para ese workspace
-   * @param {*} fk_id_user id del usuario
-   * @param {*} fk_id_workspace id de workspace
+   * @param {string} role rol del usuario para ese workspace
+   * @param {int} fk_id_user id del usuario
+   * @param {int} fk_id_workspace id de workspace
    */
   insert: async (role_, fk_id_user, fk_id_workspace) => {
     try{
