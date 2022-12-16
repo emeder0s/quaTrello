@@ -11,22 +11,22 @@ export const LinkNavBoard = () => {
     const [navBoard, setNavBoard] = useState(false);
 
     //traemos todos los usuarios cuando se cargue la pantalla
-    useEffect(() => {
-        let Metadatos = {
-            method: 'POST',
-            body: JSON.stringify({
-                //"fk_id_card": "id_card"
-            }),
-            mode: "cors",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-type": "application/json",
-            },
-        }
+    // useEffect(() => {
+    //     let Metadatos = {
+    //         method: 'POST',
+    //         body: JSON.stringify({
+    //             //"fk_id_card": "id_card"
+    //         }),
+    //         mode: "cors",
+    //         headers: {
+    //             "Access-Control-Allow-Origin": "*",
+    //             "Content-type": "application/json",
+    //         },
+    //     }
 
-        fetch('http://localhost:5000/getactivities', Metadatos)
-            .then(res => console.log(res))
-    }, [])
+    //     fetch('http://localhost:5000/getactivities', Metadatos)
+    //         .then(res => console.log(res))
+    // }, [])
 
 
     const showWindow = (menu) => {
@@ -35,15 +35,15 @@ export const LinkNavBoard = () => {
 
 
     return (
-        <div>
+        <div className="divNavBoard">
             <nav>
-                <button className='menu' onClick={() => showWindow("menu1")}>Nombre del tablero</button>
+                <button className='butNavBoard' onClick={() => showWindow("menu1")}>Nombre del tablero</button>
                 {navBoard === "menu1" && <NameBoard />}
-                <button className='menu' onClick={() => showWindow("menu2")}>visibilidad</button>
+                <button className='butNavBoard' onClick={() => showWindow("menu2")}>visibilidad</button>
                 {navBoard === "menu2" && <VisibilityNavBoard />}
-                <button className='menu' onClick={() => showWindow("menu3")}>Miembros</button>
+                <button className='butNavBoard' onClick={() => showWindow("menu3")}>Miembros</button>
                 {navBoard === "menu3" && <ShareNavBoard />}
-                <button className='menu' onClick={() => showWindow("menu4")}>Compartir</button>
+                <button className='butNavBoard' onClick={() => showWindow("menu4")}>Compartir</button>
                 {navBoard === "menu4" && <MembersNavBoard />}
             </nav>
         </div>
