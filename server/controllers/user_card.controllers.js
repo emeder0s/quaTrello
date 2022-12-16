@@ -1,5 +1,5 @@
 const conexion = require("../dataBases/mysql");
-const User_cardModel = require("../models/user_cards.model");
+const User_cardModel = require("../models/users_cards.model");
 const userr = require("./user.controllers");
 
 const user_card = {
@@ -70,6 +70,24 @@ const user_card = {
             await conexion.cerrar(con);
         }
     },
+    getUsersWithNotifTrue: async (req, res) => {
+        try {
+            var con = await conexion.abrir();
+            const user_cardM = await User_cardModel.create(con);
+            var users_on_card = await user_cardM.findAll({ where: { fk_id_card: req.body.fk_id_card, notifications: true } });
+            users_on_card = await Promise.all(users_on_card.map(async user => {
+                let u = await userr.getUserbyId(user.fk_id_user);
+                u = u.dataValues;
+                u["notifications"] = user.dataValues["notifications"];
+                return u;
+            }));
+            return users_on_card;
+        } catch (error) {
+            return false;
+        } finally {
+            await conexion.cerrar(con);
+        }
+    }
 };
 
 module.exports = user_card;
