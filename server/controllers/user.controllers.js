@@ -49,7 +49,21 @@ const user = {
       const Usr = await Users.create(con);
       const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
-      res.cookie("session", infoJwt);
+      res.json({validation:true, "jwt": infoJwt});
+    } catch (error) {
+      res.json(error);
+    } finally {
+      await conexion.cerrar(con);
+    }
+  },
+
+  insertTrapala: async (req, res) => {
+    try {
+      const { full_name, pass, email } = req.body;
+      const pass_hash = await bcyptjs.hash(pass, 8);
+      var con = await conexion.abrir();
+      const Usr = await Users.create(con);
+      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       res.json(user);
     } catch (error) {
       res.json(error);
@@ -57,6 +71,7 @@ const user = {
       await conexion.cerrar(con);
     }
   },
+  
   /**
    * Devuelve la id del usuario que tiene sesion iniciada
    * @param {json} req 
@@ -120,10 +135,9 @@ const user = {
         let compare = bcyptjs.compareSync(pass, hashSaved);
         const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
         if (compare) {
-          res.cookie("session", infoJwt);
-          res.json(true);
+          res.json({validation:true, "jwt": infoJwt});
         } else {
-          res.json(false);
+          res.json({validation:false, "jwt": ""});
         }
       } else {
         res.json("no existe el usuario");
