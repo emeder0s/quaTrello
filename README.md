@@ -65,3 +65,11 @@
 | `POST` | `/updateRolBoard` | Actualiza el rol de un usuario en un board cuyo id se pasa en el body de la petición|``` { id: "id...", role_:"nuevo rol" } ``` | |
 | `POST` | `/deleteUserFromBoard` | Elimina un registro en la tabla "user_board" de la base de datos cuyo id se pasa en el body de la petición.|``` { id: "id..." } ``` |  |
 
+### Controlador de user-card (usuarios de una tarjeta)
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `POST` | `/insertUserCard` |  Inserta un registro en la tabla "user_cards" de la base de datos. | ```{ fk_id_card: 3, fk_id_user: 8 }```  | el registro que se ha insertado o el error que se haya producido. |
+| `POST` | `/getUsersCard` |Muestra todos los usuarios que estan en una tarjeta junto con el estado de sus notificaciones en la tarjeta. |``` { fk_id_card: "id_card" } ``` |  |
+| `POST` | `/updateCardNotifications` | Actualiza el estado de las notificaciones de un usuario en un card cuyo id se pasa en el body de la petición|``` { id: "id...", notifications: 1 } ``` | |
+| `POST` | `/deleteUserFromCard` | Elimina un registro en la tabla "user_card" de la base de datos cuyo id se pasa en el body de la petición.|``` { id: "id..." } ``` |  |
+
