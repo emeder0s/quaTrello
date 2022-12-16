@@ -1,13 +1,18 @@
 import React from 'react'
+import { defaultFetch } from '../../helpers/defaultFetch';
+import { Link } from 'react-router-dom';
 
 export const MetodoRegistro = ({email, setEmail, setDisplay}) => {
-
-    const confirmEmail = e => {
+    const confirmEmail = async e => {
         e.preventDefault();
-        var userEmail = e.target.email.value;
+        var userEmail = {email: e.target.email.value};
         console.log(userEmail)
         setEmail(userEmail)
+        const res = await defaultFetch("http://localhost:5000/confirmEmail", "POST", userEmail);
         setDisplay("first")
+            console.log(res);
+        (res) ? console.log("Correcto, espera que hagamos algo más y te mandamos allí") : console.log("Te has colado")
+   
       }
 
     return (
@@ -24,7 +29,7 @@ export const MetodoRegistro = ({email, setEmail, setDisplay}) => {
     <p>Sí, deseo recibir noticias y ofertas de ApuShop acerca de productos, eventos, etc.</p>
     <button type='submit'>Registrarse</button>
     </form>
-    <a href=''>¿Ya tiene una cuenta? Iniciar sesión</a>
+    <Link to='/login'>¿Ya tiene una cuenta? Iniciar sesión</Link>
 </div>
         </div>
     )

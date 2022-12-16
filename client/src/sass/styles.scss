@@ -1,9 +1,11 @@
 @import './layouts/boards.scss';
+@import './layouts/generalStyles.scss';
 
 // Navbar and header
 @import "./layouts/navbar/nav.scss";
 @import "./layouts/navbar/header.scss";
 @import "./layouts/navbar/dropdown.scss";
+@import "./layouts/navbar/navLogin.scss";
 
 // Perfil
 @import "./layouts/perfil.scss";
@@ -14,3 +16,14 @@
 @import './layouts/aside';
 @import './layouts/addWorkSpace.scss';
 @import './layouts/home';
+
+// Board
+@import './layouts/board/board.scss';
+// Aside
+@import './layouts/board/aside/asideBoard.scss';
+@import './layouts/board/aside/invisibleAside.scss';
+@import './layouts/board/aside/visibleAside.scss';
+// Aside Modal
+@import './layouts/board/aside/modal/modalAddMemb';
+@import './layouts/board/aside/modal/modalSelectConfig.scss';
+@import './layouts/board/aside/modal/modalShowUsers';
