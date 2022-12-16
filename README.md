@@ -56,3 +56,12 @@
 | `POST` | `/updateactivities` | Actualiza el texto de un comentario cuyo id se pasa en el body de la peticion.|``` { text_: "nuevo texto...", id: "id..."} ```| El id del comentario editado o el error que se haya producido. |
 | `POST` | `/deleteactivities` | Elimina un registro en la tabla "activities" de la base de datos cuyo id se pasa en el body de la peticion.|``` { id: "id..." } ```| El id del comentario eliminado o el error que se haya producido.  |
 
+### Controlador de user-board (usuarios de un tablón)
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `POST` | `/insertUserBoard` |  Inserta un registro en la tabla "user_boards" de la base de datos. | ```{ role_: "admin", fk_id_board: 3, fk_id_user: 8 }```  | el registro que se ha insertado o el error que se haya producido. |
+| `POST` | `/rolUserSesionBoard` | Muestra el rol del usuario que tiene la sesion iniciada en un board cuyo id se pasa en el body de la petición. |``` { fk_id_board: "id_board" } ``` |  |
+| `POST` | `/getUsersBoard` |Muestra todos los usuarios que estan en el tablero junto con su rol en ese tablero. |``` { fk_id_board: "id_board" } ``` |  |
+| `POST` | `/updateRolBoard` | Actualiza el rol de un usuario en un board cuyo id se pasa en el body de la petición|``` { id: "id...", role_:"nuevo rol" } ``` | |
+| `POST` | `/deleteUserFromBoard` | Elimina un registro en la tabla "user_board" de la base de datos cuyo id se pasa en el body de la petición.|``` { id: "id..." } ``` |  |
+
