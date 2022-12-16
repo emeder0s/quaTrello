@@ -22,7 +22,10 @@ const workspace = {
 
   insert: async (req, res) => {
     try{
-        const { name_, visibility, configuration } = req.body;
+        var { name_, visibility, configuration } = req.body;
+        console.log(name_);
+        name_= name_.replace("  "," ").trim();
+        console.log(name_);
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         // userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req));   
@@ -93,14 +96,16 @@ const workspace = {
 
   getByUser:async (req, res) => {
     try{
-       const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+      //  const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+      const userWorkspaces = await userWorkspace.getWorkspacesByUser(req.body.id);
         var con = await conexion.abrir();
         const workspaceM = await workspacesModel.create(con);
         const workspaces = await Promise.all(
           userWorkspaces.map(async (userWorkspace) => {
             var ws = await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
             ws = ws.dataValues;
-            ws.boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
+            //ws.boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
+            var boards = await board.getByWorkspaceAndUser(userWorkspace.fk_id_workspace,req.body.id);
             ws.boards = boards;
             return ws;
           })
@@ -126,7 +131,7 @@ const workspace = {
           return await workspace.getName(w.dataValues.id);
       })
     )
-    return !names.includes(name_);
+    return !names.includes(name_.replace("  "," ").trim());
   }
 };
 
