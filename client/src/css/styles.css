@@ -150,12 +150,11 @@ header {
 }
 
 .dropdown1 {
-  background-color: white;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
   position: absolute;
-  left: 93px;
-  top: 32px;
+  left: 113px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -168,8 +167,8 @@ header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
   position: absolute;
-  left: 205px;
-  top: 32px;
+  left: 280px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -181,8 +180,8 @@ header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
   position: absolute;
-  left: 270px;
-  top: 32px;
+  left: 375px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -194,8 +193,8 @@ header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
   position: absolute;
-  left: 337px;
-  top: 32px;
+  left: 470px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -207,8 +206,8 @@ header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
   position: absolute;
-  left: 397px;
-  top: 32px;
+  left: 560px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -220,13 +219,13 @@ header {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 10px;
   position: absolute;
-  right: 33px;
-  top: 32px;
+  right: 18px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
   padding: 6px;
-  width: 150px;
+  width: 230px;
 }
 
 .dropdown7 {
@@ -235,7 +234,7 @@ header {
   font-size: 10px;
   position: absolute;
   right: 2px;
-  top: 32px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -249,7 +248,7 @@ header {
   font-size: 10px;
   position: absolute;
   right: 2px;
-  top: 32px;
+  top: 42px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
   color: black;
   margin: 0;
@@ -259,12 +258,15 @@ header {
 
 .title {
   color: rgb(146, 146, 146);
-  font-size: 8px;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .espacio {
   color: black;
-  font-size: 8px;
+  font-size: 12px;
+  margin-bottom: 5px;
 }
 
 .nav-login {
@@ -552,14 +554,14 @@ header {
   padding-top: 20px;
 }
 
-.config {
+.configPerfil {
   padding-top: 100px;
   flex-direction: column;
   justify-content: center;
   text-align: center;
 }
 
-.divCuenta {
+.configPerfil .divCuenta {
   padding-top: 150px;
   width: 550px;
   padding: 20px;
@@ -570,18 +572,149 @@ header {
   justify-content: space-between;
 }
 
-.detCuenta {
+.configPerfil .detCuenta {
   margin-top: 100px;
 }
 
 .board {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   background-color: #da9d48;
+}
+
+.create-board h3 {
+  text-align: center;
+  font-weight: 300;
+  font-size: 14px;
+  width: 98%;
+}
+
+.create-board h4 {
+  margin: 10px 0;
+  font-size: 12px;
+  color: #5e6c84;
+}
+
+.create-board {
+  width: 320px;
+  padding: 0 2% 0 4%;
+  height: auto;
+}
+
+.create-board header {
+  display: flex;
+  background-color: #fff;
+  padding: 3% 10%;
+  margin: 0;
+}
+
+.create-board .close {
+  position: absolute;
+  right: 11px;
+  padding: 1px 4px;
+}
+
+.create-board hr {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.create-board .chooseBG,
+.create-board .submit {
+  margin: 25px 0;
+}
+
+.create-board .board-bg {
+  width: 200px;
+  height: 120px;
+  background-color: darkslategray;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+  border: none;
+  border-radius: 3px;
+}
+
+.create-board .board-bg img {
+  width: 180px;
+  height: 120px;
+}
+
+.create-board button.image {
+  background-size: cover;
+}
+
+.create-board ul.images,
+.create-board ul.colors {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 18px;
+}
+
+.create-board ul.images button {
+  width: 64px;
+  height: 40px;
+  background-color: mediumorchid;
+  border: none;
+  border-radius: 3px;
+}
+
+.create-board ul.colors button {
+  width: 40px;
+  height: 32px;
+  border: none;
+  border-radius: 3px;
+}
+
+.create-board .chooseBG {
+  display: flex;
+  justify-content: center;
+}
+
+.create-board input,
+.create-board select,
+.create-board button.submit {
+  border: 1px solid rgba(94, 108, 132, 0.3294117647);
+  border-radius: 3px;
+  padding: 10px;
+  border-radius: 3px;
+}
+
+.create-board input.title {
+  width: 90%;
+}
+
+.create-board select.actualWorkSpaces,
+button.submit {
+  width: 97%;
+}
+
+.create-board .c1 {
+  background-color: #0079bf;
+}
+
+.create-board .c2 {
+  background-color: #d29034;
+}
+
+.create-board .c3 {
+  background-color: #519839;
+}
+
+.create-board .c4 {
+  background-color: #b04632;
+}
+
+.create-board .c5 {
+  background-color: #89609e;
 }
 
 .divNavBoard {
   margin-left: 30px;
+  height: 20px;
+  display: block;
+  margin-bottom: 30px;
 }
 
 .navBoard {
@@ -589,24 +722,12 @@ header {
   justify-content: space-around;
 }
 
-.navBoard1 {
-  background-color: white;
-  font-size: 20px;
-  position: absolute;
-  left: 203px;
-  top: 32px;
-  margin: 0;
-  padding: 6px;
-  z-index: 2;
-  border: solid 2px;
-}
-
 .navBoard2 {
   background-color: white;
   font-size: 20px;
   position: absolute;
-  left: 780px;
-  top: 50px;
+  left: 495px;
+  top: 100px;
   margin: 0;
   padding: 6px;
   border: solid 2px;
@@ -659,7 +780,91 @@ header {
 }
 
 .butNavBoard {
-  background-color: red;
+  background-color: #0075b9;
+  width: 200px;
+  margin: 10px;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navNBoard {
+  width: 1500PX;
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.memberNavBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 95.2vh;
+  color: #172B4D;
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 500ms ease;
+  opacity: 0;
+  visibility: hidden;
+}
+
+#btn-modal:checked ~ .modal {
+  opacity: 1;
+  visibility: visible;
+}
+
+.contenedor {
+  width: 700px;
+  height: 600px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
+  transition: all 500ms ease;
+  position: relative;
+  transform: translateY(-30%);
+}
+
+#btn-modal:checked ~ .modal .contenedor {
+  transform: translateY(0%);
+}
+
+.contenedor header {
+  padding: 10px;
+  background: #465fdb;
+  color: #fff;
+}
+
+.contenedor label {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #fff;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#btn-modal {
+  display: none;
+}
+
+.lbl-modal {
+  margin-bottom: px;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 .asideBoard {
@@ -960,6 +1165,199 @@ header {
 
 .usersFound .userFound .userFoundAvatar:hover {
   background-color: #b7b9be;
+}
+
+.warning {
+  color: red;
+  border: 1px solid red;
+  margin: 10px 30% 10px 30%;
+  text-align: center;
+  width: fit-content;
+  padding: 20px;
+}
+
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  overflow-x: scroll;
+  min-height: 95%;
+}
+
+.addlistStart {
+  background-color: rgba(255, 255, 255, 0.117);
+  width: 253px;
+  display: block;
+  height: fit-content;
+  padding: 10px;
+  margin: 3px;
+  color: white;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+.addlistStart:hover {
+  background-color: rgba(255, 255, 255, 0.182);
+}
+
+.listInput {
+  background-color: #ebecf0;
+  width: 253px;
+  display: block;
+  height: fit-content;
+  padding: 0;
+  margin: 3px;
+  color: white;
+  font-size: 18px;
+  border-radius: 3px;
+}
+
+.listInput input {
+  border: solid 2px #026aa7;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 91.8%;
+  padding: 6px;
+  color: gray;
+}
+
+.addList {
+  background-color: #026aa7;
+  border: none;
+  color: white;
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 1px 4px 4px;
+}
+
+.close {
+  background-color: #ebecf0;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.list {
+  background-color: #ebecf0;
+  width: 253px;
+  display: block;
+  height: fit-content;
+  padding: 10px;
+  margin: 4px;
+  color: gray;
+  font-size: 18px;
+  border-radius: 3px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+}
+
+.list h6 {
+  display: inline;
+  margin: 1px;
+}
+
+.btnMenuList {
+  font-size: 15px;
+  color: gray;
+  border: none;
+  background-color: #ebecf0;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.addCard {
+  font-size: 15px;
+  display: block;
+  padding: 5px 10px;
+  border: none;
+  background-color: #ebecf0;
+  width: 100%;
+  text-align: left;
+  border-radius: 3px;
+  color: gray;
+}
+
+.addCard:hover {
+  background-color: #dcdde2;
+}
+
+.btnMenuList:hover {
+  background-color: #dcdde2;
+}
+
+.listTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  background-color: #ebecf0;
+}
+
+.inputCard {
+  border: none;
+  border-bottom: 1px solid #b6b6b8;
+  height: 50px;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 92%;
+  padding: 6px;
+  color: gray;
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+  border-bottom: 1px solid #b6b6b8;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 97%;
+  padding: 1px;
+  color: gray;
+  background-color: white;
+}
+
+.cardTitle p {
+  margin: 6px;
+  font-size: 12px;
+}
+
+.cardTitle:hover {
+  background-color: #f4f5f7;
+}
+
+.btnMenuCard {
+  font-size: 15px;
+  color: gray;
+  border: none;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+.btnMenuCard:hover {
+  background-color: #dddddd;
+}
+
+.newCardMenu.scss {
+  background-color: white;
+  width: 100px;
+  height: 100px;
 }
 
 /*# sourceMappingURL=styles.css.map */

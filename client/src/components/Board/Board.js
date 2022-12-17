@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import AsideBoard from './AsideBoard/AsideBoard'
 import { CreateBoard } from '../Boards/CreateBoard'
-import { LinkNavBoard } from './LinkNavBoard'
+import { LinkNavBoard } from './MenuBoard/LinkNavBoard'
 import { AddList } from './ContentBoard/AddList'
 import { List } from './ContentBoard/List'
 import { BoardContext } from '../../providers/boardProvider'

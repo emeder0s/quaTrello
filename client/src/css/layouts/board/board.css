@@ -1,6 +1,6 @@
 .board {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   background-color: #da9d48;
 }
 
