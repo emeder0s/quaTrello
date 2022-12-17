@@ -38,9 +38,9 @@
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   |  |
-| `POST` | `/insert-list` | | { }  |  |
-| `POST` | `/update-list` | | { }  |  |
-| `DELETE` | `/delete-list` | | { }  |  |
+| `POST` | `/insert-list` |  Inserta una lista en un tablero | { name_: de la lista,  fk_id_board: el id del board al que pertenece }  | boolean |
+| `POST` | `/update-list` | Actualiza una lista. El id se pasa en el body | { id: identificador de la lista a editar , name_: nombre de la lista }  | boolean |
+| `DELETE` | `/delete-list` | Borra una lista. El id se pasa en el body | { id: de la lista a boorar }  | boolean  |
 
 ### Controlador de messages
 | Tipo de petición | End Point | Descripción   | req.body | res |
