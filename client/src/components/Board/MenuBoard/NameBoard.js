@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getFetch } from "../../helpers/defaultFetch";
+import { getFetch } from "../../../helpers/defaultFetch";
 
 
 export const NameBoard = () => {

@@ -27,8 +27,8 @@ export const List = ({ title, cards }) => {
                     <h6>{title}</h6>
                     <button className='btnMenuList'><FiMoreHorizontal /></button>
                 </div>
-                {cards!=="none" ? cards.map(cardTitle => (
-                <div className='cardTitle' ><p key={cardTitle}>{cardTitle}</p>
+                {cards!=="none" ? cards.map((cardTitle, i) => (
+                <div key={i} className='cardTitle' ><p key={cardTitle}>{cardTitle}</p>
                 <button className='btnMenuCard' >&#x270E;</button></div>
             ))               
                  : console.log("no tiene tarjetas")}
@@ -46,8 +46,8 @@ export const List = ({ title, cards }) => {
                 <h6>{title}</h6>
                 <button className='btnMenuList'><FiMoreHorizontal /></button>
             </div>
-            {cards!=="none" ? cards.map(cardTitle => (
-                <div className='cardTitle' ><p key={cardTitle}>{cardTitle}</p>
+            {cards!=="none" ? cards.map((cardTitle, i) => (
+                <div className='cardTitle' key={i}><p key={cardTitle}>{cardTitle}</p>
                 <button className='btnMenuCard' >&#x270E;</button></div>
             ))               
                  : console.log("no tiene tarjetas")}

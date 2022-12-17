@@ -2,16 +2,16 @@ import React, { useState } from "react";
 
 
 
-export const ShareNavBoard = (props) => {
+export const ShareNavBoard = ({showWindow, setIsModalShareOpen}) => {
 
     return (
 
 
-                    <div class="modal">
-                        <div class="contenedor">
+                    <div className="modal">
+                        <div className="contenedor">
                             <header>Compartir Tablero</header>
-                            <label for="btn-modal" onClick={() => props.showWindow("menu3")}>X</label>
-                            <div class="contenido">
+                            <label htmlFor="btn-modal" onClick={(e) => setIsModalShareOpen(false)}>X</label>
+                            <div className="contenido">
                                 
                             </div>
                         </div>
