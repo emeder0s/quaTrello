@@ -1,20 +1,16 @@
 const conexion = require("../dataBases/mysql");
 const CardsModel = require("../models/cards.model");
+const notif = require("./notification.controllers")
 
 const card = {
   insert: async (req, res) => {
     try{
-        const { title,  fk_id_board } = req.body;
+        const { title,  fk_id_list} = req.body;
         var con = await conexion.abrir();
         const cardM = await CardsModel.create(con);
-        const card = await cardM.findOne({ where: { title } });
-        if (!card) {
-            const newCard = await cardM.create({ title, fk_id_board });
-            await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con)
-            res.json(newCard.dataValues);
-        }else{
-            res.json({msn:"Existe con ese nombre"});
-        }
+        const newCard = await cardM.create({ title, fk_id_list });
+        //await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con)
+        res.json(newCard.dataValues);
     }catch(e){
         console.log(e);
         res.json(false);
