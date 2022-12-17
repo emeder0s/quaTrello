@@ -2,13 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { getInitial } from '../../../../helpers/getInitial'
 import { findUsers } from '../../../../helpers/findUsers'
 
-const ModalShowUsers = ({ email, setAddedMembersToInput }) => {
+const ModalShowUsers = ({ email, setAddedMembersToInput, addedMembersToInput}) => {
 
   const [userExists, setUserExists] = useState(false)
   const [users, setUsers] = useState([])
-
-  const usersInList = []
-  let memberAlreadyAdded = false
 
   var formData = new FormData()
   useEffect(() => {
@@ -18,13 +15,8 @@ const ModalShowUsers = ({ email, setAddedMembersToInput }) => {
     findUsers(formData, setUserExists, setUsers)
   }, [email])
 
-  // Intentar utilizar redux para recoger los usuarios y pasarlos a la lista del input del otro componente
   function addUserToList(user) {
-    usersInList.filter((item) => item == user ? memberAlreadyAdded = true : memberAlreadyAdded = false)
-    if (!memberAlreadyAdded) {
-      usersInList.push(user)
-      setAddedMembersToInput(usersInList)
-    }
+      setAddedMembersToInput({...addedMembersToInput, [user]: user})
   }
 
   if (!userExists) {
