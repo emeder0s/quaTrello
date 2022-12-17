@@ -37,6 +37,7 @@ router.get("/cards/:list", card.getCardsByList);
 router.post("/insert-card", card.insert);
 router.post("/update-card", card.update);
 router.delete("/delete-card", card.delete);
+router.post("/move-to-list", card.moveToList);
 
 //MESSAGES
 router.post("/insertmessage", message.insert);

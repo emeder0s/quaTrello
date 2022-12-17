@@ -21,25 +21,27 @@
 | `POST` | `/insert-workspace` | Inserta un workspace | { "name_":"Nombre del Workspace", "visibility":"public/private", "configuration":"la configuracion en un JSON" }  | true (si todo va bien)/false(si algo fallta)/json{msn: "Existe con ese nombre"} |
 | `GET` | `/show-workspace/:id` | Devuelve los datos de un workspace | {"id":"el id del workspace a mostrar" } | json (con los datos del workspace) |
 | `POST` | `/update-workspace` | Modifica los datos de un workspace | { "id":"id del workspace a modificar", "name_":"name del workspace", "visibility":"public/private", "configuration":"la configuracion de un ws" }  |  |
-| `DELETE` | `/delete-workspace` | Borra un workspace | { "id": "id del workspace a eliminar" } | boolean - true (si todo va bien)/false(si algo fallta) |
-| `GET` | `/get-workspaces-by-user` | Devuelve todos los workspace (y los sus boards) del usuario logueado  |  |  json (array de workspace)  |
+| `DELETE` | `/delete-workspace` | Borra un workspace | { "id": "id del workspace a eliminar" } | boolean - true (si todo va bien)/false(si algo falta) |
+| `GET` | `/get-workspaces-by-user` | Devuelve todos los workspace (y los sus boards) del usuario logueado  | - |  json (array de workspace)  |
+| `GET` | `/update-last-access` |Actualiza la fecha de acceso  | id: del wokspace a modificar |  boolean  |
 
 ### Controlador de boards
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/all-boards` | | { }  | |
-| `POST` | `/insert-board` | | { "background": "Color o imagen de fondo", "board_title": "Nombre de tablero", "ws_name": "Nombre del Workspace, "visibility": "Private, Workspace o Public" }  |  |
-| `GET` | `/show-board/:id` | | { }  | |
-| `POST` | `/update-board` | | { }  |  |
-| `DELETE` | `/delete-board` | | { }  |  |
+| `POST` | `/insert-board` | Crea un nuevo tablero | { name_:"Nombre del tablero", visibility:"Private, Workspace o Public", configuration:"{}", fk_id_workspace:"id"}   | boolean o error |
+| `GET` | `/show-board/:id` | devuelve un tablero por ID | /show-board/3 | {"id":3,"name_":"Board 3","visibility":"privado","configuration":"{}","fk_id_workspace":2,"fk_id_user":3} |
+| `GET` | `/show-boardByWs/:workspace` | devuelve un tablero por workspace | /show-boardByWs/2 | [{"id":3,"name_":"Board 3","visibility":"privado","configuration":"{}","fk_id_workspace":2,"fk_id_user":3}] |
+| `POST` | `/update-board` | Actualiza la informacion de un tablero | req.body = { id, name_, visibility, configuration }   | boolean o error |
+| `DELETE` | `/delete-board` | Borra un tablero por su ID | req.body = { id }| boolean |
+
 
 ### Controlador de lists
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   |  |
-| `POST` | `/insert-list` | | { }  |  |
-| `POST` | `/update-list` | | { }  |  |
-| `DELETE` | `/delete-list` | | { }  |  |
+| `POST` | `/insert-list` |  Inserta una lista en un tablero | { name_: de la lista,  fk_id_board: el id del board al que pertenece }  | boolean |
+| `POST` | `/update-list` | Actualiza una lista. El id se pasa en el body | { id: identificador de la lista a editar , name_: nombre de la lista }  | boolean |
+| `DELETE` | `/delete-list` | Borra una lista. El id se pasa en el body | { id: de la lista a boorar }  | boolean  |
 
 ### Controlador de messages
 | Tipo de petición | End Point | Descripción   | req.body | res |
@@ -54,4 +56,21 @@
 | `POST` | `/getactivities` | Muestra todos los comentarios escritos en la "card" cuyo id se pasa en el body de la peticion. |``` {fk_id_card: "id_card"} ```| Todos los comentarios de una card o el error que se haya producido. |
 | `POST` | `/updateactivities` | Actualiza el texto de un comentario cuyo id se pasa en el body de la peticion.|``` { text_: "nuevo texto...", id: "id..."} ```| El id del comentario editado o el error que se haya producido. |
 | `POST` | `/deleteactivities` | Elimina un registro en la tabla "activities" de la base de datos cuyo id se pasa en el body de la peticion.|``` { id: "id..." } ```| El id del comentario eliminado o el error que se haya producido.  |
+
+### Controlador de user-board (usuarios de un tablón)
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `POST` | `/insertUserBoard` |  Inserta un registro en la tabla "user_boards" de la base de datos. | ```{ role_: "admin", fk_id_board: 3, fk_id_user: 8 }```  | el registro que se ha insertado o el error que se haya producido. |
+| `POST` | `/rolUserSesionBoard` | Muestra el rol del usuario que tiene la sesion iniciada en un board cuyo id se pasa en el body de la petición. |``` { fk_id_board: "id_board" } ``` |  |
+| `POST` | `/getUsersBoard` |Muestra todos los usuarios que estan en el tablero junto con su rol en ese tablero. |``` { fk_id_board: "id_board" } ``` |  |
+| `POST` | `/updateRolBoard` | Actualiza el rol de un usuario en un board cuyo id se pasa en el body de la petición|``` { id: "id...", role_:"nuevo rol" } ``` | |
+| `POST` | `/deleteUserFromBoard` | Elimina un registro en la tabla "user_board" de la base de datos cuyo id se pasa en el body de la petición.|``` { id: "id..." } ``` |  |
+
+### Controlador de user-card (usuarios de una tarjeta)
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `POST` | `/insertUserCard` |  Inserta un registro en la tabla "user_cards" de la base de datos. | ```{ fk_id_card: 3, fk_id_user: 8 }```  | el registro que se ha insertado o el error que se haya producido. |
+| `POST` | `/getUsersCard` |Muestra todos los usuarios que estan en una tarjeta junto con el estado de sus notificaciones en la tarjeta. |``` { fk_id_card: "id_card" } ``` |  |
+| `POST` | `/updateCardNotifications` | Actualiza el estado de las notificaciones de un usuario en un card cuyo id se pasa en el body de la petición|``` { id: "id...", notifications: 1 } ``` | |
+| `POST` | `/deleteUserFromCard` | Elimina un registro en la tabla "user_card" de la base de datos cuyo id se pasa en el body de la petición.|``` { id: "id..." } ``` |  |
 

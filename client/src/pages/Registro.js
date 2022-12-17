@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { NavLogin } from '../components/layouts/NavLogin'
 import FirstWorkSpace from '../components/registro/FirstWorkSpace'
 import { MetodoRegistro } from '../components/registro/MetodoRegistro'

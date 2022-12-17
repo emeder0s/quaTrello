@@ -9,6 +9,7 @@ import { MembersNavBoard } from "./MembersNavBoard";
 export const LinkNavBoard = () => {
 
     const [navBoard, setNavBoard] = useState(false);
+    const [isModalShareOpen, setIsModalShareOpen] = useState(false)
 
     //traemos todos los usuarios cuando se cargue la pantalla
     // useEffect(() => {
@@ -30,24 +31,28 @@ export const LinkNavBoard = () => {
 
 
     const showWindow = (menu) => {
+
         navBoard !== menu ? setNavBoard(menu) : setNavBoard(false);
+        console.log('eee', navBoard)
     }
 
+    const titleBoard = "Nombre del tablero"
 
     return (
         <div className="divNavBoard">
-            <nav>
-                <button className='butNavBoard' onClick={() => showWindow("menu1")}>Nombre del tablero</button>
+            <nav className="navNBoard">
+                <input type="text" defaultValue={titleBoard} className="butNavBoard" />
                 {navBoard === "menu1" && <NameBoard />}
                 <button className='butNavBoard' onClick={() => showWindow("menu2")}>visibilidad</button>
                 {navBoard === "menu2" && <VisibilityNavBoard />}
-                <button className='butNavBoard' onClick={() => showWindow("menu3")}>Miembros</button>
-                {navBoard === "menu3" && <ShareNavBoard />}
-                <button className='butNavBoard' onClick={() => showWindow("menu4")}>Compartir</button>
+                {/* <button type="checkbox" id="btn-modal" onClick={e=>setIsModalShareOpen(!isModalShareOpen)}>Compartir</button> */}
+                <button className="butNavBoard lbl-modal" onClick={e => setIsModalShareOpen(!isModalShareOpen)}>Compartir</button>
+                {/* <button className='butNavBoard lbl-modal' onClick={() => showWindow("menu3")}>Compartir</button> */}
+                {isModalShareOpen && <ShareNavBoard showWindow={showWindow} setIsModalShareOpen={setIsModalShareOpen}/>}
+                <button className='butNavBoard' onClick={() => showWindow("menu4")}>Miembros</button>
                 {navBoard === "menu4" && <MembersNavBoard />}
             </nav>
         </div>
-
     )
 
 }
