@@ -57,6 +57,7 @@ router.post("/passToEmail",user.passToEmail);
 router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
+router.get("/logged-user", user.getUserbyCookie)
 
 
 //USER_BOARD

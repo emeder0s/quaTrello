@@ -18,7 +18,7 @@ const board = {
       const board = await boardM.findOne({ where: { name_, fk_id_workspace } });
       if (!board) {
         var newBoard = await boardM.create({ name_, visibility, configuration, fk_id_workspace, fk_id_user }); //fk_id_user es la id del usuario que crea el tablero
-        await notif.mail(req, "creado un", "tablero", newBoard.dataValues, con)
+        await notif.mail(req, "creado un", "tablero", newBoard.dataValues, con) // Envia una notificacion a los usuarios que estan suscritos.
         res.json(true);
       } else {
         res.json({ msn: "Existe con ese nombre" });
