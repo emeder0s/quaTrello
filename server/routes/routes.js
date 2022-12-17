@@ -59,6 +59,7 @@ router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
 router.post("/insert-user-Trapala", user.insertTrapala);
+router.get("/logged-user", user.getUserbyCookie)
 //router.get("/logout", user.logout);
 
 //USER_BOARD
