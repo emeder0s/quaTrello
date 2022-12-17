@@ -18,12 +18,12 @@ router.delete("/delete-workspace", workspace.delete);
 router.get("/get-workspaces-by-user", workspace.getByUser);
 
 //BOARDS
-router.get("/all-boards", board.getAll);
+
 router.post("/insert-board", board.insert);
 router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
 router.delete("/delete-board", board.delete);
-// router.get("/get-workspaces-by-user", board.getByUser);
+router.get("/show-boardByWs/:workspace", board.showByWs)
 
 //LISTS
 router.get("/lists/:board", list.getListsByBoard);
@@ -58,9 +58,8 @@ router.post("/passToEmail",user.passToEmail);
 router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
-router.post("/insert-user-Trapala", user.insertTrapala);
 router.get("/logged-user", user.getUserbyCookie)
-//router.get("/logout", user.logout);
+
 
 //USER_BOARD
 router.post("/insertUserBoard", user_board.insert);

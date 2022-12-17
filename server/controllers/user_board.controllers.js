@@ -139,6 +139,24 @@ const user_board = {
             await conexion.cerrar(con);
         }
     },
+    getUsersWithNotifTrue: async (fk_id_board) => {
+        try {
+            var con = await conexion.abrir();
+            const user_boardM = await User_boardModel.create(con);
+            var users_on_board = await user_boardM.findAll({ where: { fk_id_board, notifications: true } });
+            users_on_board = await Promise.all(users_on_board.map(async user => {
+                let u = await userr.getUserbyId(user.fk_id_user);
+                u = u.dataValues;
+                u["notifications"] = user.dataValues["notifications"];
+                return u;
+            }));
+            return users_on_board;
+        } catch (error) {
+            return false;
+        } finally {
+            await conexion.cerrar(con);
+        }
+    }
 };
 
 module.exports = user_board;

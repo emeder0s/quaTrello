@@ -1,10 +1,11 @@
 import React from 'react'
 import { defaultFetch } from '../helpers/defaultFetch';
-import Cookies from 'universal-cookie';
+import Cookie from 'universal-cookie';
 
 export const Login = () => {
 
-    const cookies = new Cookies();
+    const cookies = new Cookie();
+    console.log(cookies)
     const sendLogin = async e => {
         e.preventDefault();
 
