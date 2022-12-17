@@ -23,6 +23,7 @@
 | `POST` | `/update-workspace` | Modifica los datos de un workspace | { "id":"id del workspace a modificar", "name_":"name del workspace", "visibility":"public/private", "configuration":"la configuracion de un ws" }  |  |
 | `DELETE` | `/delete-workspace` | Borra un workspace | { "id": "id del workspace a eliminar" } | boolean - true (si todo va bien)/false(si algo fallta) |
 | `GET` | `/get-workspaces-by-user` | Devuelve todos los workspace (y los sus boards) del usuario logueado  |  |  json (array de workspace)  |
+| `GET` | `/update-last-access` |Actualiza la fecha de acceso  | id: del wokspace a modificar |  boolean  |
 
 ### Controlador de boards
 | Tipo de petición | End Point | Descripción   | req.body | res |
