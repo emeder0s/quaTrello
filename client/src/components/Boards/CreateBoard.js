@@ -11,7 +11,7 @@ export const CreateBoard = (props) => {
             </header>
             <hr></hr>
             <div className="chooseBG">
-                <div className="board-bg"><img src={boardPreview}></img></div>
+                <div className="board-bg"><img src={boardPreview} alt='icono'></img></div>
                 
             </div>
             <h4>Background</h4>
