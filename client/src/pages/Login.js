@@ -1,10 +1,11 @@
 import React from 'react'
 import { defaultFetch } from '../helpers/defaultFetch';
-import Cookies from 'universal-cookie';
+import Cookie from 'universal-cookie';
 
 export const Login = () => {
 
-    const cookies = new Cookies();
+    const cookies = new Cookie();
+    console.log(cookies)
     const sendLogin = async e => {
         e.preventDefault();
 
@@ -14,8 +15,8 @@ export const Login = () => {
         };
         const res = await defaultFetch("http://localhost:5000/login", "POST", user)
         console.log(res);
-        (res) ? console.log("Correcto, espera que hagamos algo más y te mandamos allí") : console.log("Te has colado")
-            (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No se sube la cookie")
+        (res) ? console.log("Correcto, espera que hagamos algo más y te mandamos allí") : console.log("Te has colado");
+        (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No se sube la cookie");
     }
 
     return (
