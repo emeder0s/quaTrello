@@ -1,5 +1,6 @@
 const conexion = require("../dataBases/mysql");
 const CardsModel = require("../models/cards.model");
+const notif = require("./notification.controllers")
 
 const card = {
   insert: async (req, res) => {
@@ -10,7 +11,7 @@ const card = {
         const card = await cardM.findOne({ where: { title } });
         if (!card) {
             const newCard = await cardM.create({ title, fk_id_board });
-            await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con)
+            await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
@@ -31,6 +32,8 @@ const card = {
         const card = await cardM.findOne({ where: { id } });
         if (card) {
             await cardM.update({ title,  },{ where: { id } });
+            const newCard = await cardM.findOne({ where: { id } });
+            await notif.mail(req, "modificado la", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
             res.json(true);
         }else{
             res.json({msn:"no existe"});

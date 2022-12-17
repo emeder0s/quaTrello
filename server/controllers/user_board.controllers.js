@@ -2,6 +2,7 @@ const conexion = require("../dataBases/mysql");
 const User_boardModel = require("../models/users_boards.model");
 const userr = require("./user.controllers");
 
+
 const user_board = {
     /**
      * Inserta un registro en la tabla "user_boards" de la base de datos.
@@ -15,10 +16,13 @@ const user_board = {
      */
     insert: async (req, res) => {
         try {
+            const notif = require("./notification.controllers")
             var con = await conexion.abrir();
             const user_boardM = await User_boardModel.create(con);
             const { role_, fk_id_board, fk_id_user } = req.body;
-            res.json(await user_boardM.create({ role_, fk_id_board, fk_id_user }));
+            const user_board = await user_boardM.create({ role_, fk_id_board, fk_id_user })
+            await notif.addUserMail(req, "te ha añadido al", "tablero", user_board.dataValues, fk_id_user, con)
+            res.json(user_board);
         } catch (error) {
             res.json(error);
         } finally {

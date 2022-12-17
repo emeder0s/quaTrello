@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS cards(
         title VARCHAR(25) NOT NULL, 
         description_ TEXT, 
         checklist TEXT,
+        configuration TEXT,
 		date_ DATETIME, 
         fk_id_list INT,
         PRIMARY KEY(id),

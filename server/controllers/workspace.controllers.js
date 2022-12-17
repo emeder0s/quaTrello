@@ -4,6 +4,7 @@ const userWorkspace = require ("./user_workspace.controllers");
 const user = require ("./user.controllers");
 const board = require ("./board.controllers");
 
+
 const workspace = {
   /**
    * Devuelve todos los workspaces
