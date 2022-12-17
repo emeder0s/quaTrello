@@ -37,7 +37,7 @@
 ### Controlador de lists
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   |  |
+| `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   | un array con todas las listas de ese board. Ej: [{"id": 1,"name_": "List 1","fk_id_board": 1},{"id": 2,"name_": "nueva lista","fk_id_board": 1}] |
 | `POST` | `/insert-list` |  Inserta una lista en un tablero | { name_: de la lista,  fk_id_board: el id del board al que pertenece }  | boolean |
 | `POST` | `/update-list` | Actualiza una lista. El id se pasa en el body | { id: identificador de la lista a editar , name_: nombre de la lista }  | boolean |
 | `DELETE` | `/delete-list` | Borra una lista. El id se pasa en el body | { id: de la lista a boorar }  | boolean  |
