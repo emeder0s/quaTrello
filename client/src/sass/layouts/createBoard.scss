@@ -1,23 +1,23 @@
-// nav {
-//     display: none !important;
-// }
+nav {
+    display: none !important;
+}
 
-// h3 {
-//     text-align: center;
-//     font-weight: 300;
-//     font-size: 14px;
-//     width: 98%;
-// }
+h3 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 14px;
+    width: 98%;
+}
 
-// h4 {
-//     margin: 10px 0;
-//     font-size: 12px;
-//     color: #5e6c84
-// }
+h4 {
+    margin: 10px 0;
+    font-size: 12px;
+    color: #5e6c84
+}
 
 .create-board {
     width: 320px;
-    padding: 0 2% 0 1%;
+    padding: 0 2% 0 4%;
     height: auto;
 }
 
@@ -34,10 +34,10 @@
     padding: 1px 4px;
 }
 
-// hr {
-//     width: 90%;
-//     margin: 0 auto;
-// }
+hr {
+    width: 90%;
+    margin: 0 auto;
+}
 
 .chooseBG,
 .submit {
@@ -58,7 +58,9 @@
     width: 180px;
     height: 120px
 }
-
+button.image {
+    background-size: cover;
+}
 ul.images,
 ul.colors {
     display: flex;
@@ -78,7 +80,6 @@ ul.images button {
 ul.colors button {
     width: 40px;
     height: 32px;
-    background-color: greenyellow;
     border: none;
     border-radius: 3px;
 }
@@ -104,4 +105,19 @@ button.submit {
 .create-board select.actualWorkSpaces,
 button.submit {
     width: 97%;
+}
+.c1 {
+    background-color: #0079bf;
+}
+.c2 {
+    background-color: #d29034;
+}
+.c3 {
+    background-color: #519839;
+}
+.c4 {
+    background-color: #b04632;
+}
+.c5 {
+    background-color: #89609e;
 }

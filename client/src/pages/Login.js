@@ -1,11 +1,12 @@
 import React from 'react'
 import { defaultFetch } from '../helpers/defaultFetch';
-import Cookie from 'universal-cookie';
+import Cookies from 'universal-cookie';
+import {useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
-    const cookies = new Cookie();
-    console.log(cookies)
+    const cookies = new Cookies();
+    const navigate = useNavigate();
     const sendLogin = async e => {
         e.preventDefault();
 
@@ -15,10 +16,11 @@ export const Login = () => {
         };
         const res = await defaultFetch("http://localhost:5000/login", "POST", user)
         console.log(res);
-        (res) ? console.log("Correcto, espera que hagamos algo más y te mandamos allí") : console.log("Te has colado");
-        (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No se sube la cookie");
+        console.log(res.jwt);
+        (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No hay respuesta");
+        localStorage.setItem("user", "Jorge Coronilla");
+        navigate("/home") 
     }
-
     return (
         <div>
             <div className='registro'>
@@ -31,6 +33,6 @@ export const Login = () => {
                     <button type="submit">Regístrate es gratuito</button>
                 </form>
             </div>
-        </div>
+        </div> 
     )
 }
