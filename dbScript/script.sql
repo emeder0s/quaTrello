@@ -79,6 +79,7 @@ CREATE TABLE IF NOT EXISTS messages(
 CREATE TABLE IF NOT EXISTS users_boards(
         id INT AUTO_INCREMENT,
         role_ VARCHAR(10) NOT NULL,
+        notifications TINYINT DEFAULT 0,
         fk_id_board INT,
         fk_id_user INT,
         PRIMARY KEY(id),
@@ -99,6 +100,7 @@ CREATE TABLE IF NOT EXISTS users_cards(
 CREATE TABLE IF NOT EXISTS users_workspaces(
         id INT AUTO_INCREMENT,
         role_ VARCHAR(10) NOT NULL,
+        notifications TINYINT DEFAULT 0,
         fk_id_workspace INT,
         fk_id_user INT,
         PRIMARY KEY(id),

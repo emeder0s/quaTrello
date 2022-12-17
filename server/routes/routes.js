@@ -7,6 +7,7 @@ const board = require("../controllers/board.controllers");
 const card = require("../controllers/card.controllers");
 const list = require("../controllers/list.controllers");
 const user_board = require("../controllers/user_board.controllers");
+const user_card = require("../controllers/user_card.controllers");
 
 //WORKSPACE
 router.get("/all-workspaces", workspace.getAll);
@@ -18,12 +19,12 @@ router.get("/get-workspaces-by-user", workspace.getByUser);
 router.post("/update-last-access", workspace.updateLastAccess);
 
 //BOARDS
-router.get("/all-boards", board.getAll);
+
 router.post("/insert-board", board.insert);
 router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
 router.delete("/delete-board", board.delete);
-// router.get("/get-workspaces-by-user", board.getByUser);
+router.get("/show-boardByWs/:workspace", board.showByWs)
 
 //LISTS
 router.get("/lists/:board", list.getListsByBoard);
@@ -57,12 +58,21 @@ router.post("/passToEmail",user.passToEmail);
 router.post("/resetPass/:token", user.resetPass);
 router.post("/searchUser",user.searchUser);
 router.post("/delete-user", user.delete);
-router.post("/insert-user-Trapala", user.insertTrapala);
-//router.get("/logout", user.logout);
+router.get("/logged-user", user.getUserbyCookie)
+
 
 //USER_BOARD
-router.post("/insertuserboard", user_board.insert);
-router.post("/getusersboard", user_board.get);
+router.post("/insertUserBoard", user_board.insert);
+router.post("/getUsersBoard", user_board.get);
+router.post("/rolUserSesionBoard", user_board.rolUserSesionBoard);
+router.post("/updateRolBoard", user_board.update);
+router.post("/deleteUserFromBoard", user_board.delete);
+
+//USER_CARD
+router.post("/insertUserCard", user_card.insert);
+router.post("/getUsersCard", user_card.get);
+router.post("/updateCardNotifications", user_card.update);
+router.post("/deleteUserFromCard", user_card.delete);
 
 
 module.exports = router;
