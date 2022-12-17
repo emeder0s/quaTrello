@@ -30,24 +30,28 @@ export const LinkNavBoard = () => {
 
 
     const showWindow = (menu) => {
+        
         navBoard !== menu ? setNavBoard(menu) : setNavBoard(false);
+        console.log('eee', navBoard)
     }
 
+    const titleBoard = "Nombre del tablero"
 
     return (
         <div className="divNavBoard">
-            <nav>
-                <button className='butNavBoard' onClick={() => showWindow("menu1")}>Nombre del tablero</button>
+            <nav className="navNBoard">
+            <input type="text" value={titleBoard} className="butNavBoard"/>
                 {navBoard === "menu1" && <NameBoard />}
                 <button className='butNavBoard' onClick={() => showWindow("menu2")}>visibilidad</button>
                 {navBoard === "menu2" && <VisibilityNavBoard />}
-                <button className='butNavBoard' onClick={() => showWindow("menu3")}>Miembros</button>
-                {navBoard === "menu3" && <ShareNavBoard />}
-                <button className='butNavBoard' onClick={() => showWindow("menu4")}>Compartir</button>
+                    <input type="checkbox" id="btn-modal"/>
+                    <label for="btn-modal" class="butNavBoard lbl-modal" onClick={() => showWindow("menu3")}>Compartir</label>
+                {/* <button className='butNavBoard lbl-modal' onClick={() => showWindow("menu3")}>Compartir</button> */}
+                {navBoard === "menu3" && <ShareNavBoard showWindow={showWindow} />}
+                <button className='butNavBoard' onClick={() => showWindow("menu4")}>Miembros</button>
                 {navBoard === "menu4" && <MembersNavBoard />}
             </nav>
         </div>
-
     )
 
 }

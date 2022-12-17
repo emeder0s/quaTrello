@@ -24,7 +24,7 @@ export const getFetch = async (endPoint,datos) => {
           "Content-type": "application/json",
         },
       };
-  
+  console.log(metaData)
       await fetch(endPoint, metaData)
       .then((res) => res.json())
       .then(res=>{return res})
