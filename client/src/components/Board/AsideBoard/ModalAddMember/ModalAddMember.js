@@ -9,16 +9,17 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
         msn: "",
     })
 
+    const [addedMembersToInput, setAddedMembersToInput] = useState([])
+
     const [showUsers, setShowUsers] = useState(false)
 
     // para poder actualizar los valores del formulario
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
-        // console.log(formValues.name)
         if (value) {
             setShowUsers(true)
-        }else{
+        } else {
             setShowUsers(false)
         }
     }
@@ -38,7 +39,18 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
                     <span>Invitar al espacio de trabajo</span>
                     <button onClick={e => setIsModalAddMemberOpen(false)}><AiOutlineClose /></button>
                 </h2>
+
                 <div className='inputContainer'>
+                    {addedMembersToInput.length > 0
+                        && addedMembersToInput.map((member, i) => {
+                            return (
+                                <div key={i} className='addedMemberToInput'>
+                                    <p>{member}</p>
+                                    <button><AiOutlineClose /></button>
+                                </div>
+                            )
+                        })
+                    }
                     <input
                         type='text'
                         placeholder='direccion de correo electrónico o nombre'
@@ -47,7 +59,7 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
                         value={formValues.email}
                     />
                 </div>
-                {showUsers && <ModalShowUsers email={formValues.email}/>}
+                {showUsers && <ModalShowUsers email={formValues.email} setAddedMembersToInput={setAddedMembersToInput} />}
             </div>
         </div>
     )

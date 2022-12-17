@@ -14,9 +14,9 @@ export const defaultFetch = async (endPoint, metodo, datos) => {
 }
 
 
-export const getFetch = async (endPoint,datos) => {
+export const getFetch = async (endPoint, metodo, datos) => {
     let metaData = {
-        method: 'GET',
+        method: metodo,
         body: JSON.stringify(datos),
         mode: "cors",
         headers: {
@@ -25,7 +25,6 @@ export const getFetch = async (endPoint,datos) => {
         },
       };
   
-      await fetch(endPoint, metaData)
-      .then((res) => res.json())
-      .then(res=>{return res})
+      const res = (await fetch(endPoint, metaData)).json();
+      return res;
 }

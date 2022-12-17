@@ -14,8 +14,8 @@ export const Login = () => {
         };
         const res = await defaultFetch("http://localhost:5000/login", "POST", user)
         console.log(res);
-        (res) ? console.log("Correcto, espera que hagamos algo más y te mandamos allí") : console.log("Te has colado")
-            (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No se sube la cookie")
+        (res) ? console.log("Correcto, espera que hagamos algo más y te mandamos allí") : console.log("Te has colado");
+        (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No se sube la cookie");
     }
 
     return (
