@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getFetch } from "../../helpers/defaultFetch";
+
 
 
 export const NameBoard = () => {
-/*
+
     useEffect(() => {
 
          let Metadatos = {
@@ -26,7 +26,7 @@ export const NameBoard = () => {
         //setUsuarios(usuarios)
     }, [])
 
-*/
+
 
 
 
