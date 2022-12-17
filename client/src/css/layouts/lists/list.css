@@ -1,0 +1,179 @@
+.list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.lists-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+  overflow-x: scroll;
+  min-height: 95%;
+}
+
+.addlistStart {
+  background-color: rgba(255, 255, 255, 0.117);
+  width: 253px;
+  display: block;
+  height: fit-content;
+  padding: 10px;
+  margin: 3px;
+  color: white;
+  font-size: 15px;
+  border-radius: 3px;
+}
+
+.addlistStart:hover {
+  background-color: rgba(255, 255, 255, 0.182);
+}
+
+.listInput {
+  background-color: #ebecf0;
+  width: 253px;
+  display: block;
+  height: fit-content;
+  padding: 0;
+  margin: 3px;
+  color: white;
+  font-size: 18px;
+  border-radius: 3px;
+}
+
+.listInput input {
+  border: solid 2px #026aa7;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 91.8%;
+  padding: 6px;
+  color: gray;
+}
+
+.addList {
+  background-color: #026aa7;
+  border: none;
+  color: white;
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 1px 4px 4px;
+}
+
+.close {
+  background-color: #ebecf0;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.list {
+  background-color: #ebecf0;
+  width: 253px;
+  display: block;
+  height: fit-content;
+  padding: 10px;
+  margin: 4px;
+  color: gray;
+  font-size: 18px;
+  border-radius: 3px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 3px;
+}
+
+.list h6 {
+  display: inline;
+  margin: 1px;
+}
+
+.btnMenuList {
+  font-size: 15px;
+  color: gray;
+  border: none;
+  background-color: #ebecf0;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.addCard {
+  font-size: 15px;
+  display: block;
+  padding: 5px 10px;
+  border: none;
+  background-color: #ebecf0;
+  width: 100%;
+  text-align: left;
+  border-radius: 3px;
+  color: gray;
+}
+
+.addCard:hover {
+  background-color: #dcdde2;
+}
+
+.btnMenuList:hover {
+  background-color: #dcdde2;
+}
+
+.listTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 3px;
+  background-color: #ebecf0;
+}
+
+.inputCard {
+  border: none;
+  border-bottom: 1px solid #b6b6b8;
+  height: 50px;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 92%;
+  padding: 6px;
+  color: gray;
+}
+
+.cardTitle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: none;
+  border-bottom: 1px solid #b6b6b8;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 97%;
+  padding: 1px;
+  color: gray;
+  background-color: white;
+}
+
+.cardTitle p {
+  margin: 6px;
+  font-size: 12px;
+}
+
+.cardTitle:hover {
+  background-color: #f4f5f7;
+}
+
+.btnMenuCard {
+  font-size: 15px;
+  color: gray;
+  border: none;
+  padding: 3px;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+.btnMenuCard:hover {
+  background-color: #dddddd;
+}
+
+/*# sourceMappingURL=list.css.map */
