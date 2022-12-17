@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import ModalShowUsers from './ModalShowUsers'
 
@@ -9,46 +9,62 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
         msn: "",
     })
 
+    const [addedMembersToInput, setAddedMembersToInput] = useState({})
+    const [membersAddedArray, setMembersAddedArray] = useState([])
+
+    useEffect(() => {
+        setMembersAddedArray(Object.values(addedMembersToInput))
+    }, [addedMembersToInput])
+
     const [showUsers, setShowUsers] = useState(false)
 
     // para poder actualizar los valores del formulario
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
-        // console.log(formValues.name)
         if (value) {
             setShowUsers(true)
-        }else{
+        } else {
             setShowUsers(false)
         }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log({ ...formValues })
+        console.log(membersAddedArray)
     }
-
-    // on keypress hacer que haga el fetch de todos los usuarios por nombre e email y que los muestre en una lista
-    // la lista debe contener los usuarios con su nombre completo y debe se un boton que al hacer click lo añada al valor del input
 
     return (
         <div className='modalAddMember'>
-            <div className='form'>
+            <form className='form' onSubmit={handleSubmit}>
                 <h2>
                     <span>Invitar al espacio de trabajo</span>
                     <button onClick={e => setIsModalAddMemberOpen(false)}><AiOutlineClose /></button>
                 </h2>
-                <div className='inputContainer'>
-                    <input
-                        type='text'
-                        placeholder='direccion de correo electrónico o nombre'
-                        name='email'
-                        onChange={handleChange}
-                        value={formValues.email}
-                    />
+                <div className='input-button-Container'>
+                    <div className='inputContainer'>
+                        {membersAddedArray.length > 0
+                            && membersAddedArray.map((member, i) => {
+                                return (
+                                    <div key={i} className='addedMemberToInput'>
+                                        <p datatype={member}>{member}</p>
+                                        <button datatype={member} onClick={e=>console.log(e)}><AiOutlineClose /></button>
+                                    </div>
+                                )
+                            })
+                        }
+                        <input
+                            type='text'
+                            placeholder='direccion de correo electrónico o nombre'
+                            name='email'
+                            onChange={handleChange}
+                            value={formValues.email}
+                        />
+                    </div>
+                    {membersAddedArray.length > 0 && <button type='submit' className='sendInvites'>Enviar Invitaciones</button>}
                 </div>
-                {showUsers && <ModalShowUsers email={formValues.email}/>}
-            </div>
+                {showUsers && <ModalShowUsers email={formValues.email} setAddedMembersToInput={setAddedMembersToInput} addedMembersToInput={addedMembersToInput} />}
+            </form>
         </div>
     )
 }

@@ -1,5 +1,9 @@
+//-------------- General Styles ---------------
+@import './base/generalStyles.scss';
+@import './base/default';
+
+//--------------- Boards ----------------
 @import './layouts/boards.scss';
-@import './layouts/generalStyles.scss';
 
 // Navbar and header
 @import "./layouts/navbar/nav.scss";
@@ -7,25 +11,27 @@
 @import "./layouts/navbar/dropdown.scss";
 @import "./layouts/navbar/navLogin.scss";
 
-// Perfil
-@import "./layouts/perfil.scss";
-@import "./layouts/configuracion.scss";
-
 // Aside and form
-@import './base/general';
 @import './layouts/aside';
 @import './layouts/addWorkSpace.scss';
 @import './layouts/home';
 
-// Board
+//----------------- Perfil ------------------
+@import "./layouts/perfil.scss";
+@import "./layouts/configuracion.scss";
+
+//---------------- Board --------------------
 @import './layouts/board/board.scss';
 @import './layouts/createBoard.scss';
+
 // NavBoard
 @import './layouts/navBoard.scss';
+
 // Aside
 @import './layouts/board/aside/asideBoard.scss';
 @import './layouts/board/aside/invisibleAside.scss';
 @import './layouts/board/aside/visibleAside.scss';
+
 // Aside Modal
 @import './layouts/board/aside/modal/modalAddMemb';
 @import './layouts/board/aside/modal/modalSelectConfig.scss';
