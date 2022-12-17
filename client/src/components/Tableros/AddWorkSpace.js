@@ -66,7 +66,7 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
                 </div>
                 <div className='addWorkSpaceDeco'>
                     <button className='closeWorkSpaceModal' onClick={() => setIsFormOpen(false)}><AiOutlineClose /></button>
-                    <img src='../../img/formIMG.svg'/>
+                    <img src='../../img/formIMG.svg' alt='icono'/>
                 </div>
             </div>
         </div>

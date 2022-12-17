@@ -1,15 +1,56 @@
 .modalShowUsers {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   background-color: white;
   border-radius: 5px;
   border: 0.5px solid #DCDEE4;
   box-shadow: 0px 0px 0.5px 0.5px #DCDEE4;
-  color: #7A869A;
+  color: #172B4D;
   padding: 20px;
   margin-top: 15px;
   width: 93%;
+}
+
+.modalShowUsers .disabled {
+  cursor: not-allowed;
+}
+
+.usersFound {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.usersFound .userFound {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 40px;
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 5px;
+  cursor: pointer;
+}
+
+.usersFound .userFound:hover {
+  background-color: #E4F0F6;
+}
+
+.usersFound .userFound .userFoundAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  margin-left: 3px;
+  background-color: #DFE1E6;
+  height: 30px;
+  width: 30px;
+  border-radius: 999px;
+}
+
+.usersFound .userFound .userFoundAvatar:hover {
+  background-color: #b7b9be;
 }
 
 /*# sourceMappingURL=modalShowUsers.css.map */
