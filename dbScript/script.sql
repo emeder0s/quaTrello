@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS workspaces(
         id INT AUTO_INCREMENT,
         name_ VARCHAR(50) NOT NULL, 
+        last_access DATETIME,
         visibility VARCHAR(50) NOT NULL, 
 		configuration TEXT,
         PRIMARY KEY(id)
@@ -106,3 +107,7 @@ CREATE TABLE IF NOT EXISTS users_workspaces(
         FOREIGN KEY (fk_id_workspace) REFERENCES workspaces(id) ON DELETE SET NULL,
         FOREIGN KEY (fk_id_user) REFERENCES users(id) ON DELETE SET NULL
 );
+
+SELECT * FROM users;
+SELECT * FROM workspaces;
+SELECT * FROM users_workspaces;
