@@ -31,12 +31,12 @@ const card = {
    */
   update: async (req, res) => {
     try{
-        const { id, title } = req.body;
+        const { id, title, description_, checklist, configuration, date_ } = req.body;
         var con = await conexion.abrir();
         const cardM = await CardsModel.create(con);
         const card = await cardM.findOne({ where: { id } });
         if (card) {
-            await cardM.update({ title,  },{ where: { id } });
+            await cardM.update({ title, description_, checklist, configuration, date_ },{ where: { id } });
             res.json(true);
         }else{
             res.json({msn:"no existe"});
