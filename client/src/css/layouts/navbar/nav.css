@@ -22,7 +22,6 @@
   padding: 6px;
   margin: 3px;
   border: none;
-  font-size: 15px;
 }
 
 .menu {
@@ -32,7 +31,6 @@
   padding: 6px;
   margin: 3px;
   border: none;
-  font-size: 15px;
 }
 
 .menu:hover {
@@ -49,7 +47,7 @@
 
 .notificaciones {
   background-color: #00d1f6;
-  font-size: 15px;
+  font-size: 12px;
   padding: 3px 6px 5px 6px;
 }
 
@@ -61,9 +59,19 @@
   background-color: #01598c;
 }
 
-::placeholder {
+::-moz-placeholder {
   color: white;
   border: none;
 }
+
+:-ms-input-placeholder {
+  color: white;
+  border: none;
+}
+
+::placeholder {
+  color: white;
+  border: none;
+} /*# sourceMappingURL=nav.css.map */
 
 /*# sourceMappingURL=nav.css.map */

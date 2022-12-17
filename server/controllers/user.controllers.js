@@ -258,13 +258,9 @@ const user = {
     try {
       var { user } = req.body;
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      console.log(user)
-      if (user.includes("@")) {
-        res.json(await Usr.findAll({ where: { email: { [Op.like]: `%${user}%` } } }))
-      } else {
-        res.json(await Usr.findAll({ where: { full_name: { [Op.like]: `%${user}%` } } }))
-      }
+      const usr = await Users.create(con);
+      res.json(await usr.findAll({
+        where: {[Op.or]: [{ email: { [Op.like]: `%${user}%` } },{ full_name: { [Op.like]: `%${user}%` } }]}}))
     } catch (error) {
       res.send(error)
     } finally {
