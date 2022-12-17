@@ -7,7 +7,6 @@ export const Login = () => {
 
     const cookies = new Cookies();
     const navigate = useNavigate();
-
     const sendLogin = async e => {
         e.preventDefault();
 

@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS users(
 CREATE TABLE IF NOT EXISTS workspaces(
         id INT AUTO_INCREMENT,
         name_ VARCHAR(50) NOT NULL, 
+        last_access DATETIME,
         visibility VARCHAR(50) NOT NULL, 
 		configuration TEXT,
         PRIMARY KEY(id)
@@ -78,6 +79,7 @@ CREATE TABLE IF NOT EXISTS messages(
 CREATE TABLE IF NOT EXISTS users_boards(
         id INT AUTO_INCREMENT,
         role_ VARCHAR(10) NOT NULL,
+        notifications TINYINT DEFAULT 0,
         fk_id_board INT,
         fk_id_user INT,
         PRIMARY KEY(id),
@@ -98,9 +100,14 @@ CREATE TABLE IF NOT EXISTS users_cards(
 CREATE TABLE IF NOT EXISTS users_workspaces(
         id INT AUTO_INCREMENT,
         role_ VARCHAR(10) NOT NULL,
+        notifications TINYINT DEFAULT 0,
         fk_id_workspace INT,
         fk_id_user INT,
         PRIMARY KEY(id),
         FOREIGN KEY (fk_id_workspace) REFERENCES workspaces(id) ON DELETE SET NULL,
         FOREIGN KEY (fk_id_user) REFERENCES users(id) ON DELETE SET NULL
 );
+
+SELECT * FROM users;
+SELECT * FROM workspaces;
+SELECT * FROM users_workspaces;

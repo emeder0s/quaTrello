@@ -1,5 +1,5 @@
 const conexion = require("../dataBases/mysql");
-const userWorkspacesModel = require("../models/users_workspaces.model");
+const UserWorkspacesModel = require("../models/users_workspaces.model");
 
 const userWorkspace = {
   /**
@@ -10,7 +10,7 @@ const userWorkspace = {
    */
   getWorkspacesByUser: async (fk_id_user) => {
     var con = await conexion.abrir();
-    const userWorkspacesM = await userWorkspacesModel.create(con);
+    const userWorkspacesM = await UserWorkspacesModel.create(con);
     const userWorkspaces = await userWorkspacesM.findAll({ where: { fk_id_user } });
     await conexion.cerrar(con);
     return userWorkspaces;
@@ -25,7 +25,7 @@ const userWorkspace = {
   insert: async (role_, fk_id_user, fk_id_workspace) => {
     try{
         var con = await conexion.abrir();
-        const userWorkspacesM = await userWorkspacesModel.create(con);
+        const userWorkspacesM = await UserWorkspacesModel.create(con);
         await userWorkspacesM.create({ role_, fk_id_user, fk_id_workspace });
     }catch(e){
         console.log(e);
@@ -33,6 +33,24 @@ const userWorkspace = {
       await conexion.cerrar(con);
     }
   },
+  getUsersWithNotifTrue: async (fk_id_workspace) => {
+    try {
+        var con = await conexion.abrir();
+        const user_workspaceM = await UserWorkspacesModel.create(con);
+        var users_on_workspace = await user_workspaceM.findAll({ where: { fk_id_workspace, notifications: true } });
+        users_on_workspace = await Promise.all(users_on_workspace.map(async user => {
+            let u = await userr.getUserbyId(user.fk_id_user);
+            u = u.dataValues;
+            u["notifications"] = user.dataValues["notifications"];
+            return u;
+        }));
+        return users_on_workspace;
+    } catch (error) {
+        return false;
+    } finally {
+        await conexion.cerrar(con);
+    }
+}
 };
 
 

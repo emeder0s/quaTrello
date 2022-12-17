@@ -26,6 +26,25 @@ const user_board = {
         }
     },
 
+    /**
+     * Muestra el rol del usuario que tiene la sesion iniciada en un board cuyo id se pasa
+     * en el body de la peticion.
+     * @param {*} req 
+     * @param {*} res 
+     */
+    rolUserSesionBoard: async (req, res) => {
+        try {
+            var con = await conexion.abrir();
+            const user_boardM = await User_boardModel.create(con);
+            let users_on_board = await user_boardM.findOne({ where: { fk_id_board: req.body.fk_id_board, fk_id_user: userr.getIdFromCookie(req)} });
+            res.json(users_on_board["role_"]);
+        } catch (error) {
+            res.json(error);
+        } finally {
+            await conexion.cerrar(con);
+        }
+    },
+
 
     insertUserSesion: async (id_board) => {
         try {
@@ -79,7 +98,7 @@ const user_board = {
     },
 
     /**
-     * 
+     * Actualiza el rol de un usuario en un board cuyo id se pasa en el body de la peticion.
      * @param {*} req  ej: 
      * req.body = {
      *     role_: "nuevo role...",
@@ -120,6 +139,24 @@ const user_board = {
             await conexion.cerrar(con);
         }
     },
+    getUsersWithNotifTrue: async (fk_id_board) => {
+        try {
+            var con = await conexion.abrir();
+            const user_boardM = await User_boardModel.create(con);
+            var users_on_board = await user_boardM.findAll({ where: { fk_id_board, notifications: true } });
+            users_on_board = await Promise.all(users_on_board.map(async user => {
+                let u = await userr.getUserbyId(user.fk_id_user);
+                u = u.dataValues;
+                u["notifications"] = user.dataValues["notifications"];
+                return u;
+            }));
+            return users_on_board;
+        } catch (error) {
+            return false;
+        } finally {
+            await conexion.cerrar(con);
+        }
+    }
 };
 
 module.exports = user_board;

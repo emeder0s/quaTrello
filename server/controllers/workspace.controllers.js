@@ -13,7 +13,7 @@ const workspace = {
   getAll: async (req, res) => {
     try {
       var con = await conexion.abrir();
-      const workspaceM = await workspacesModel.create(con);
+      const workspaceM = await WorkspacesModel.create(con);
       const workspaces = await workspaceM.findAll();
       res.json(workspaces);
     } catch (e) {
@@ -35,8 +35,8 @@ const workspace = {
         var { name_, visibility, configuration } = req.body;
         name_= name_.replace("  "," ").trim();
         var con = await conexion.abrir();
-        const workspaceM = await workspacesModel.create(con); 
-        if (await userWorkspace.checkIfAvailableWorkspace(_name,user.getIdFromCookie(req))) {
+        const workspaceM = await WorkspacesModel.create(con); 
+        if (await workspace.checkIfAvailableWorkspace(name_,user.getIdFromCookie(req))) {
             var ws = await workspaceM.create({ name_, visibility, configuration });
             await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
             res.json(true);
@@ -59,7 +59,7 @@ const workspace = {
   show: async (req, res) => {
     try{
         var con = await conexion.abrir();
-        const workspaceM = await workspacesModel.create(con);
+        const workspaceM = await WorkspacesModel.create(con);
         const workspace = await workspaceM.findOne({ where: { id:req.params.id } });
         res.json(workspace.dataValues)
     }catch(e){
@@ -79,7 +79,7 @@ const workspace = {
     try{
         const { id, name_, visibility, configuration } = req.body;
         var con = await conexion.abrir();
-        const workspaceM = await workspacesModel.create(con);
+        const workspaceM = await WorkspacesModel.create(con);
         const workspace = await workspaceM.findOne({ where: { id } });
         if (workspace) {
             await workspaceM.update({ name_, visibility, configuration },{ where: { id } });
@@ -104,7 +104,7 @@ const workspace = {
     try{
         const { id } = req.params.id;
         var con = await conexion.abrir();
-        const workspaceM = await workspacesModel.create(con);
+        const workspaceM = await WorkspacesModel.create(con);
         await workspaceM.destroy({ where: { id } });
         res.json(true);
     }catch(e){
@@ -124,7 +124,7 @@ const workspace = {
     try{
        const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
         var con = await conexion.abrir();
-        const workspaceM = await workspacesModel.create(con);
+        const workspaceM = await WorkspacesModel.create(con);
         const workspaces = await Promise.all(
           userWorkspaces.map(async (userWorkspace) => {
             var ws = await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
@@ -148,7 +148,7 @@ const workspace = {
    */
   getName: async (id) =>{
       var con = await conexion.abrir();
-      const workspaceM = await workspacesModel.create(con);
+      const workspaceM = await WorkspacesModel.create(con);
       const workspace = await workspaceM.findOne({ where: {id} });
       await conexion.cerrar(con);
       return workspace.dataValues.name_;
@@ -167,6 +167,43 @@ const workspace = {
       })
     )
     return !names.includes(name_.replace("  "," ").trim());
+  },
+
+  /**
+   * Devuelve la fecha con el formato correcto para la inserción en la base de datos
+   * @param {string} datetime 
+   * @returns la fecha formateada
+   */
+  formatDate: (datetime) =>{
+    var time = datetime.split(",")[1];
+    var date = datetime.split(",")[0].split("/");
+    return `${date[2]}-${date[1]}-${date[0]}${time}`
+  },
+
+/**
+ * Modifica la fecha de acceso
+ * @param {json} req la petición
+ * @param {json} res la respuesta de la petición
+ */
+  updateLastAccess: async (req, res) => {
+    try{
+        const { id } = req.body;
+        var con = await conexion.abrir();
+        const workspaceM = await WorkspacesModel.create(con);
+        const ws = await workspaceM.findOne({ where: { id } });
+        var last_access = workspace.formatDate(new Date().toLocaleString());
+        if (ws) {
+            await workspaceM.update({ last_access}, { where: { id } });
+            res.json(true);
+        }else{
+            res.json({msn:"no existe"});
+        }
+    }catch(e){
+        console.log(e);
+        res.json(false);
+    }finally {
+      await conexion.cerrar(con);
+    }
   }
 };
 
