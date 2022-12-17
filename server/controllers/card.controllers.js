@@ -11,7 +11,7 @@ const card = {
         if (!card) {
             const newCard = await cardM.create({ title, fk_id_board });
             await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con)
-            res.json(true);
+            res.json(newCard.dataValues);
         }else{
             res.json({msn:"Existe con ese nombre"});
         }
