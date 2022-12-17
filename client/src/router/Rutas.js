@@ -12,6 +12,7 @@ import { Registro } from '../pages/Registro'
 import { Login } from '../pages/Login'
 import { AcountVeryfy } from '../pages/AcountVeryfy'
 import Board from '../components/Board/Board'
+import {Pruebinchi} from '../pages/Pruebinchi'
 
 export const Rutas = () => {
     return (
@@ -39,7 +40,7 @@ export const Rutas = () => {
 
                     {/* Otros */}
                     <Route path="*" element={<Error />} />
-
+                    <Route path="/pruebinchi" element={<Pruebinchi />} />
                 </Routes>
             </div>
         </BrowserRouter>
