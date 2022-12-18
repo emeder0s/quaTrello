@@ -43,10 +43,12 @@ CREATE TABLE IF NOT EXISTS lists(
         FOREIGN KEY (fk_id_board) REFERENCES boards(id) ON DELETE SET NULL
 );
 
+
 CREATE TABLE IF NOT EXISTS cards(
         id INT AUTO_INCREMENT,
         title VARCHAR(25) NOT NULL, 
-        description_ TEXT, 
+        description_ TEXT,
+        configuration TEXT,
         checklist TEXT,
         configuration TEXT,
 		date_ DATETIME, 
@@ -111,4 +113,7 @@ CREATE TABLE IF NOT EXISTS users_workspaces(
 
 SELECT * FROM users;
 SELECT * FROM workspaces;
+SELECT * FROM boards;
+SELECT * FROM lists;
+SELECT * FROM cards;
 SELECT * FROM users_workspaces;

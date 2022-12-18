@@ -123,18 +123,23 @@ const workspace = {
    */
   getByUser:async (req, res) => {
     try{
-       const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req));
+       const userWorkspaces = await userWorkspace.getWorkspacesByUser(user.getIdFromCookie(req)); 
         var con = await conexion.abrir();
         const workspaceM = await WorkspacesModel.create(con);
         const workspaces = await Promise.all(
           userWorkspaces.map(async (userWorkspace) => {
             var ws = await workspaceM.findOne({ where: { id:userWorkspace.fk_id_workspace } });
             ws = ws.dataValues;
-            var boards = await board.getByWorkspace(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
+            var boards = await board.getByWorkspaceAndUser(userWorkspace.fk_id_workspace,user.getIdFromCookie(req));
             ws.boards = boards;
             return ws;
           })
         )
+        if (workspaces.length > 1){
+          workspaces.sort(function(a, b) {
+            return new Date(b.last_access).getTime() - new Date(a.last_access).getTime();
+          });
+        }
         res.json(workspaces);
     }catch(e){
         console.log(e);
