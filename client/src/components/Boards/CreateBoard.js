@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import boardPreview from '../../img/board-pw.svg';
+import { Popover } from "@mui/material"
 import Select from "react-select"
 
 export const CreateBoard = () => {
@@ -10,8 +11,9 @@ export const CreateBoard = () => {
     const [color, setColor] = useState('');
     const [background, setBackground] = useState('')
     const [disable, setDisable] = useState('true');
-    const [visibility,setVisibility] = useState('Workspace');
+    const [visibility, setVisibility] = useState('Workspace');
     const [workspace, setWorkspace] = useState('');
+
     useEffect(() => {
         fetch(`https://api.unsplash.com/photos/random?client_id=JMjfYjVegEZWmnba38YxaDVZaPQx4fH75Dnxq3mUN1E&count=4`)
             .then((response) => {
@@ -44,7 +46,7 @@ export const CreateBoard = () => {
     }
     useEffect(() => {
         console.log(visibility)
-    }, [color, title, background, disable,visibility])
+    }, [color, title, background, disable, visibility])
     const workspacesFromUser = [
         { label: 'Workspace 1', value: 'Workspace 1' }, { label: 'Workspace 2', value: 'Workspace 2' }, { label: 'Workspace 3', value: 'Workspace 3' }
     ];
@@ -62,7 +64,7 @@ export const CreateBoard = () => {
             setDisable(true)
         }
     }
-    const handleVisibility = ({value}) => {
+    const handleVisibility = ({ value }) => {
         setVisibility(value)
     }
     // function enableSubmit(filled) {
@@ -105,12 +107,12 @@ export const CreateBoard = () => {
                 <input required onChange={handleInputChange} className="title" type="text" />
                 <label><h4>Workspaces</h4></label>
                 <Select className="user-workspaces"
-                    defaultValue= {{ label: 'Workspace 1', value: 'Workspace 1' }}
+                    defaultValue={{ label: 'Workspace 1', value: 'Workspace 1' }}
                     options={workspacesFromUser}
                 />
                 <label><h4>Visibility</h4></label>
                 <Select className="visibility"
-                    defaultValue= {{ label: 'Workspace', value: 'Workspace' }}
+                    defaultValue={{ label: 'Workspace', value: 'Workspace' }}
                     options={boardVisibility}
                     onChange={handleVisibility} />
                 <div>
