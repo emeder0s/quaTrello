@@ -6,8 +6,9 @@ insert into users VALUES (null, 'email3@email.com', 'User 3', 'Bio 3', '$2a$08$g
 insert into users VALUES (null, 'email4@email.com', 'User 4', 'Bio 4', '$2a$08$cRBvQ/BnGlVPzsGRIN8NeeUnPn5uOA/RyIIQETlL4vtCImYYS.s5y', '1', '{}');
 insert into users VALUES (null, 'email5@email.com', 'User 5', 'Bio 5', '$2a$08$AlsFQvamOVD5hyqijTVKLeT5m/9I1sABww95J5V3pVKRl6d0CmjXa', '1', '{}');
 
-insert into workspaces VALUES (null, 'WS 1', 'privado', '{}');
-insert into workspaces VALUES (null, 'WS 2', 'privado', '{}');
+insert into workspaces VALUES (null, 'WS 1', now(),'privado', '{}');
+insert into workspaces VALUES (null, 'WS 2', now(), 'privado', '{}');
+insert into workspaces VALUES (null, 'WS 3', now(), 'privado', '{}');
 
 insert into boards VALUES (null,'Board 1','privado','{}',1,1);
 insert into boards VALUES (null,'Board 2','privado','{}',1,2);
