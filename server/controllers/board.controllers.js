@@ -1,5 +1,6 @@
 const conexion = require("../dataBases/mysql");
 const BoardsModel = require("../models/boards.model");
+const ListModel = require("../models/lists.model")
 // const userboard = require ("./user_boards.controllers");
 const user = require("./user.controllers");
 
@@ -18,6 +19,10 @@ const board = {
       const board = await boardM.findOne({ where: { name_, fk_id_workspace } });
       if (!board) {
         var newBoard = await boardM.create({ name_, visibility, configuration, fk_id_workspace, fk_id_user }); //fk_id_user es la id del usuario que crea el tablero
+        const listM = await ListsModel.create(con);
+        await listM.create({ name_: "Lista de tareas", fk_id_board: newBoard.dataValues.id });
+        await listM.create({ name_: "En proceso", fk_id_board: newBoard.dataValues.id });
+        await listM.create({ name_: "Hecho", fk_id_board: newBoard.dataValues.id });
         await notif.mail(req, "creado un", "tablero", newBoard.dataValues, con) // Envia una notificacion a los usuarios que estan suscritos.
         res.json(true);
       } else {
