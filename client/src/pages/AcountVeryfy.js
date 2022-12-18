@@ -23,7 +23,8 @@ export const AcountVeryfy = () => {
       }
       const res = await defaultFetch("http://localhost:5000/insert-user", "POST", newUser)
       cookies.set('session', res.jwt, { path: '/' })
-      navigate("/home") 
+      navigate("/home")
+      localStorage.setItem("user", JSON.stringify(res.user));
     } else {
       setWarning(true);
     }
