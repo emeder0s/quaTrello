@@ -48,8 +48,8 @@ const user = {
       var con = await conexion.abrir();
       const usr = await Users.create(con);
       const user = await usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
-
-      res.json({ validation: true, "jwt": infoJwt });
+      const infoJwt = jwt.sign({ email, "id": user.dataValues.id, "full_name":user.dataValues.full_name }, "m1c4s4");
+      res.json({ validation: true, "jwt": infoJwt, user:user.dataValues });
     } catch (error) {
       res.json(error);
     } finally {
