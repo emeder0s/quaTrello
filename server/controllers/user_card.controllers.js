@@ -2,6 +2,7 @@ const conexion = require("../dataBases/mysql");
 const User_cardModel = require("../models/users_cards.model");
 const userr = require("./user.controllers");
 
+
 const user_card = {
 
     /**
@@ -15,10 +16,13 @@ const user_card = {
      */
     insert: async (req, res) => {
         try {
+            const notif = require("./notification.controllers")
             var con = await conexion.abrir();
             const user_cardM = await User_cardModel.create(con);
             const { fk_id_card, fk_id_user } = req.body;
-            res.json(await user_cardM.create({ fk_id_card, fk_id_user }));
+            const user_card = await user_cardM.create({ fk_id_card, fk_id_user })
+            await notif.addUserMail(req, "te ha añadido a la", "tarjeta", user_card.dataValues, fk_id_user, con)
+            res.json(card);
         } catch (error) {
             res.json(error);
         } finally {
@@ -107,11 +111,11 @@ const user_card = {
         }
     },
 
-    getUsersWithNotifTrue: async (req, res) => {
+    getUsersWithNotifTrue: async (fk_id_card) => {
         try {
             var con = await conexion.abrir();
             const user_cardM = await User_cardModel.create(con);
-            var users_on_card = await user_cardM.findAll({ where: { fk_id_card: req.body.fk_id_card, notifications: true } });
+            var users_on_card = await user_cardM.findAll({ where: { fk_id_card, notifications: true } });
             users_on_card = await Promise.all(users_on_card.map(async user => {
                 let u = await userr.getUserbyId(user.fk_id_user);
                 u = u.dataValues;

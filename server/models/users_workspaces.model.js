@@ -12,6 +12,10 @@ Users_workspacesModel = {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            notifications: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
+            },
             fk_id_user: {
                 type: DataTypes.INTEGER,
                 allowNull: true
