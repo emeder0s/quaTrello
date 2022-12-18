@@ -34,14 +34,22 @@
 | `POST` | `/update-board` | Actualiza la informacion de un tablero | req.body = { id, name_, visibility, configuration }   | boolean o error |
 | `DELETE` | `/delete-board` | Borra un tablero por su ID | req.body = { id }| boolean |
 
-
 ### Controlador de lists
 | Tipo de petición | End Point | Descripción   | req.body | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
-| `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   |  |
+| `GET` | `/lists/:board` | Devuelve todas las listas que contiene un tablero | board = req.params.board   | un array con todas las listas (y sus respectivas tarjetas) de ese board. Ej: [{"id": 1,"name_": "List 1","fk_id_board": 1, "cards": [ { "id": 6, "title": "una tarjeta", "description_": null, "checklist": null, "configuration": null, "date_": null, "fk_id_list": 1 }, { "id": 7, "title": "otra", "description_": null, "checklist": null, "configuration": null, "date_": null, "fk_id_list": 1 }},{"id": 2,"name_": "nueva lista","fk_id_board": 1, "cards":[]}] |
 | `POST` | `/insert-list` |  Inserta una lista en un tablero | { name_: de la lista,  fk_id_board: el id del board al que pertenece }  | boolean |
 | `POST` | `/update-list` | Actualiza una lista. El id se pasa en el body | { id: identificador de la lista a editar , name_: nombre de la lista }  | boolean |
 | `DELETE` | `/delete-list` | Borra una lista. El id se pasa en el body | { id: de la lista a boorar }  | boolean  |
+
+### Controlador de cards
+| Tipo de petición | End Point | Descripción   | req.body | res |
+| :-------- | :------- | :------------------------- | :----- | :-------- |
+| `GET` | `/cards/:list` | Devuelve todas las tarjetas que contiene una list |fk_id_list  |  un array con todas las card de esa lista. Ej:[{"id": 6,"title": "una tarjeta","description_": null,"checklist": null,"configuration": null,"date_": null,"fk_id_list": 1}] |
+| `POST` | `/insert-card` |  Inserta una card en una lista | { title: el título de la tarjeta,  fk_id_list: el id de la lista donde está }  | json con los datos de la tarjeta creada (si todo va bien)/ false (si falla) |
+| `POST` | `/update-card` | Actualiza una tarjeta. El id se pasa en el body | { id: identificador de la tarjeta a editar , title: título de tarjeta, description_:descripción de la tarjeta, checklist_ la checklist con sus campos, configuration_ la configuración con sus campos, date_: la fecha en la que tiene que estar la tarjeta termianda}  | boolean (true si todo va bien, falso si algo falla) |
+| `DELETE` | `/delete-card` | Borra una tarjeta. El id se pasa en el body | { id: de la tarjeta a borrar }  | boolean (true si todo va bien, falso si algo falla) |
+| `GET`| `/cards/:list`| Devuelve todas las tarjetas de una lista | req.params.list | todas las tarjetas de una lista (si todo va bien)/ false (si algo falla) |
 
 ### Controlador de messages
 | Tipo de petición | End Point | Descripción   | req.body | res |

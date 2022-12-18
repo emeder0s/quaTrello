@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import formIMG from '../../img/formIMG.svg'
+
 
 const AddWorkSpace = ({ setIsFormOpen }) => {
 
@@ -16,6 +18,7 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
         console.log(formValues.name)
+        console.log(background)
     }
 
     const handleSubmit = (e) => {
@@ -28,8 +31,8 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
     }
 
     return (
-        <div className='modalLayer' onClick={e=>setIsFormOpen(false)}>
-            <div className='addWorkSpaceModal'>
+        <div className='modalLayer'>
+            <div className='addWorkSpaceModal' >
                 <div className='addWorkSpaceForm'>
                     <form onSubmit={handleSubmit}>
                         <h2>Vamos a crear un Espacio de trabajo</h2>
@@ -66,7 +69,7 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
                 </div>
                 <div className='addWorkSpaceDeco'>
                     <button className='closeWorkSpaceModal' onClick={() => setIsFormOpen(false)}><AiOutlineClose /></button>
-                    <img src='../../img/formIMG.svg' alt='icono'/>
+                    <img src={formIMG} alt='icono' />
                 </div>
             </div>
         </div>

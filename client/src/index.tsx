@@ -1,4 +1,6 @@
 import React, { StrictMode } from 'react'
+import { store } from './app/store'
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client';
 import { Rutas } from './router/Rutas';
 import "./sass/styles.scss"
@@ -9,9 +11,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <div className='index'>
-      <Header />
-      <Rutas />
-    </div>
+    <Provider store={store}>
+      <div className='index'>
+        <Header />
+        <Rutas />
+      </div>
+    </Provider>
   </StrictMode>
 );

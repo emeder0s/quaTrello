@@ -1,5 +1,7 @@
 const conexion = require("../dataBases/mysql");
 const UserWorkspacesModel = require("../models/users_workspaces.model");
+const userr = require("./user.controllers");
+
 
 const userWorkspace = {
   /**
@@ -23,34 +25,36 @@ const userWorkspace = {
    * @param {int} fk_id_workspace id de workspace
    */
   insert: async (role_, fk_id_user, fk_id_workspace) => {
-    try{
-        var con = await conexion.abrir();
-        const userWorkspacesM = await UserWorkspacesModel.create(con);
-        await userWorkspacesM.create({ role_, fk_id_user, fk_id_workspace });
-    }catch(e){
-        console.log(e);
-    }finally{
+    try {
+      const notif = require("./notification.controllers")
+      var con = await conexion.abrir();
+      const userWorkspacesM = await UserWorkspacesModel.create(con);
+      const user_workspace = await userWorkspacesM.create({ role_, fk_id_user, fk_id_workspace });
+      await notif.addUserMail(req, "te ha añadido al", "workspace", user_workspace.dataValues, fk_id_user, con)
+    } catch (e) {
+      console.log(e);
+    } finally {
       await conexion.cerrar(con);
     }
   },
-  getUsersWithNotifTrue: async (fk_id_workspace) => {
+  getUsers_WorkspaceWithNotifTrue: async (fk_id_workspace) => {
     try {
-        var con = await conexion.abrir();
-        const user_workspaceM = await UserWorkspacesModel.create(con);
-        var users_on_workspace = await user_workspaceM.findAll({ where: { fk_id_workspace, notifications: true } });
-        users_on_workspace = await Promise.all(users_on_workspace.map(async user => {
-            let u = await userr.getUserbyId(user.fk_id_user);
-            u = u.dataValues;
-            u["notifications"] = user.dataValues["notifications"];
-            return u;
-        }));
-        return users_on_workspace;
+      var con = await conexion.abrir();
+      const user_workspaceM = await UserWorkspacesModel.create(con);
+      var users_on_workspace = await user_workspaceM.findAll({ where: { fk_id_workspace, notifications: true } });
+      users_on_workspace = await Promise.all(users_on_workspace.map(async user => {
+        let u = await userr.getUserbyId(user.fk_id_user);
+        u = u.dataValues;
+        u["notifications"] = user.dataValues["notifications"];
+        return u;
+      }));
+      return users_on_workspace;
     } catch (error) {
-        return false;
+      return false;
     } finally {
-        await conexion.cerrar(con);
+      await conexion.cerrar(con);
     }
-}
+  }
 };
 
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { json } from "react-router-dom";
 import boardPreview from '../../img/board-pw.svg';
-
+import { Popover } from "@mui/material"
+import Select from "react-select"
+import { useSelector } from 'react-redux'
 
 export const CreateBoard = () => {
     const [data, setData] = useState(null);
@@ -9,69 +10,74 @@ export const CreateBoard = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [color, setColor] = useState('');
-    const [Background, setBackground] = useState('')
-    useEffect(() => {
-        fetch(`https://api.unsplash.com/photos/random?client_id=JMjfYjVegEZWmnba38YxaDVZaPQx4fH75Dnxq3mUN1E&count=4`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `This is an HTTP error: The status is ${response.status}`
-                    );
-                }
-                return response.json();
-            })
-            .then((actualData) => {
-                setData(actualData);
-                setError(null);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setData(null);
-            })
-            .finally(() => {
-                setLoading(false);
-                console.log(data);
-            });
-    }, []);
+    const [background, setBackground] = useState('')
+    const [disable, setDisable] = useState('true');
+    const [visibility, setVisibility] = useState('Workspace');
+    const [workspace, setWorkspace] = useState('');
+
+    
+    const backgroundIMG = useSelector(state => state.boardBackground.backgrounds)
+
     const changeColor = (color) => {
-        setColor(color)
+        setColor(color);
+        setBackground('');
+    }
+    const changeBg = (bg) => {
+        setBackground(bg);
+        setColor('');
     }
     useEffect(() => {
-        console.log(color);
-        console.log(title);
-    }, [color, title])
+        console.log(visibility)
+    }, [color, title, background, disable, visibility])
+    const workspacesFromUser = [
+        { label: 'Workspace 1', value: 'Workspace 1' }, { label: 'Workspace 2', value: 'Workspace 2' }, { label: 'Workspace 3', value: 'Workspace 3' }
+    ];
+    const boardVisibility = [
+        { label: 'Private', value: 'Private' }, { label: 'Workspace', value: 'Workspace' }, { label: 'Public', value: 'Public' }
+    ];
     const handleSubmit = (event) => {
         event.preventDefault();
-
     }
-    const getBackgrounds = async () => {
-        await fetch("https://api.unsplash.com/photos/random?client_id=JMjfYjVegEZWmnba38YxaDVZaPQx4fH75Dnxq3mUN1E&count=4")
-            .then(res => res.json())
-            .then(json => {let datos = json})
-        console.log(data)
+    const handleInputChange = (event) => {
+        if (event.target.value) {
+            setTitle(event.target.value)
+            setDisable(false)
+        } else {
+            setDisable(true)
+        }
     }
-    useEffect(() => {
-        getBackgrounds();
-    }, [getBackgrounds])
+    const handleVisibility = ({ value }) => {
+        setVisibility(value)
+    }
+    // function enableSubmit(filled) {
+    //     let btn = document.querySelector('input[type="submit"]');
+    //     if (filled.value.includes('@')) {
+    //         btn.disabled = false;
+    //     }
+    //     else {
+    //         btn.disabled = true
+    //     }
+    // }
     return (
         <section className="create-board">
             <header>
                 <h3>Create board</h3>
-                <button className="close">X</button>
+                <button className="close">x</button>
             </header>
             <hr></hr>
             <div className="chooseBG">
-                <div className="board-bg" style={{ backgroundColor: color }}><img src={boardPreview}></img></div>
+                <div className="board-bg" style={background ? { backgroundImage: `url(${background})` } : { backgroundColor: color }}><img src={boardPreview}></img></div>
 
             </div>
             <h4>Background</h4>
             <form onSubmit={handleSubmit}>
-                <ul className="images" >
-                    {/* <li><button className="image #1" style={{ backgroundImage: `url(${data[0].urls.thumb})` }}></button></li>
-                    <li><button className="image #2" style={{ backgroundImage: `url(${data[1].urls.thumb})` }}></button></li>
-                    <li><button className="image #3" style={{ backgroundImage: `url(${data[2].urls.thumb})` }}></button></li>
-                    <li><button className="image #4" style={{ backgroundImage: `url(${data[3].urls.thumb})` }}></button></li> */}
-                </ul>
+                {backgroundIMG && backgroundIMG.length > 0 &&
+                    <ul className="images" >
+                        <li><button type="button" className="image #1" onClick={() => changeBg(backgroundIMG[0].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[0].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #2" onClick={() => changeBg(backgroundIMG[1].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[1].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #3" onClick={() => changeBg(backgroundIMG[2].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[2].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #4" onClick={() => changeBg(backgroundIMG[3].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[3].urls.thumb})` }}></button></li>
+                    </ul>}
                 <ul className="colors">
                     <li><button type="button" onClick={() => changeColor('#0079bf')} className="c1"></button></li>
                     <li><button type="button" onClick={() => changeColor('#d29034')} className="c2"></button></li>
@@ -80,21 +86,19 @@ export const CreateBoard = () => {
                     <li><button type="button" onClick={() => changeColor('#89609e')} className="c5"></button></li>
                 </ul>
                 <label><h4>Board title</h4></label>
-                <input onChange={(e) => setTitle(e.target.value)} className="title" type="text" />
+                <input required onChange={handleInputChange} className="title" type="text" />
                 <label><h4>Workspaces</h4></label>
-                <select className="actualWorkSpaces">
-                    <option>Workspace 1</option>
-                    <option>Workspace 2</option>
-                    <option>Workspace 3</option>
-                </select>
+                <Select className="user-workspaces"
+                    defaultValue={{ label: 'Workspace 1', value: 'Workspace 1' }}
+                    options={workspacesFromUser}
+                />
                 <label><h4>Visibility</h4></label>
-                <select>
-                    <option>Workspace</option>
-                    <option>Private</option>
-                    <option>Public</option>
-                </select>
+                <Select className="visibility"
+                    defaultValue={{ label: 'Workspace', value: 'Workspace' }}
+                    options={boardVisibility}
+                    onChange={handleVisibility} />
                 <div>
-                    <button className="submit" type="submit">Create</button>
+                    <button disabled className="submit" type="submit">Create</button>
                 </div>
             </form>
         </section>
