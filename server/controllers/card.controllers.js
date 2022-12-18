@@ -13,9 +13,15 @@ const card = {
         const { title,  fk_id_list} = req.body;
         var con = await conexion.abrir();
         const cardM = await CardsModel.create(con);
-        const newCard = await cardM.create({ title, fk_id_list });
-        await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con);
-        res.json(newCard.dataValues);
+        const card = await cardM.findOne({ where: { title } });
+        if (!card) {
+            const newCard = await cardM.create({ title, fk_id_list });
+            await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
+            res.json(newCard.dataValues);
+        }else{
+            res.json({msn:"Existe con ese nombre"});
+
+        }
     }catch(e){
         console.log(e);
         res.json(false);
@@ -36,7 +42,9 @@ const card = {
         const cardM = await CardsModel.create(con);
         const card = await cardM.findOne({ where: { id } });
         if (card) {
-            await cardM.update({ title, description_, checklist, configuration, date_ },{ where: { id } });
+            await cardM.update({ title,  },{ where: { id } });
+            const newCard = await cardM.findOne({ where: { id } });
+            await notif.mail(req, "modificado la", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
             res.json(true);
         }else{
             res.json({msn:"no existe"});

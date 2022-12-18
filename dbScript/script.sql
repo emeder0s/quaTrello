@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS cards(
         description_ TEXT,
         configuration TEXT,
         checklist TEXT,
+        configuration TEXT,
 		date_ DATETIME, 
         fk_id_list INT,
         PRIMARY KEY(id),

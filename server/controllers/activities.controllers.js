@@ -1,7 +1,7 @@
 const conexion = require("../dataBases/mysql");
 const ActivitiesModel = require("../models/activities.model")
 const user = require("./user.controllers");
-
+const notif = require("./notification.controllers")
 const activities = {
 
     /**
@@ -19,7 +19,9 @@ const activities = {
             const { text_, fk_id_card } = req.body;
             var con = await conexion.abrir();
             const act = await ActivitiesModel.create(con);
-            res.json(await act.create({ text_, fk_id_card, fk_id_user }));
+            const actvt = await act.create({ text_, fk_id_card, fk_id_user })
+            await notif.commentToEmail(req, fk_id_card, text_, con)
+            res.json(actvt);
         } catch (error) {
             res.json(error);
         } finally {
