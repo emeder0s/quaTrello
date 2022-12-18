@@ -14,6 +14,7 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
     })
 
     const [isButtonEnabled, setIsButtonEnabled] = useState(false)
+    defaultEnableSubmit(isButtonEnabled, 'input[type="submit"]')
 
     useEffect(() => {
         if (formValues.name === '' || formValues.type === '' || formValues.type === 'Elegir...') {
@@ -33,8 +34,6 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
     }
-
-    defaultEnableSubmit(isButtonEnabled, 'input[type="submit"]')
 
     return (
         <div className='modalLayer'>

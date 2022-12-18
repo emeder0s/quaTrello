@@ -3,7 +3,7 @@
 @import './base/default';
 
 //--------------- Boards ----------------
-@import './layouts/boards.scss';
+@import './layouts/home/boards.scss';
 
 // Navbar and header
 @import "./layouts/navbar/nav.scss";
@@ -12,9 +12,9 @@
 @import "./layouts/navbar/navLogin.scss";
 
 // Aside and form
-@import './layouts/aside';
-@import './layouts/addWorkSpace.scss';
-@import './layouts/home';
+@import './layouts/home/aside';
+@import './layouts/home/addWorkSpace.scss';
+@import './layouts/home/home';
 
 //----------------- Perfil ------------------
 @import "./layouts/perfil.scss";

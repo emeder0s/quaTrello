@@ -62,7 +62,7 @@ export const CreateBoard = () => {
         <section className="create-board">
             <header>
                 <h3>Create board</h3>
-                <button className="close">x</button>
+                <button className="close" onClick={e=>{}}>x</button>
             </header>
             <hr></hr>
             <div className="chooseBG">
