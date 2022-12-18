@@ -3,7 +3,7 @@ import React from "react";
 
 const modalContent = <form className="formModal">
     <span>Compartir Tablero</span>
-    <input type="text" placeholder="Dirección de correo electrónico o nombre"/>
+    <input type="text" name="email" placeholder="Dirección de correo electrónico o nombre"/>
 </form>
 
 
