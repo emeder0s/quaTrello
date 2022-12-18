@@ -46,10 +46,10 @@ const user = {
       const { full_name, pass } = req.body;
       const pass_hash = await bcyptjs.hash(pass, 8);
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
+      const usr = await Users.create(con);
+      const user = await usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
-      res.json({validation:true, "jwt": infoJwt});
+      res.json({ validation: true, "jwt": infoJwt });
     } catch (error) {
       res.json(error);
     } finally {
@@ -57,21 +57,6 @@ const user = {
     }
   },
 
-  insertTrapala: async (req, res) => {
-    try {
-      const { full_name, pass, email } = req.body;
-      const pass_hash = await bcyptjs.hash(pass, 8);
-      var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      const user = await Usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
-      res.json(user);
-    } catch (error) {
-      res.json(error);
-    } finally {
-      await conexion.cerrar(con);
-    }
-  },
-  
   /**
    * Devuelve la id del usuario que tiene sesion iniciada
    * @param {json} req 
@@ -93,8 +78,8 @@ const user = {
       let id = this.getIdFromCookie(req)
       const { full_name, bio } = req.body;
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      await Usr.update({ full_name, bio }, { where: { id } })
+      const usr = await Users.create(con);
+      await usr.update({ full_name, bio }, { where: { id } })
       res.json("Actualización completa");
     } catch (error) {
       res.json(error);
@@ -111,8 +96,8 @@ const user = {
       let id = this.getIdFromCookie(req)
       const avatar = req.params.avatar;
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      await Usr.update({ avatar }, { where: { id } })
+      const usr = await Users.create(con);
+      await usr.update({ avatar }, { where: { id } })
       res.json("Actualización completa");
     } catch (error) {
       res.json(error);
@@ -127,17 +112,18 @@ const user = {
   login: async (req, res) => {
     try {
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
+      const usr = await Users.create(con);
       const { email, pass } = req.body;
-      const user = await Usr.findOne({ where: { email } });
+      const user = await usr.findOne({ where: { email } });
       if (user) {
         let hashSaved = user.dataValues.pass;
         let compare = bcyptjs.compareSync(pass, hashSaved);
         const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
         if (compare) {
-          res.json({validation:true, "jwt": infoJwt});
+          res.cookie("session", infoJwt)
+          res.json({ validation: true, "jwt": infoJwt });
         } else {
-          res.json({validation:false, "jwt": ""});
+          res.json({ validation: false, "jwt": "" });
         }
       } else {
         res.json("no existe el usuario");
@@ -157,9 +143,9 @@ const user = {
   passToEmail: async (req, res) => {
     try {
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
+      const usr = await Users.create(con);
       const { email } = req.body;
-      const infoUser = await Usr.findOne({ where: { email } });
+      const infoUser = await usr.findOne({ where: { email } });
       if (infoUser) {
         const infoJwt = jwt.sign({ email }, "m1c4s4", {
           expiresIn: "1000s",
@@ -191,8 +177,8 @@ const user = {
       let email = jwtVerify.email;
       var pass = await bcyptjs.hash(password, 8);
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      const infoUser = await Usr.update({ pass }, { where: { email } });
+      const usr = await Users.create(con);
+      const infoUser = await usr.update({ pass }, { where: { email } });
       sendemail.passconfirm(email);
       res.json("Contraseña actualizada");
     } catch (error) {
@@ -208,8 +194,8 @@ const user = {
   getUserbyId: async (id) => {
     try {
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      return await Usr.findOne({ where: { id } });
+      const usr = await Users.create(con);
+      return await usr.findOne({ where: { id } });
     } catch (error) {
       return error;
     } finally {
@@ -224,8 +210,8 @@ const user = {
   getUserbyEmail: async (req, res) => {
     try {
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      res.json(await Usr.findOne({ where: { email: req.body.email } }));
+      const usr = await Users.create(con);
+      res.json(await usr.findOne({ where: { email: req.body.email } }));
     } catch (error) {
       res.json(error);
     } finally {
@@ -240,8 +226,8 @@ const user = {
   getUserbyCookie: async (req, res) => {
     try {
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      res.json(await Usr.findOne({ where: { id: this.getIdFromCookie(req) } }));
+      const usr = await Users.create(con);
+      res.json(await usr.findOne({ where: { id: this.getIdFromCookie(req) } }));
     } catch (error) {
       res.json(error);
     } finally {
@@ -278,15 +264,15 @@ const user = {
       var id = user.getIdFromCookie(req)
       console.log(id)
       var con = await conexion.abrir();
-      const Usr = await Users.create(con);
-      const usrToDelete = await Usr.findOne({ where: { id } })
+      const usr = await Users.create(con);
+      const usrToDelete = await usr.findOne({ where: { id } })
       if (!usrToDelete) {
         res.json("No existe el usuario")
       } else {
         let hashSaved = usrToDelete.dataValues.pass;
         let compare = bcyptjs.compareSync(req.body.pass, hashSaved);
         if (compare) {
-          await Usr.destroy({ where: { id } });
+          await usr.destroy({ where: { id } });
           res.json("usuario borrado")
         } else {
           res.json("La contraseña no coincide")

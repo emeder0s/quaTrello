@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+
+
+const modalContent = <form className="formModal">
+    <span>Compartir Tablero</span>
+    <input type="text" placeholder="Dirección de correo electrónico o nombre"/>
+</form>
 
 
 
-export const ShareNavBoard = (props) => {
+export const ShareNavBoard = ({ showWindow, setIsModalShareOpen }) => {
 
     return (
 
 
-                    <div class="modal">
-                        <div class="contenedor">
-                            <header>Compartir Tablero</header>
-                            <label for="btn-modal" onClick={() => props.showWindow("menu3")}>X</label>
-                            <div class="contenido">
-                                
-                            </div>
-                        </div>
-                    </div>
+        <div className="modal">
+            <div >
+                <button onClick={e => setIsModalShareOpen(false)} className="butModal">x</button>
+                <label htmlFor="btn-modal" onClick={(e) => setIsModalShareOpen(true)}><div className=".modal">{modalContent}</div></label>
+                {setIsModalShareOpen && console.log("HOLA")}
+
+            </div>
+        </div>
 
     )
 }

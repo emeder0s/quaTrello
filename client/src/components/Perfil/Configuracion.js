@@ -6,7 +6,7 @@ export const Configuración = () => {
 
 
     return (
-        <div className='config'>
+        <div className='configPerfil'>
             <NavPerfil />
             <div className='divCuenta'>
                 <h2 className='detCuenta'>Detalles de la cuenta</h2>

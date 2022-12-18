@@ -29,4 +29,5 @@ export const getFetch = async (endPoint, metodo, datos) => {
       .then((res) => res.json())
       .then(res=>{return res})
 
+
 }

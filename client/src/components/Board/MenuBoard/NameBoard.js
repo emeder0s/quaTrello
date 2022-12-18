@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useEffect } from "react";
+import { getFetch } from "../../../helpers/defaultFetch";
 
 
 export const NameBoard = () => {
 
     useEffect(() => {
 
-         let Metadatos = {
-            method: 'GET',
-            body: JSON.stringify({
-               
-            }),
-            mode: "cors",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-type": "application/json",
-            },
+        const getFetch = async (endPoint, metodo, datos) => {
+            let metaData = {
+                method: metodo,
+                body: JSON.stringify(datos),
+                mode: "cors",
+                headers: {
+                  "Access-Control-Allow-Origin": "*",
+                  "Content-type": "application/json",
+                },
+              };
+          console.log(metaData)
+              await fetch('http://localhost:5000/show-board/:id', metaData)
+              .then((res) => res.json())
+              .then(res=>{return res})
+        
+        
         }
-
-        fetch('http://localhost:5000/show-board/:id', Metadatos)
-            .then(res => console.log(res)) 
-
-
-            
         //setUsuarios(usuarios)
     }, [])
 

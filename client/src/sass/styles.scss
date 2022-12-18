@@ -22,6 +22,7 @@
 
 //---------------- Board --------------------
 @import './layouts/board/board.scss';
+@import './layouts/createBoard.scss';
 
 // NavBoard
 @import './layouts/navBoard.scss';
@@ -35,3 +36,8 @@
 @import './layouts/board/aside/modal/modalAddMemb';
 @import './layouts/board/aside/modal/modalSelectConfig.scss';
 @import './layouts/board/aside/modal/modalShowUsers';
+//Warning
+@import './layouts/warning.scss';
+//Lists
+@import './layouts/lists/list.scss';
+@import './layouts/lists/newCardMenu.scss';

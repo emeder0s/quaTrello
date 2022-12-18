@@ -1,5 +1,5 @@
 const conexion = require("../dataBases/mysql");
-const Message = require("../models/messages.model");
+const MessageModel = require("../models/messages.model");
 const user = require("../controllers/user.controllers");
 
 const message = {
@@ -17,7 +17,7 @@ const message = {
             var fk_id_user = user.getIdFromCookie(req);
             const { text_, fk_id_board } = req.body;
             var con = await conexion.abrir();
-            const msg = await Message.create(con);
+            const msg = await MessageModel.create(con);
             res.json(await msg.create({ text_, fk_id_board, fk_id_user }));
         } catch (error) {
             res.json(error);
@@ -38,7 +38,7 @@ const message = {
     getMsgs: async (req, res) => {
         try {
             var con = await conexion.abrir();
-            const msg = await Message.create(con);
+            const msg = await MessageModel.create(con);
             res.json(await msg.findAll({ where: { fk_id_board: req.body.fk_id_board } }));
         } catch (error) {
             res.json(error);

@@ -12,6 +12,9 @@ WorkspacesModel = {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            last_access: {
+                type: DataTypes.DATE,
+            },
             visibility: {
                 type: DataTypes.STRING,
                 allowNull: false

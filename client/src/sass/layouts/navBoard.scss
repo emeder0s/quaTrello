@@ -1,7 +1,8 @@
 .divNavBoard {
   margin-left: 30px;
-  display: flex;
-
+  height: 20px;
+  display: block;
+  margin-bottom: 30px;
 }
 
 .navBoard {
@@ -92,74 +93,60 @@
   align-items: center;
   width: 100vw;
   height: 95.2vh;
-  
   color: #172B4D;
 }
 
 
 
-//////Diseño del modal
+//DISEÑO DEL MODAL
 .modal {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  transition: all 500ms ease;
-  opacity: 0;
-  visibility: hidden;
-}
-
-
-#btn-modal:checked~.modal {
-  opacity: 1;
-  visibility: visible;
-}
-
-.contenedor {
-  width: 700px;
-  height: 600px;
+  width: 750px;
+  height: 650px;
   margin: auto;
   background: #fff;
   box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
   transition: all 500ms ease;
   position: relative;
-  transform: translateY(-30%);
+  margin-top: 100px;
+  background-color: white;
+  border-radius: 5px;
+  color: #172B4D;
+  padding: 20px;
+
 }
 
-#btn-modal:checked~.modal .contenedor {
-  transform: translateY(0%);
+.butModal{
+  cursor: pointer;
+  width: 20px;
+  margin-left: 95%;
 }
 
-.contenedor header {
+
+
+
+.formModal{
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+  margin: 20px;
+  
+}
+
+.formModal input{
   padding: 10px;
-  background: #465fdb;
-  color: #fff;
+  margin-top: 10px;
 }
 
-.contenedor label {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  color: #fff;
-  font-size: 15px;
-  cursor: pointer;
+contenedorModal{
+  width: 100px;
+}
+
+.formModal span{
+  color: #172B4D;
+  font-size: 30px;
+
 }
 
 
-#btn-modal {
-  display: none;
-}
 
-.lbl-modal {
-  margin-bottom: px;
-  background: #fff;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-}
 

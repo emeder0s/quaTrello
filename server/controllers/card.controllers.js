@@ -1,15 +1,16 @@
 const conexion = require("../dataBases/mysql");
-const cardsModel = require("../models/cards.model");
+const CardsModel = require("../models/cards.model");
 
 const card = {
   insert: async (req, res) => {
     try{
         const { title,  fk_id_board } = req.body;
         var con = await conexion.abrir();
-        const cardM = await cardsModel.create(con);
+        const cardM = await CardsModel.create(con);
         const card = await cardM.findOne({ where: { title } });
         if (!card) {
-            await cardM.create({ title, fk_id_board });
+            const newCard = await cardM.create({ title, fk_id_board });
+            await notif.mail(req, "creado una", "tarjeta", newCard.dataValues, con)
             res.json(true);
         }else{
             res.json({msn:"Existe con ese nombre"});
@@ -26,7 +27,7 @@ const card = {
     try{
         const { id, title } = req.body;
         var con = await conexion.abrir();
-        const cardM = await cardsModel.create(con);
+        const cardM = await CardsModel.create(con);
         const card = await cardM.findOne({ where: { id } });
         if (card) {
             await cardM.update({ title,  },{ where: { id } });
@@ -46,7 +47,7 @@ const card = {
     try{
         const { id } = req.body;
         var con = await conexion.abrir();
-        const cardM = await cardsModel.create(con);
+        const cardM = await CardsModel.create(con);
         await cardM.destroy({ where: { id } });
         res.json(true);
     }catch(e){
@@ -60,7 +61,7 @@ const card = {
   getCardsByList: async (req, res) => {
     try{
         var con = await conexion.abrir();
-        const cardM = await cardsModel.create(con);
+        const cardM = await CardsModel.create(con);
         res.json(await cardM.findAll({ where: { fk_id_list: req.params.list} }));
     }catch(e){
         console.log(e);
