@@ -37,7 +37,7 @@ export const Rutas = () => {
                     <Route path="/perfil/configuracion" element={<Configuración />} />
 
                     {/* Board */}
-                    <Route path="/board" element={<Board />} />
+                    <Route path="/board/:board" element={<Board />} />
                     <Route path="/create-board" element={<CreateBoard />} />
 
                     {/* Otros */}

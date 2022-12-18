@@ -79,17 +79,17 @@ const card = {
 
   /**
    * Devuelve todas las tarjetas de una lista
-   * @param {json} req la petición 
-   * @param {json} res la respuesta de la petición
+   * @param {int} fk_id_list el id de la lista
+   * @returns todas las tarjetas de una lista
    */
-  getCardsByList: async (req, res) => {
+  getCardsByList: async (fk_id_list) => {
     try{
         var con = await conexion.abrir();
         const cardM = await CardsModel.create(con);
-        res.json(await cardM.findAll({ where: { fk_id_list: req.params.list} }));
+        return await cardM.findAll({ where: { fk_id_list } });
     }catch(e){
         console.log(e);
-        res.json(false);
+        return false;
     }finally {
       await conexion.cerrar(con);
     }

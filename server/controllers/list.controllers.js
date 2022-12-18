@@ -1,6 +1,7 @@
 const conexion = require("../dataBases/mysql");
 const ListsModel = require("../models/lists.model");
-const notif = require("./notification.controllers")
+const notif = require("./notification.controllers");
+const card = require("./card.controllers");
 
 const list = {
   /**
@@ -12,7 +13,17 @@ const list = {
     try {
       var con = await conexion.abrir();
       const listM = await ListsModel.create(con);
-      res.json(await listM.findAll({where:{fk_id_board:req.params.board}}));
+      var lists = await listM.findAll({where:{fk_id_board:req.params.board}});
+      var result = await Promise.all(
+        lists.map(async (list) => {
+          list = list.dataValues;
+          var cards = await card.getCardsByList(list.id);
+          cards = cards.map(card => card.dataValues);
+          list.cards = cards;
+          return list;
+        })
+      )
+      res.json(lists);
     } catch (e) {
       console.log(e);
       res.json(false);

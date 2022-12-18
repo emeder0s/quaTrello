@@ -24,6 +24,10 @@ export const getFetch = async (endPoint, metodo, datos) => {
           "Content-type": "application/json",
         },
       };
-      const res = (await fetch(endPoint, metaData)).json();
-      return res;
+  console.log(metaData)
+      await fetch(endPoint, metaData)
+      .then((res) => res.json())
+      .then(res=>{return res})
+
+
 }

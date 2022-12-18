@@ -15,10 +15,8 @@ export const Login = () => {
             pass: e.target.pass.value
         };
         const res = await defaultFetch("http://localhost:5000/login", "POST", user)
-        console.log(res);
-        console.log(res.jwt);
         (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No hay respuesta");
-        localStorage.setItem("user", "Jorge Coronilla");
+        localStorage.setItem("user", JSON.stringify(res.user));
         navigate("/home") 
     }
     return (
