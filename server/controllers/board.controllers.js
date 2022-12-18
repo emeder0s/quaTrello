@@ -2,6 +2,7 @@ const conexion = require("../dataBases/mysql");
 const BoardsModel = require("../models/boards.model");
 // const userboard = require ("./user_boards.controllers");
 const user = require("./user.controllers");
+const notif = require("./notification.controllers")
 
 const board = {
   /**
@@ -80,6 +81,8 @@ const board = {
       const board = await boardM.findOne({ where: { id } });
       if (board) {
         await boardM.update({ name_, visibility, configuration }, { where: { id } });
+        const newBoard = await boardM.findOne({ where: { id } });
+        await notif.mail(req, "modificado un", "tablero", newBoard.dataValues, con) // Envia una notificacion a los usuarios que estan suscritos.
         res.json(true);
       } else {
         res.json({ msn: "no existe" });

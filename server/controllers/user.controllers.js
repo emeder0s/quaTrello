@@ -227,7 +227,7 @@ const user = {
     try {
       var con = await conexion.abrir();
       const usr = await Users.create(con);
-      res.json(await usr.findOne({ where: { id: this.getIdFromCookie(req) } }));
+      res.json(await usr.findOne({ where: { id: user.getIdFromCookie(req) } }));
     } catch (error) {
       res.json(error);
     } finally {
