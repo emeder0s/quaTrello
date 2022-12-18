@@ -12,10 +12,12 @@ export function enableSubmitEmail(filled, className) {
 // Generica, solo depende de que se escriba algo en los inputs
 export function defaultEnableSubmit(filled, className) {
     let btn = document.querySelector(`${className}`);
-    if (filled.value) {
-        btn.disabled = false;
-    }
-    else {
-        btn.disabled = true
+    if (btn) {
+        if (filled) {
+            btn.disabled = false;
+        }
+        else {
+            btn.disabled = true
+        }
     }
 }

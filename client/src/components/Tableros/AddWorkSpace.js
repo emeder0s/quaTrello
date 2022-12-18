@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
 import formIMG from '../../img/formIMG.svg'
-
+import { defaultEnableSubmit } from '../../helpers/disableButton'
 
 const AddWorkSpace = ({ setIsFormOpen }) => {
 
@@ -13,22 +13,28 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
         description: ""
     })
 
+    const [isButtonEnabled, setIsButtonEnabled] = useState(false)
+
+    useEffect(() => {
+        if (formValues.name === '' || formValues.type === '' || formValues.type === 'Elegir...') {
+            setIsButtonEnabled(false)
+        }else if(formValues.name !== '' && formValues.type !== ''){
+            setIsButtonEnabled(true)
+        }
+    }, [formValues])
+
+
     // para poder actualizar los valores del formulario
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
-        console.log(formValues.name)
-        console.log(background)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log({ ...formValues })
     }
 
-    if (formValues.name && formValues.type && formValues.description) {
-        console.log(formValues)
-    }
+    defaultEnableSubmit(isButtonEnabled, 'input[type="submit"]')
 
     return (
         <div className='modalLayer'>
@@ -64,7 +70,7 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
                         <label htmlFor='description'>Descripción del Espacio de trabajo <span>Opcional</span></label>
                         <textarea name='description' value={formValues.description} onChange={handleChange}></textarea>
                         <p>Incorpora a los miembros con unas cuantas palabras sobre tu Espacio de trabajo.</p>
-                        <input type='submit' value='Continuar' />
+                        <input disabled type='submit' value='Continuar' />
                     </form>
                 </div>
                 <div className='addWorkSpaceDeco'>
