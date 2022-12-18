@@ -14,6 +14,7 @@ export const AddList = () => {
     let title = {
       title: e.target.title.value,
       cards: "none"}
+      setShowInput(!showInput)
       setNewListTitle(title)
   }
 
