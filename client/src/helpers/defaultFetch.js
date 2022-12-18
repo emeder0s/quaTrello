@@ -28,6 +28,4 @@ export const getFetch = async (endPoint, metodo, datos) => {
       await fetch(endPoint, metaData)
       .then((res) => res.json())
       .then(res=>{return res})
-
-
 }
