@@ -10,11 +10,14 @@ export const AddList = () => {
 
   const addTitle = e => {
     e.preventDefault();
-      
+    
     let title = {
-      title: e.target.title.value,
-      cards: "none"}
+      name_: e.target.title.value,
+      fk_id_board: 1}
+    
+      setShowInput(!showInput)
       setNewListTitle(title)
+
   }
 
   if (showInput) {
