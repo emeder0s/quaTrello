@@ -48,7 +48,7 @@ const user = {
       var con = await conexion.abrir();
       const usr = await Users.create(con);
       const user = await usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
-      const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
+
       res.json({ validation: true, "jwt": infoJwt });
     } catch (error) {
       res.json(error);
@@ -118,10 +118,10 @@ const user = {
       if (user) {
         let hashSaved = user.dataValues.pass;
         let compare = bcyptjs.compareSync(pass, hashSaved);
-        const infoJwt = jwt.sign({ email, "id": user.dataValues.id }, "m1c4s4");
+        const infoJwt = jwt.sign({ email, "id": user.dataValues.id, "full_name":user.dataValues.full_name }, "m1c4s4");
         if (compare) {
           res.cookie("session", infoJwt)
-          res.json({ validation: true, "jwt": infoJwt });
+          res.json({ validation: true, "jwt": infoJwt, user:user.dataValues });
         } else {
           res.json({ validation: false, "jwt": "" });
         }
@@ -227,7 +227,7 @@ const user = {
     try {
       var con = await conexion.abrir();
       const usr = await Users.create(con);
-      res.json(await usr.findOne({ where: { id: this.getIdFromCookie(req) } }));
+      res.json(await usr.findOne({ where: { id: user.getIdFromCookie(req) } }));
     } catch (error) {
       res.json(error);
     } finally {

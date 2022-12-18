@@ -36,7 +36,7 @@ const list = {
         if (!list) {
             var newList = await listM.create({ name_, fk_id_board });
             await notif.mail(req, "creado una", "lista", newList.dataValues, con)
-            res.json({true:true, data:newList.dataValues});
+            res.json({data:newList.dataValues});
         }else{
             res.json({msn:"Existe con ese nombre"});
         }
