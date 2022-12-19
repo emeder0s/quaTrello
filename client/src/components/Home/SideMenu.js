@@ -1,26 +1,23 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export const SideMenu = ({ setIsFormOpen }) => {
 
   // Crear una funcion que busque espacios de trabajo. Si existen se cambia el estado a true y se muestran los que sean en el listado
   // const [isWorkSpaceCreated, setIsWorkSpaceCreated] = useState(false)
-  
+
   // Intentando hacer un GET de los workspaces (no funciona)
   const [workspaces, setWorkspaces] = useState([])
   const [workspaceExists, setWorkspaceExists] = useState(false)
 
+  const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
+
   useEffect(() => {
-    fetch('/all-workspaces')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setWorkspaces(data);
-        console.log(workspaces)
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    setWorkspaces(reduxWorkspaces)
+    if (workspaces.length > 0) {
+      setWorkspaceExists(true)
+    }
   }, [])
 
   return (
@@ -30,14 +27,28 @@ export const SideMenu = ({ setIsFormOpen }) => {
         <li><NavLink to='#'>Plantillas</NavLink></li>
         <li><NavLink to='#'>Inicio</NavLink></li>
       </ul>
-      <ul>
-        <li className='addWorkSpaceLi'>
+      <div>
+        <div className='addWorkSpaceLi'>
           <span>Espacios de trabajo</span>
           <button className='addWorkSpaceButton' onClick={() => setIsFormOpen(true)}>+</button>
-        </li>
-        <li><NavLink to='#'>Cargar espacio 1</NavLink></li>
-        <li><NavLink to='#'>Cargar espacio 2</NavLink></li>
-      </ul>
+        </div>
+        {workspaceExists
+          ? (
+            <ul>{
+              workspaces.map((element) => {
+                return (
+                  <li key={element.id}><NavLink to='#'>{element.name_}</NavLink></li>
+                )
+              })}
+            </ul>
+          )
+          : (
+            <div>
+              <li>Aun no tienes espacios de trabajo</li>
+            </div>
+          )
+        }
+      </div>
     </aside>
   )
 }
