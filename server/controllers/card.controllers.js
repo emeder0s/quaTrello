@@ -23,6 +23,24 @@ const card = {
       await conexion.cerrar(con);
     }
   },
+  /**
+   * Devuelve una tarjeta a partir de su ID 
+   * @param {JSON} req la petición
+   * @param {JSON} res la respuesta a la petición
+   */
+    show: async (req, res) => {
+      try {
+        var con = await conexion.abrir();
+        const cardM = await cardsModel.create(con);
+        const card = await cardM.findOne({ where: { id: req.params.id } });
+        res.json(board)
+      } catch (e) {
+        console.log(e);
+        res.json(false);
+      } finally {
+        await conexion.cerrar(con);
+      }
+    },
 
   /**
    * Actualiza una tarjeta
