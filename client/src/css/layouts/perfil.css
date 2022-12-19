@@ -15,25 +15,48 @@
   justify-content: center;
 }
 
-.userName {
+.userNamePerfil {
+  text-align: center;
   width: 550px;
   height: 30px;
   background-color: rgb(241, 240, 255);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.textUserNamePerfil {
+  text-align: center;
+  width: 550px;
+  height: 30px;
+  background-color: rgb(241, 240, 255);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.userNamePerfil:hover {
+  background-color: rgb(198, 217, 217);
 }
 
 .bio {
   width: 550px;
   background-color: rgb(241, 240, 255);
   margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+  resize: none;
+}
+
+.bio:hover {
+  background-color: rgb(198, 217, 217);
 }
 
 .personal {
-  width: 750px;
+  width: 650px;
   padding: 25px;
   align-items: center;
   margin: 0 auto;
   background-color: rgb(203, 211, 216);
-  font-size: x-large;
+  font-size: medium;
 }
 
 .ulPerfil {
@@ -49,8 +72,8 @@
 
 .liPerfil a {
   color: rgb(118, 15, 144);
-  font-weight: 800;
-  font-size: xx-large;
+  font-weight: 700;
+  font-size: x-large;
 }
 
 .btnInfo {
@@ -64,7 +87,7 @@
   padding: 20px;
   align-items: center;
   margin: 0 auto;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .pName {
@@ -80,14 +103,14 @@
 }
 
 .pAce {
-  font-size: xx-large;
+  font-size: x-large;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
 .hr {
   margin: 0 auto;
-  width: 650px;
+  width: 600px;
   margin-bottom: 30px;
 }
 
@@ -95,6 +118,10 @@
   width: 550px;
   height: 120px;
   padding-top: 20px;
+}
+
+.formInfo input {
+  color: black;
 }
 
 /*# sourceMappingURL=perfil.css.map */
