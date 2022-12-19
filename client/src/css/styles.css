@@ -444,6 +444,10 @@ header {
   overflow: hidden;
 }
 
+.modalLayer .addWorkSpaceModal .wave {
+  transform: rotate(90deg);
+}
+
 .modalLayer .addWorkSpaceForm {
   display: flex;
   flex-flow: column wrap;
@@ -457,6 +461,10 @@ header {
   flex-flow: column wrap;
   width: 50%;
   background-color: #E4F7FA;
+}
+
+.modalLayer .addWorkSpaceDeco img {
+  margin-top: 50px;
 }
 
 .modalLayer .addWorkSpaceModal form {

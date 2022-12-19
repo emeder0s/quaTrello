@@ -1,4 +1,5 @@
 export const defaultFetch = async (endPoint, metodo, datos) => {
+  console.log(datos)
   let metaData = {
     method: metodo,
     body: JSON.stringify(datos),

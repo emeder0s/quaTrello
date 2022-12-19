@@ -4,6 +4,7 @@ import formIMG from '../../img/formIMG.svg'
 import { defaultEnableSubmit } from '../../helpers/disableButton'
 import { defaultFetch } from '../../helpers/defaultFetch'
 import { Navigate } from 'react-router-dom'
+import wave from '../../img/wave.svg'
 
 const AddWorkSpace = ({ setIsFormOpen }) => {
 
@@ -11,10 +12,10 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
     const [navigate, setNavigate] = useState(false)
     const [board, setBoard] = useState('')
     const [formValues, setFormValues] = useState({
-        name: "",
+        "name_": "",
         type: "",
         visibility: '',
-        configuration: {},
+        configuration: "{}",
         description: ""
     })
 
@@ -22,7 +23,7 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
     defaultEnableSubmit(isButtonEnabled, 'input[type="submit"]')
 
     useEffect(() => {
-        if (formValues.name === '' || formValues.type === '' || formValues.type === 'Elegir...' || formValues.visibility === '' || formValues.visibility === 'Elegir...') {
+        if (formValues.name_ === '' || formValues.type === '' || formValues.type === 'Elegir...' || formValues.visibility === '' || formValues.visibility === 'Elegir...') {
             setIsButtonEnabled(false)
         } else {
             setIsButtonEnabled(true)
@@ -35,12 +36,17 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
         setFormValues({ ...formValues, [name]: value })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log(formValues)
-        setBoard('/board/1')
+        const ws = await defaultFetch('/insert-workspace', 'POST', formValues)
+        // const goToBoard = await fetch(`/show-boardByWs/${ws.id}`)
+        //     .then(res =>{ return res.json()})
+        console.log(ws.id)
+        // console.log(goToBoard.id)
+        setBoard(`/board/${ws.id}`)
+        // setBoard(`/board/${goToBoard.id}`)
         setNavigate(true)
-        defaultFetch('/insert-workspace', 'POST', formValues)
     }
 
     return (
@@ -56,8 +62,8 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
                         <input
                             type='text'
                             placeholder='your workspace'
-                            name='name'
-                            value={formValues.name}
+                            name='name_'
+                            value={formValues.name_}
                             onChange={handleChange}
                         />
 
@@ -91,7 +97,9 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
                         <input disabled type='submit' value='Continuar' />
                     </form>
                 </div>
+                
                 <div className='addWorkSpaceDeco'>
+                    {/* <img className='wave' src={wave}/> */}
                     <button className='closeWorkSpaceModal' onClick={() => setIsFormOpen(false)}><AiOutlineClose /></button>
                     <img src={formIMG} alt='icono' />
                 </div>
