@@ -16,8 +16,8 @@ CREATE TABLE IF NOT EXISTS users(
     
 CREATE TABLE IF NOT EXISTS workspaces(
         id INT AUTO_INCREMENT,
-        name_ VARCHAR(50) NOT NULL, 
-        last_access DATETIME,
+        name_ VARCHAR(100) NOT NULL, 
+        last_access DATETIME NOT NULL,
         visibility VARCHAR(50) NOT NULL, 
 		configuration TEXT,
         PRIMARY KEY(id)
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS workspaces(
 
 CREATE TABLE IF NOT EXISTS boards(
         id INT AUTO_INCREMENT,
-        name_ VARCHAR(25) NOT NULL, 
+        name_ VARCHAR(100) NOT NULL, 
         visibility VARCHAR(50) NOT NULL, 
         configuration TEXT,
         fk_id_workspace INT,
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS lists(
 
 CREATE TABLE IF NOT EXISTS cards(
         id INT AUTO_INCREMENT,
-        title VARCHAR(25) NOT NULL, 
+        title VARCHAR(200) NOT NULL, 
         description_ TEXT,
         checklist TEXT,
 		configuration TEXT,
