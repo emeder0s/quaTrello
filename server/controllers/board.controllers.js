@@ -1,6 +1,6 @@
 const conexion = require("../dataBases/mysql");
 const BoardsModel = require("../models/boards.model");
-// const userboard = require ("./user_boards.controllers");
+//const userboard = require ("./user_board.controllers");
 const user = require("./user.controllers");
 const notif = require("./notification.controllers")
 
