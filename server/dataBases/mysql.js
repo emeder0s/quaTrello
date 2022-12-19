@@ -4,6 +4,7 @@ conexion = {
       const sequelize = new Sequelize('quatrello', 'root', 'root', {
 
           host: 'localhost',
+          timezone: '+01:00',
           dialect: 'mysql',
           port: 3306
       })

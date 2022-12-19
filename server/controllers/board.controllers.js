@@ -29,8 +29,7 @@ const board = {
         res.json({ msn: "Existe con ese nombre" });
       }
     } catch (e) {
-      console.log(e);
-      res.json(false);
+      res.json(e);
     } finally {
       await conexion.cerrar(con);
     }

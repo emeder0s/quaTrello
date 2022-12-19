@@ -12,6 +12,10 @@ MessagesModel = {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            user_name: {
+                type: DataTypes.STRING,
+                allowNull: true
+            },
             date_:{
                 type: DataTypes.DATE,
                 allowNull: true
