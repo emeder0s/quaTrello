@@ -1,0 +1,9 @@
+.d-flex.p-3.justify-content-end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.d-flex.p-3.justify-content-start{
+    display: flex;
+    justify-content: flex-start;
+}
