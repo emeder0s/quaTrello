@@ -1,6 +1,6 @@
 .home {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row;
   width: 100%;
 }
 

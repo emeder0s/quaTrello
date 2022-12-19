@@ -18,12 +18,12 @@ const board = {
       const boardM = await BoardsModel.create(con);
       const board = await boardM.findOne({ where: { name_, fk_id_workspace } });
       if (!board) {
-        var newBoard = await boardM.create({ name_, visibility, configuration, fk_id_workspace, fk_id_user }); //fk_id_user es la id del usuario que crea el tablero
+        var newBoard = await boardM.create({ name_, last_access: new Date(),visibility, configuration, fk_id_workspace, fk_id_user }); //fk_id_user es la id del usuario que crea el tablero
         const listM = await ListsModel.create(con);
         await listM.create({ name_: "Lista de tareas", fk_id_board: newBoard.dataValues.id });
         await listM.create({ name_: "En proceso", fk_id_board: newBoard.dataValues.id });
         await listM.create({ name_: "Hecho", fk_id_board: newBoard.dataValues.id });
-        await notif.mail(req, "creado un", "tablero", newBoard.dataValues, con) // Envia una notificacion a los usuarios que estan suscritos.
+        //await notif.mail(req, "creado un", "tablero", newBoard.dataValues, con) // Envia una notificacion a los usuarios que estan suscritos.
         res.json(true);
       } else {
         res.json({ msn: "Existe con ese nombre" });
@@ -117,6 +117,42 @@ const board = {
     }
   },
 
+  /**
+   * Devuelve la fecha con el formato correcto para la inserción en la base de datos
+   * @param {string} datetime 
+   * @returns la fecha formateada
+   */
+  formatDate: (datetime) =>{
+    var time = datetime.split(",")[1];
+    var date = datetime.split(",")[0].split("/");
+    return `${date[2]}-${date[1]}-${date[0]}${time}`
+  },
+
+/**
+ * Modifica la fecha de acceso
+ * @param {json} req la petición
+ * @param {json} res la respuesta de la petición
+ */
+  updateLastAccess: async (req, res) => {
+    try{
+        const { id } = req.body;
+        var con = await conexion.abrir();
+        const boardM = await BoardsModel.create(con);
+        const b = await boardM.findOne({ where: { id } });
+        var last_access = board.formatDate(new Date().toLocaleString());
+        if (ws) {
+            await boardM.update({ last_access}, { where: { id } });
+            res.json(true);
+        }else{
+            res.json({msn:"no existe"});
+        }
+    }catch(e){
+        console.log(e);
+        res.json(false);
+    }finally {
+      await conexion.cerrar(con);
+    }
+  },
 
   /**
    * Funcion que devuelve un array con la informacion de todos los tableros de un usuario
@@ -129,7 +165,11 @@ const board = {
     const boardM = await BoardsModel.create(con);
     var boards = await boardM.findAll({ where: { fk_id_workspace, fk_id_user } });
     boards = boards.map(board => { return board.dataValues })
-    console.log(boards)
+    if (boards.length > 1){
+      boards.sort(function(a, b) {
+        return new Date(b.last_access).getTime() - new Date(a.last_access).getTime();
+      });
+    }
     await conexion.cerrar(con);
     return boards;
   }

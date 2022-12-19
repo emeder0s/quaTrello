@@ -3,6 +3,7 @@ import { NameBoard } from "./NameBoard";
 import { VisibilityNavBoard } from "./VisibilityNavBoard";
 import { ShareNavBoard } from "./ShareNavBoard";
 import { MembersNavBoard } from "./MembersNavBoard";
+import { ChatNavBoard } from "./ChatNavBoard";
 
 
 
@@ -43,14 +44,18 @@ export const LinkNavBoard = () => {
             <nav className="navNBoard">
                 <input type="text" defaultValue={titleBoard} className="butNavBoard" />
                 {navBoard === "menu1" && <NameBoard />}
+
                 <button className='butNavBoard' onClick={() => showWindow("menu2")}>visibilidad</button>
                 {navBoard === "menu2" && <VisibilityNavBoard />}
-                {/* <button type="checkbox" id="btn-modal" onClick={e=>setIsModalShareOpen(!isModalShareOpen)}>Compartir</button> */}
+        
                 <button className="butNavBoard lbl-modal" onClick={e => setIsModalShareOpen(!isModalShareOpen)}>Compartir</button>
-                {/* <button className='butNavBoard lbl-modal' onClick={() => showWindow("menu3")}>Compartir</button> */}
                 {isModalShareOpen && <ShareNavBoard showWindow={showWindow} setIsModalShareOpen={setIsModalShareOpen}/>}
+
                 <button className='butNavBoard' onClick={() => showWindow("menu4")}>Miembros</button>
                 {navBoard === "menu4" && <MembersNavBoard />}
+
+                <button className='butNavBoard' onClick={e => setIsModalShareOpen(!isModalShareOpen)}>Chat</button>
+                {navBoard === "menu5" && <ChatNavBoard/>}
             </nav>
         </div>
     )
