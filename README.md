@@ -18,7 +18,8 @@
 | Tipo de petición | End Point | Descripción   | req.body/req.params | res |
 | :-------- | :------- | :------------------------- | :----- | :-------- |
 | `GET` | `/all-workspaces` | Devuelve todos los workspaces | { }  | |
-| `POST` | `/insert-workspace` | Inserta un workspace | { "name_":"Nombre del Workspace", "visibility":"public/private", "configuration":"la configuracion en un JSON" }  | true (si todo va bien)/false(si algo fallta)/json{msn: "Existe con ese nombre"} |
+| `POST` | `/insert-workspace` | Inserta un workspace | { "name_":"Nombre del Workspace", "visibility":"public/private", "configuration":"la configuracion en un JSON" }  | EJ: { "id": 6, "name_": "workspace prueba10", "visibility": "public", "last_access": "2022-12-19T16:34:49.749Z", "configuration": "", "boards": [ { "id": 5, "name_": "Tu primer tablero", "last_access": "2022-12-19T16:34:50.149Z", "visibility": "public", "fk_id_workspace": 6, "fk_id_user": 1 } ]
+|
 | `GET` | `/show-workspace/:id` | Devuelve los datos de un workspace | {"id":"el id del workspace a mostrar" } | json (con los datos del workspace) |
 | `POST` | `/update-workspace` | Modifica los datos de un workspace | { "id":"id del workspace a modificar", "name_":"name del workspace", "visibility":"public/private", "configuration":"la configuracion de un ws" }  |  |
 | `DELETE` | `/delete-workspace` | Borra un workspace | { "id": "id del workspace a eliminar" } | boolean - true (si todo va bien)/false(si algo falta) |
