@@ -49,7 +49,7 @@ const user = {
       const usr = await Users.create(con);
       const user = await usr.create({ email, full_name, bio: "", "pass": pass_hash, avatar: "1", configuration: JSON.stringify({}) })
       const infoJwt = jwt.sign({ email, "id": user.dataValues.id, "full_name":user.dataValues.full_name }, "m1c4s4");
-      res.json({ validation: true, "jwt": infoJwt, user:user.dataValues });
+      res.json({ validation: true, "jwt": infoJwt, user:{full_name:user.dataValues.full_name, id:user.dataValues.id, bio:user.dataValues.bio}});
     } catch (error) {
       res.json(error);
     } finally {
@@ -75,11 +75,13 @@ const user = {
    */
   update: async (req, res) => {
     try {
-      let id = this.getIdFromCookie(req)
+      let id = user.getIdFromCookie(req)
+      console.log("antes")
       const { full_name, bio } = req.body;
       var con = await conexion.abrir();
       const usr = await Users.create(con);
       await usr.update({ full_name, bio }, { where: { id } })
+      console.log("despues")
       res.json("Actualización completa");
     } catch (error) {
       res.json(error);
@@ -93,7 +95,7 @@ const user = {
    */
   setAvatar: async (req, res) => {
     try {
-      let id = this.getIdFromCookie(req)
+      let id = user.getIdFromCookie(req)
       const avatar = req.params.avatar;
       var con = await conexion.abrir();
       const usr = await Users.create(con);
