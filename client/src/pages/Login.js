@@ -1,7 +1,7 @@
 import React from 'react'
 import { defaultFetch } from '../helpers/defaultFetch';
 import Cookies from 'universal-cookie';
-import {useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export const Login = () => {
 
@@ -32,6 +32,6 @@ export const Login = () => {
                     <button type="submit">Regístrate es gratuito</button>
                 </form>
             </div>
-        </div> 
+        </div>
     )
 }

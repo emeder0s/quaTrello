@@ -12,7 +12,7 @@ export const AddList = () => {
 
   const addList = e => {
     e.preventDefault();
-    
+
     let title = {
       name_: e.target.title.value,
       fk_id_board: board}
