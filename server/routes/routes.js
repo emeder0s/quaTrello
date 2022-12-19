@@ -19,7 +19,6 @@ router.get("/get-workspaces-by-user", workspace.getByUser);
 router.post("/update-last-access", workspace.updateLastAccess);
 
 //BOARDS
-
 router.post("/insert-board", board.insert);
 router.get("/show-board/:id", board.show);
 router.post("/update-board", board.update);
@@ -35,6 +34,7 @@ router.delete("/delete-list", list.delete);
 //CARDS
 router.get("/cards/:list", card.getCardsByList);
 router.post("/insert-card", card.insert);
+router.get("/show-card/:id", card.show);
 router.post("/update-card", card.update);
 router.delete("/delete-card", card.delete);
 router.post("/move-to-list", card.moveToList);
