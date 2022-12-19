@@ -12,7 +12,9 @@ export const Actividad = () => {
 
     useEffect(() => {
 
-        fetch("http://localhost:5000/show-workspace/{:id")
+
+    
+        fetch("http://localhost:5000/show-workspace/:id")
             .then((res) => res.json())
             .then(spaceUser => setworkSpacesUser(spaceUser))
 

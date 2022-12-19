@@ -75,7 +75,7 @@ const user = {
    */
   update: async (req, res) => {
     try {
-      let id = this.getIdFromCookie(req)
+      let id = user.getIdFromCookie(req)
       const { full_name, bio } = req.body;
       var con = await conexion.abrir();
       const usr = await Users.create(con);
