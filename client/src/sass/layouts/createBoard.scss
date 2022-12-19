@@ -1,10 +1,11 @@
 .create-board h3 {
-    text-align: center;
     font-weight: 300;
     font-size: 14px;
-    width: 98%;
+    margin: 0 auto;
 }
-
+.MuiPaper-root {
+    padding: 0 1%;
+}
 .create-board h4 {
     margin: 10px 0;
     font-size: 12px;
@@ -13,7 +14,6 @@
 
 .create-board {
     width: 320px;
-    padding: 0 2% 0 4%;
     height: auto;
 }
 
@@ -22,17 +22,16 @@
     background-color: #fff;
     padding: 3% 10%;
     margin: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
 .create-board .close {
     position: absolute;
     right: 11px;
     padding: 1px 4px;
-}
-
-.create-board hr {
-    width: 90%;
-    margin: 0 auto;
+    background-color: #fff;
+    font-weight: 300;
+    top: 5px;
 }
 
 .create-board .chooseBG,
@@ -84,7 +83,9 @@
     display: flex;
     justify-content: center;
 }
-
+.create-board .title {
+    margin: 0;
+}
 .create-board input,
 .create-board select,
 .create-board button.submit {
@@ -95,22 +96,16 @@
 }
 
 .create-board input.title {
-    width: 90%;
-}
-    
-.create-board button.close {
-    background-color: white;
-    border: none;
-}
-
-.create-board .create-board input {
     width: 93%;
-    font-size: 16px;
 }
 
 .create-board select.actualWorkSpaces,
 button.submit {
-    width: 97%;
+    width: 100%;
+}
+.create-board button.submit:enabled {
+    background-color:#0079bf ;
+    color: #fff;
 }
 .create-board .c1 {
     background-color: #0079bf;
