@@ -171,6 +171,7 @@ const email = {
       return info
     });
   },
+
   notification: async (user_email_to, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type) => {
     var mailOptions = {
       from: 'quatrellothebridge@gmail.com',

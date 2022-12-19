@@ -1,0 +1,121 @@
+.dropdown1 {
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
+  position: absolute;
+  left: 113px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+  z-index: 2;
+}
+
+.dropdown2 {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 280px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown3 {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 375px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown4 {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 470px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown5 {
+  background-color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  left: 560px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+}
+
+.dropdown6 {
+  background-color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  right: 18px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+  width: 230px;
+}
+
+.dropdown7 {
+  background-color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  right: 2px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+  width: 150px;
+}
+
+.dropdown8 {
+  background-color: rgb(255, 255, 255);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  position: absolute;
+  right: 2px;
+  top: 42px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+  color: black;
+  margin: 0;
+  padding: 6px;
+  width: 150px;
+}
+
+.title {
+  color: rgb(146, 146, 146);
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.espacio {
+  color: black;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+/*# sourceMappingURL=dropdown.css.map */

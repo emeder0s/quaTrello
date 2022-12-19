@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react'
 import { BoardContext } from '../../../providers/boardProvider';
 
 export const AddList = () => {
-  const {setNewListTitle} = useContext(BoardContext);
+  const { setNewListTitle } = useContext(BoardContext);
   const [showInput, setShowInput] = useState(false);
   const add = () => {
     setShowInput(!showInput);
@@ -10,13 +10,14 @@ export const AddList = () => {
 
   const addTitle = e => {
     e.preventDefault();
-    
+
     let title = {
       name_: e.target.title.value,
-      fk_id_board: 1}
-    
-      setShowInput(!showInput)
-      setNewListTitle(title)
+      fk_id_board: 1
+    }
+
+    setShowInput(!showInput)
+    setNewListTitle(title)
 
   }
 
@@ -24,9 +25,9 @@ export const AddList = () => {
     return (
       <div className='listInput'>
         <form onSubmit={addTitle}>
-        <input type="text" placeholder="Introduzca el titulo de la lista..." required name="title" />
-        <button type="submit" className='addList'>Añadir lista </button>
-        <button className='close' onClick={add}>&#x2715;</button>
+          <input type="text" placeholder="Introduzca el titulo de la lista..." required name="title" />
+          <button type="submit" className='addList'>Añadir lista </button>
+          <button className='close' onClick={add}>&#x2715;</button>
         </form>
       </div>
     )
