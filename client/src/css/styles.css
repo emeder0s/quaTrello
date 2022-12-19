@@ -520,25 +520,48 @@ header {
   justify-content: center;
 }
 
-.userName {
+.userNamePerfil {
+  text-align: center;
   width: 550px;
   height: 30px;
   background-color: rgb(241, 240, 255);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.textUserNamePerfil {
+  text-align: center;
+  width: 550px;
+  height: 30px;
+  background-color: rgb(241, 240, 255);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.userNamePerfil:hover {
+  background-color: rgb(198, 217, 217);
 }
 
 .bio {
   width: 550px;
   background-color: rgb(241, 240, 255);
   margin-bottom: 20px;
+  text-align: center;
+  font-size: 20px;
+  resize: none;
+}
+
+.bio:hover {
+  background-color: rgb(198, 217, 217);
 }
 
 .personal {
-  width: 750px;
+  width: 650px;
   padding: 25px;
   align-items: center;
   margin: 0 auto;
   background-color: rgb(203, 211, 216);
-  font-size: x-large;
+  font-size: medium;
 }
 
 .ulPerfil {
@@ -554,8 +577,8 @@ header {
 
 .liPerfil a {
   color: rgb(118, 15, 144);
-  font-weight: 800;
-  font-size: xx-large;
+  font-weight: 700;
+  font-size: x-large;
 }
 
 .btnInfo {
@@ -569,7 +592,7 @@ header {
   padding: 20px;
   align-items: center;
   margin: 0 auto;
-  font-size: xx-large;
+  font-size: x-large;
 }
 
 .pName {
@@ -585,14 +608,14 @@ header {
 }
 
 .pAce {
-  font-size: xx-large;
+  font-size: x-large;
   margin-bottom: 10px;
   margin-top: 10px;
 }
 
 .hr {
   margin: 0 auto;
-  width: 650px;
+  width: 600px;
   margin-bottom: 30px;
 }
 
@@ -600,6 +623,10 @@ header {
   width: 550px;
   height: 120px;
   padding-top: 20px;
+}
+
+.formInfo input {
+  color: black;
 }
 
 .configPerfil {
@@ -635,19 +662,18 @@ header {
   font-weight: 300;
   font-size: 14px;
   width: 98%;
-  color: #5e6c84;
 }
 
 .create-board h4 {
   margin: 10px 0;
   font-size: 12px;
+  color: #5e6c84;
 }
 
 .create-board {
   width: 320px;
-  padding: 0 2%;
+  padding: 0 2% 0 4%;
   height: auto;
-  color: #5e6c84;
 }
 
 .create-board header {
@@ -676,6 +702,7 @@ header {
 .create-board .board-bg {
   width: 200px;
   height: 120px;
+  background-color: darkslategray;
   display: flex;
   justify-content: center;
   box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
@@ -724,8 +751,13 @@ header {
 .create-board select,
 .create-board button.submit {
   border: 1px solid rgba(94, 108, 132, 0.3294117647);
+  border-radius: 3px;
   padding: 10px;
   border-radius: 3px;
+}
+
+.create-board input.title {
+  width: 90%;
 }
 
 .create-board button.close {
@@ -738,14 +770,9 @@ header {
   font-size: 16px;
 }
 
-.create-board select.user-workspaces, .create-board select.visibility,
+.create-board select.actualWorkSpaces,
 button.submit {
-  width: 100%;
-}
-
-.create-board button.submit:enabled {
-  background-color: #0079bf;
-  color: #fff;
+  width: 97%;
 }
 
 .create-board .c1 {
@@ -841,7 +868,7 @@ button.submit {
   background-color: #0075b9;
   width: 200px;
   margin: 10px;
-  background: #fff;
+  background-color: #00d1f6;
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
@@ -871,7 +898,22 @@ button.submit {
   box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
   transition: all 500ms ease;
   position: relative;
-  margin-top: 100px;
+  margin-top: 14px;
+  background-color: white;
+  border-radius: 5px;
+  color: #172B4D;
+  padding: 20px;
+}
+
+.modalChat {
+  width: 750px;
+  height: 650px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
+  transition: all 500ms ease;
+  position: relative;
+  margin-top: 14px;
   background-color: white;
   border-radius: 5px;
   color: #172B4D;
@@ -1217,13 +1259,13 @@ contenedorModal {
 .list-container {
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
 }
 
 .lists-container {
   display: flex;
   flex-direction: row;
   margin-left: 20px;
-  overflow-x: scroll;
   min-height: 95%;
 }
 

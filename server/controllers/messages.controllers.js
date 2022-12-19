@@ -15,10 +15,10 @@ const message = {
     insert: async (req, res) => {
         try {
             var fk_id_user = user.getIdFromCookie(req);
-            const { text_, fk_id_board } = req.body;
+            const { text_, fk_id_board, user_name } = req.body;
             var con = await conexion.abrir();
             const msg = await MessageModel.create(con);
-            res.json(await msg.create({ text_, fk_id_board, fk_id_user }));
+            res.json(await msg.create({ text_, fk_id_board, fk_id_user, user_name }));
         } catch (error) {
             res.json(error);
         } finally {

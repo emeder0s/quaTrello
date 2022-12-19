@@ -1,6 +1,7 @@
+let notif = require("./notification.controllers");
 const conexion = require("../dataBases/mysql");
 const ListsModel = require("../models/lists.model");
-const notif = require("./notification.controllers");
+
 const card = require("./card.controllers");
 
 const list = {
@@ -102,7 +103,24 @@ const list = {
     }finally {
       await conexion.cerrar(con);
     }
-  }
+  },
+  /**
+   * Funcion que devuelve el tablero al que pertenece una lista
+   * @param {INTEGER} id 
+   */
+  wichBoard:  async (id) => {
+    try{
+        var con = await conexion.abrir();
+        const listM = await ListsModel.create(con);
+        const list = await listM.findOne({ where: { id } });
+        console.log(list)
+        return list.dataValues.fk_id_board;
+    }catch(error){
+        return error
+    }finally {
+      await conexion.cerrar(con);
+    }
+  },
 };
 
 
