@@ -124,7 +124,7 @@ const user_card = {
             }));
             return users_on_card;
         } catch (error) {
-            return false;
+            return error;
         } finally {
             await conexion.cerrar(con);
         }

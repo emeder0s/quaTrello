@@ -6,6 +6,7 @@ const sendemail = require("./email.controllers");
 const user_card = require("./user_card.controllers")
 const user_board = require("./user_board.controllers")
 const userWorkspace = require("./user_workspace.controllers")
+const listC = require("./list.controllers")
 
 
 //MODELS
@@ -23,7 +24,6 @@ const User_cardModel = require("../models/users_cards.model");
 
 const notif = {
     mail: async (req, operation, element, elementData, con) => {
-        console.log({operation, element, elementData})
         const user_id_from = user.getIdFromCookie(req);
         const userM = await Users.create(con)
         const userf = await userM.findOne({ attributes: ["full_name"] }, { where: { id: user_id_from } })
@@ -54,7 +54,8 @@ const notif = {
             into_id =list.dataValues.id
             into_type = "list"
             element_name = elementData.title
-            users_to = await user_card.getUsersWithNotifTrue(elementData.fk_id_card)
+            var fk_id_board = await listC.wichBoard(elementData.fk_id_list)
+            users_to = await user_board.getUsersWithNotifTrue(fk_id_board)
         }
         users_to.forEach(user => {
             sendemail.notification(user.email, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type)
