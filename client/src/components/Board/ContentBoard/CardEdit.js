@@ -9,18 +9,18 @@ export const CardEdit = ({ showCardEdit, setShowCardEdit, currentCard }) => {
     const [cardEdition, setCardEdition] = useState({ id: 0, title: "", description_: "", checklist_: "", configuration_: "", date_: "" })
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [cardData, setCardData] = useState({});
+    const [cardData, setCardData] = useState();
 
     useEffect(() => {
         //Info de la tarjeta 
 
-        /*
-        fetch(`/lists/${board}`).then((res) => res.json())
+             fetch(`http://localhost:5000/show-card/${currentCard}`).then((res) => res.json())
             .then((res) => {
-                setUserLists(res);
-            })*/
-            console.log(currentCard)
-        setCardData({});
+                console.log(res)
+                setCardData(res);
+                localStorage.setItem("cardData", JSON.stringify(res))
+            })
+
     }, [])
 
     const add = () => {
@@ -29,23 +29,32 @@ export const CardEdit = ({ showCardEdit, setShowCardEdit, currentCard }) => {
 
     const changeName = e => {
         setTitle(e.target.value)
+        console.log(e.target.value)
+        defaultFetch("http://localhost:5000/update-card", "POST", {id: currentCard, title:e.target.value}).then((res) => { console.log(res) });
+        
     }
 
     const updateCard = () => {
 
     }
-    return (
+    if (cardData) {return (
+        ( 
+        
         <div className='carEditMenu'>
-            
-                <div className='listTitle'>
-                    <input className='cardName' name="MiarTú" placeholder='Nombre tarjeta' onChange={changeName}></input>
-                    <button className='close' onClick={add}>&#x2715;</button>
-                </div>
-                <CardDescription description={description} setDescription={setDescription}/>
-                <br />
-                <Activities />
-                <br />
-            
-        </div>
-    )
+                 <div className='listTitle'>
+                 <p>{description}</p>
+                     <input className='cardName' name="title" defaultValue={cardData.title} onBlur={changeName}></input>
+                     <button className='close' onClick={add}>&#x2715;</button>
+                 </div>
+                 {description ?
+                 <CardDescription description={description} setDescription={setDescription} currentCard={currentCard}/>
+                : <CardDescription description={null} setDescription={setDescription} currentCard={currentCard}/>
+                }
+                 
+                 <br />
+                 <Activities />
+                 <br />
+         </div>)
+     )}
+    
 }

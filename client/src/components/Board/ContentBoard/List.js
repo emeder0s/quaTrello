@@ -22,6 +22,7 @@ export const List = ({ title, cards, listId }) => {
 
     const cardEdit = (e) => {
         setCurrentcard(e.target.id)
+        localStorage.setItem("currentCard" , JSON.stringify(e.target.id))
         setShowCardEdit(!showCardEdit)
     }
 
