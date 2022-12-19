@@ -7,18 +7,18 @@ import { AddList } from './ContentBoard/AddList'
 import { List } from './ContentBoard/List'
 import { BoardContext } from '../../providers/boardProvider'
 import { defaultBoard } from '../../helpers/defaultBoard'
-import { defaultLists, defaultListsPrueba } from '../../helpers/defaultLists'
+import { defaultLists } from '../../helpers/defaultLists'
 import { defaultCards } from '../../helpers/defaultCard'
 import { defaultFetch, getFetch } from '../../helpers/defaultFetch'
 import { sortData } from '../../helpers/boardStart'
 
 const Board = () => {
   const { board } = useParams();
-  const [lists, setLists] = useState(defaultListsPrueba);
+  const [idPrueba, setIdPrueba] = useState(3);
   const [cards, setCards] = useState(defaultCards);
   const [userLists, setUserLists] = useState([]);
   const [newCardTitle, setNewCardTitle] = useState([]);
-  const [newListTitle, setNewListTitle] = useState("");
+  const [newList, setNewList] = useState("");
   const [currentListId, setCurrentListId] = useState("");
   var cardIds = []
 
@@ -27,79 +27,57 @@ const Board = () => {
     //const currentBoard = getFetch(`/show-board/${board}`,'GET',"nada")
 
     //Listas
-    //const currentLists = getFetch(`/listas/${board}`,'GET',"nada")
-    if (lists.length === 0) {
-      defaultLists.map(element => {
-        // const res = defaultFetch('/insert-list',"POST",element)
-      })
-    }
-
-    //3 Fetch /cards/:card
-    /*
-        lists.map(element => {
-          //const res = defaultFetch(`/cards/${element.id}`,"GET",element)
-        })
-    */
-
-    if (userLists.length === 0) {
-      let data = sortData(lists,cards);
-    
-      lists.map(list => {
-        let cardList = [];
-        cards.map(card => {
-          if (card.fk_id_list === list.id) {
-            cardList.push(card.title)
-            cardIds.push(card.id)
-          }
-        })
-        userLists.push({
-          id: list.id,
-          title: list.name_,
-          cards: cardList
-        })
-        cardList = []
-      })
-    }
- console.log(lists)
- console.log(cards)
+    //getFetch(`/lists/${board}`,'GET',"nada").then((res) => {setUserLists(res)})
+    setUserLists(defaultLists);
+    console.log(userLists)
+   
   }, [])
 
   useEffect(() => {
 
-
-    //Post info: 
-      // POST /insert-list
-      //req id del board, nombre de la lista
-      //     { name_: de la lista, fk_id_board: el id del board al que pertenece }
-
-    //setUserLists([]);
-    if (newListTitle) {
-      //Preparar info
+    if (newList) {
+      defaultFetch("http://localhost:5000/insert-list", "POST", newList).then((res) => {console.log(res)});
+      ////getFetch(`/lists/${board}`,'GET',"nada").then((res) => {setUserLists(res)})
+    var listaPrueba= {
+      "id": idPrueba,
+      "name_": "nueva lista",
+      "fk_id_board": 1,
+      "cards": []
+  }
       
-      lists.push(newListTitle);
-      let data = sortData(lists,cards);
-      setUserLists(data[0])
-      cardIds = data[1]
-      setNewListTitle("")
+    defaultLists.push(listaPrueba);
+      setUserLists(defaultLists);
+      setIdPrueba(idPrueba+1)
+      setNewList("")
       console.log(userLists)
-
     }
-  }, [newListTitle])
+  }, [newList])
 
   useEffect(() => {
+    if (newCardTitle) {
+      //defaultFetch("http://localhost:5000/insert-card", "POST", newList).then((res) => {console.log(res)});
+      ////getFetch(`/lists/${board}`,'GET',"nada").then((res) => {setUserLists(res)})
+    var cardPrueba=   {
+      "id": 7,
+      "title": "Segunda tarjeta",
+      "description_": null,
+      "checklist": null,
+      "configuration": null,
+      "date_": null,
+      "fk_id_list": 1
+  }
+  setIdPrueba(idPrueba+1)
+  console.log(newCardTitle.fk_id_list)
+  console.log(defaultLists)
+  console.log(defaultLists[newCardTitle.fk_id_list-1])
+  //defaultLists[newCardTitle.fk_id_list-1].cards.push(cardPrueba)
+  //setUserLists(defaultLists);
+  //setNewCardTitle([])
 
-    //{ name_: de la tarjeta, fk_id_board: el id de la lista}
-    //Devolver ID
-    if (newCardTitle) {   
-      cards.push(newCardTitle);
-      console.log(cards)
-      console.log(lists)
-      let data = sortData(lists,cards);
-        setUserLists(data[0])
-        cardIds = data[1]
-      setNewCardTitle("");
-      setCurrentListId("");}
- 
+  console.log(userLists)
+
+
+}
 
   }, [newCardTitle])
 
@@ -112,12 +90,12 @@ const Board = () => {
         <br />
         <BoardContext.Provider value={{
           newCardTitle, setNewCardTitle,
-          newListTitle, setNewListTitle,
+          newList, setNewList,
           userLists, currentListId, setCurrentListId
         }}>
           <div className='lists-container'>
             {userLists.map((list, index) => (
-              <List title={list.title} key={index} cards={list.cards} cardIds={cardIds} listId={list.id}/>
+              <List title={list.name_} key={list.name_} cards={list.cards} listId={list.id}/>
             ))}
             <AddList />
           </div>

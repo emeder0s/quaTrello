@@ -2,13 +2,13 @@ import React, { useState, useContext } from 'react'
 import { BoardContext } from '../../../providers/boardProvider';
 
 export const AddList = () => {
-  const {setNewListTitle} = useContext(BoardContext);
+  const {setNewList} = useContext(BoardContext);
   const [showInput, setShowInput] = useState(false);
   const add = () => {
     setShowInput(!showInput);
   }
 
-  const addTitle = e => {
+  const addList = e => {
     e.preventDefault();
     
     let title = {
@@ -16,14 +16,14 @@ export const AddList = () => {
       fk_id_board: 1}
     
       setShowInput(!showInput)
-      setNewListTitle(title)
+      setNewList(title)
 
   }
 
   if (showInput) {
     return (
       <div className='listInput'>
-        <form onSubmit={addTitle}>
+        <form onSubmit={addList}>
         <input type="text" placeholder="Introduzca el titulo de la lista..." required name="title" />
         <button type="submit" className='addList'>Añadir lista </button>
         <button className='close' onClick={add}>&#x2715;</button>

@@ -1,22 +1,19 @@
 import React from 'react'
 import imagenPerfil from '../../img/imagenPerfil.png'
 import { NavPerfil } from './NavPerfil'
+import { useParams } from 'react-router-dom'
 
 export const Perfil = () => {
 
-
+    const {userId} = useParams();
     const infPersonal = "Esta es una cuenta de Atlassian. Edite su información personal y los ajustes de visibilidad en su Perfil de Atlassian.Para obtener más información, consulte nuestras Condiciones del Servicio o nuestra Política de Privacidad"
-
+    console.log(userId);
     const updateInfo = e => {
-
         e.preventDefault();
-
         let info = {
             userName: e.target.full_name.value,
             userBio: e.target.bio.value
         }
-
-
         let Metadatos = {
             method: 'POST',
             body: JSON.stringify(info),
