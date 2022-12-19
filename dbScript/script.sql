@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS workspaces(
 
 CREATE TABLE IF NOT EXISTS boards(
         id INT AUTO_INCREMENT,
-        name_ VARCHAR(100) NOT NULL, 
+        name_ VARCHAR(100) NOT NULL,
+        last_access DATETIME NOT NULL,
         visibility VARCHAR(50) NOT NULL, 
         configuration TEXT,
         fk_id_workspace INT,
