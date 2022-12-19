@@ -23,38 +23,45 @@ const User_cardModel = require("../models/users_cards.model");
 
 const notif = {
     mail: async (req, operation, element, elementData, con) => {
+        console.log({operation, element, elementData})
         const user_id_from = user.getIdFromCookie(req);
         const userM = await Users.create(con)
         const userf = await userM.findOne({ attributes: ["full_name"] }, { where: { id: user_id_from } })
         const user_name_from = userf.dataValues.full_name;
-        var element_name, into, users_to;
+        var element_name, element_id, into_name, into_id, into_type, users_to;
+        element_id = elementData.id
         if (element == "lista") {
             const boardM = await BoardsModel.create(con)
             const board = await boardM.findOne({ where: { id: elementData.fk_id_board } })
             element_name = elementData.name_
-            into = board.dataValues.name_
+            into_name = board.dataValues.name_
+            into_id = board.dataValues.id
+            into_type = "board"
             users_to = await user_board.getUsersWithNotifTrue(elementData.fk_id_board)
-        }
-        if (element == "tablero") {
+        } else if (element == "tablero") {
             const workspaceM = await WorkspacesModel.create(con)
             const workspace = await workspaceM.findOne({ where: { id: elementData.fk_id_workspace } })
-            into = workspace.dataValues.name_
+            into_name = workspace.dataValues.name_
+            into_id = workspace.dataValues.id
+            into_type = "workspace"
             element_name = elementData.name_
-
             users_to = await userWorkspace.getUsers_WorkspaceWithNotifTrue(elementData.fk_id_workspace)
-        }
-        if (element == "tarjeta") {
+            
+        } else if (element == "tarjeta") {
             const listM = await ListsModel.create(con)
             const list = await listM.findOne({ where: { id: elementData.fk_id_list } })
-            into = list.dataValues.title
+            into_name =list.dataValues.name_
+            into_id =list.dataValues.id
+            into_type = "list"
             element_name = elementData.title
             users_to = await user_card.getUsersWithNotifTrue(elementData.fk_id_card)
         }
         users_to.forEach(user => {
-            sendemail.notification(user.email, user_name_from, operation, element, element_name, into)
+            sendemail.notification(user.email, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type)
         });
     },
     addUserMail: async (req, operation, element, elementData, id_user_to, con) => {
+        console.log({operation, element, elementData})
         const user_id_from = user.getIdFromCookie(req);
         const userM = await Users.create(con)
         const userf = await userM.findOne({ attributes: ["full_name"] }, { where: { id: user_id_from } })
