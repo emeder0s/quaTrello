@@ -117,21 +117,25 @@ const user = {
       const usr = await Users.create(con);
       const { email, pass } = req.body;
       const user = await usr.findOne({ where: { email } });
-      if (user) {
+           if (user) {
         let hashSaved = user.dataValues.pass;
         let compare = bcyptjs.compareSync(pass, hashSaved);
         const infoJwt = jwt.sign({ email, "id": user.dataValues.id, "full_name":user.dataValues.full_name }, "m1c4s4");
         if (compare) {
+          
           res.cookie("session", infoJwt)
           res.json({ validation: true, "jwt": infoJwt, user:user.dataValues });
         } else {
+          
           res.json({ validation: false, "jwt": "" });
         }
       } else {
+     
         res.json("no existe el usuario");
       }
     } catch (error) {
       res.json(error)
+   
     } finally {
       await conexion.cerrar(con);
     }

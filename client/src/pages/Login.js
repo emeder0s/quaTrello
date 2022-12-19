@@ -14,12 +14,12 @@ export const Login = () => {
             email: e.target.email.value,
             pass: e.target.pass.value
         };
+
         await defaultFetch("http://localhost:5000/login", "POST", user).then((res) => {
             (res) ? cookies.set('session', res.jwt, { path: '/' }) : console.log("No hay respuesta");
             localStorage.setItem("user", JSON.stringify(res.user));
-            navigate("/home")
+            navigate("/home");
         });
-        
     }
     return (
         <div>

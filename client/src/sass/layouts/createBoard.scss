@@ -1,25 +1,20 @@
-nav {
-    display: none !important;
-}
-
-h3 {
+.create-board h3 {
     text-align: center;
     font-weight: 300;
     font-size: 14px;
     width: 98%;
-    color: #5e6c84;
 }
 
-h4 {
+.create-board h4 {
     margin: 10px 0;
     font-size: 12px;
+    color: #5e6c84
 }
 
 .create-board {
     width: 320px;
-    padding: 0 2%;
+    padding: 0 2% 0 4%;
     height: auto;
-    color:#5e6c84;
 }
 
 .create-board header {
@@ -29,47 +24,48 @@ h4 {
     margin: 0;
 }
 
-.close {
+.create-board .close {
     position: absolute;
     right: 11px;
     padding: 1px 4px;
 }
 
-hr {
+.create-board hr {
     width: 90%;
     margin: 0 auto;
 }
 
-.chooseBG,
-.submit {
+.create-board .chooseBG,
+.create-board .submit {
     margin: 25px 0;
 }
 
-.board-bg {
+.create-board .board-bg {
     width: 200px;
     height: 120px;
+    background-color: darkslategray;
     display: flex;
     justify-content: center;
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
     border: none;
     border-radius: 3px;
 }
-.board-bg img {
+.create-board .board-bg img {
     width: 180px;
     height: 120px
 }
-button.image {
+.create-board button.image {
     background-size: cover;
 }
-ul.images,
-ul.colors {
+.create-board ul.images,
+.create-board ul.colors {
     display: flex;
     justify-content: space-between;
     list-style: none;
     margin: 18px;
 }
 
-ul.images button {
+.create-board ul.images button {
     width: 64px;
     height: 40px;
     background-color: mediumorchid;
@@ -77,54 +73,57 @@ ul.images button {
     border-radius: 3px;
 }
 
-ul.colors button {
+.create-board ul.colors button {
     width: 40px;
     height: 32px;
     border: none;
     border-radius: 3px;
 }
 
-.chooseBG {
+.create-board .chooseBG {
     display: flex;
     justify-content: center;
 }
 
-input,
-select,
-button.submit {
+.create-board input,
+.create-board select,
+.create-board button.submit {
     border: 1px solid #5e6c8454;
+    border-radius: 3px;
     padding: 10px;
     border-radius: 3px;
 }
-button.close {
+
+.create-board input.title {
+    width: 90%;
+}
+    
+.create-board button.close {
     background-color: white;
     border: none;
 }
-.create-board input {
+
+.create-board .create-board input {
     width: 93%;
     font-size: 16px;
 }
 
-.create-board select.user-workspaces, .create-board select.visibility,
+.create-board select.actualWorkSpaces,
 button.submit {
-    width: 100%;
+    width: 97%;
 }
-.create-board button.submit:enabled {
-    background-color: #0079bf;
-    color: #fff;
-}
-.c1 {
+.create-board .c1 {
     background-color: #0079bf;
 }
-.c2 {
+.create-board .c2 {
     background-color: #d29034;
 }
-.c3 {
+.create-board .c3 {
     background-color: #519839;
 }
-.c4 {
+.create-board .c4 {
     background-color: #b04632;
 }
-.c5 {
+.create-board .c5 {
     background-color: #89609e;
 }

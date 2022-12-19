@@ -101,6 +101,16 @@
   width: 90%;
 }
 
+.create-board button.close {
+  background-color: white;
+  border: none;
+}
+
+.create-board .create-board input {
+  width: 93%;
+  font-size: 16px;
+}
+
 .create-board select.actualWorkSpaces,
 button.submit {
   width: 97%;
