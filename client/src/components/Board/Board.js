@@ -10,7 +10,7 @@ import { defaultFetch } from '../../helpers/defaultFetch'
 
 const Board = () => {
   const { board } = useParams();
-  const [currentBoard, serCurrentBoard] = useState([]);
+  const [currentBoard, setCurrentBoard] = useState([]);
   const [userLists, setUserLists] = useState([]);
   const [newCardTitle, setNewCardTitle] = useState([]);
   const [newList, setNewList] = useState("");
@@ -20,7 +20,7 @@ const Board = () => {
     //Info del tablero - para colores, etc.
     fetch(`/show-board/${board}`).then((res) => res.json())
       .then((res) => {
-        serCurrentBoard(res);
+        setCurrentBoard(res);
       })
 
     //Listas y sus tarjetas

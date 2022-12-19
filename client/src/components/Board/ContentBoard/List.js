@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react'
 import { FiMoreHorizontal } from "react-icons/fi";
 import { BoardContext } from '../../../providers/boardProvider';
+import { CardEdit } from './CardEdit';
 
 export const List = ({ title, cards, listId }) => {
     const [showInput2, setShowInput2] = useState(false);
+    const [showCardEdit, setShowCardEdit] = useState(false);
     const { setNewCardTitle, setCurrentListId } = useContext(BoardContext)
+    const [currentCard, setCurrentcard] = useState({})
     const add = () => {
         setShowInput2(!showInput2);
     }
@@ -14,6 +17,12 @@ export const List = ({ title, cards, listId }) => {
         setCurrentListId(e.target.title.id)
         let newCard = { title: e.target.title.value, fk_id_list: e.target.title.id}
         setNewCardTitle(newCard)
+        setShowInput2(!showInput2);
+    }
+
+    const cardEdit = (e) => {
+        setCurrentcard(e.target.id)
+        setShowCardEdit(!showCardEdit)
     }
 
     if (showInput2) {
@@ -24,7 +33,7 @@ export const List = ({ title, cards, listId }) => {
                     <button className='btnMenuList'><FiMoreHorizontal /></button>
                 </div>
                 {cards.length!==0 ? cards.map((card, i) => (
-                <div className='cardTitle' key={i} id={card.id} ><p key={card.title}>{card.title}</p>
+                <div className='cardTitle' key={i} id={card.id} onClick={()=>cardEdit(card)}><p key={card.title}>{card.title}</p>
                 <button className='btnMenuCard' >&#x270E;</button></div>
             ))               
                  : console.log("no tiene tarjetas")}
@@ -37,18 +46,27 @@ export const List = ({ title, cards, listId }) => {
         )
     }
     return (
+        <>
+        
+        {(showCardEdit)?
+        <div className='cardEdit'>
+            <CardEdit setShowCardEdit={setShowCardEdit} showCardEdit={showCardEdit} currentCard={currentCard}/>
+            </div>
+        :console.log("No entra")}
+        
         <div className='list' key={title}>
             <div className='listTitle'>
                 <h6>{title}</h6>
                 <button className='btnMenuList'><FiMoreHorizontal /></button>
             </div>
             {cards.length!==0 ? cards.map((card, i) => (
-                <div className='cardTitle' key={(i)} id={card.id} ><p key={card.title}>{card.title}</p>
+                <div className='cardTitle' key={(i)} id={card.id} onClick={cardEdit}><p key={card.title}>{card.title}</p>
                 <button className='btnMenuCard' >&#x270E;</button></div>
             ))               
                  : console.log("no tiene tarjetas")}
             <button type="submit" className='addCard' onClick={add}>&#10010; Añada una tarjeta</button>
         </div>
+        </>
     )
 
 }
