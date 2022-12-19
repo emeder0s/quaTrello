@@ -28,7 +28,6 @@ export const Rutas = () => {
                 <Route path="/account-verify/:token" element={<AcountVeryfy />} />
 
                 <Route path="/boards" element={<Boards />} />
-
                 {/* Rutas del perfil del usuario */}
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/perfil/actividad" element={<Actividad />} />

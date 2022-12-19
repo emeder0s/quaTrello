@@ -3,19 +3,18 @@
     font-weight: 300;
     font-size: 14px;
     width: 98%;
-    color: #5e6c84;
 }
 
 .create-board h4 {
     margin: 10px 0;
     font-size: 12px;
+    color: #5e6c84
 }
 
 .create-board {
     width: 320px;
-    padding: 0 2%;
+    padding: 0 2% 0 4%;
     height: auto;
-    color:#5e6c84;
 }
 
 .create-board header {
@@ -44,6 +43,7 @@
 .create-board .board-bg {
     width: 200px;
     height: 120px;
+    background-color: darkslategray;
     display: flex;
     justify-content: center;
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
@@ -89,25 +89,27 @@
 .create-board select,
 .create-board button.submit {
     border: 1px solid #5e6c8454;
+    border-radius: 3px;
     padding: 10px;
     border-radius: 3px;
 }
+
+.create-board input.title {
+    width: 90%;
+    
 .create-board button.close {
     background-color: white;
     border: none;
 }
+
 .create-board .create-board input {
     width: 93%;
     font-size: 16px;
 }
 
-.create-board select.user-workspaces, .create-board select.visibility,
+.create-board select.actualWorkSpaces,
 button.submit {
-    width: 100%;
-}
-.create-board button.submit:enabled {
-    background-color: #0079bf;
-    color: #fff;
+    width: 97%;
 }
 .create-board .c1 {
     background-color: #0079bf;
