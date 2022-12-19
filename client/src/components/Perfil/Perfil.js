@@ -1,39 +1,34 @@
-import React from 'react'
 import imagenPerfil from '../../img/imagenPerfil.png'
 import { NavPerfil } from './NavPerfil'
 import { useParams } from 'react-router-dom'
 
-export const Perfil = () => {
+import { defaultFetch } from '../../helpers/defaultFetch';
 
-    const {userId} = useParams();
+export const Perfil = () => {
+    var userPerfil = JSON.parse(localStorage.getItem("user"))
+
     const infPersonal = "Esta es una cuenta de Atlassian. Edite su información personal y los ajustes de visibilidad en su Perfil de Atlassian.Para obtener más información, consulte nuestras Condiciones del Servicio o nuestra Política de Privacidad"
-    console.log(userId);
-    const updateInfo = e => {
+
+    const updateInfo = async e => {
+
         e.preventDefault();
         let info = {
-            userName: e.target.full_name.value,
-            userBio: e.target.bio.value
+            full_name: e.target.full_name.value,
+            bio: e.target.bio.value
         }
-        let Metadatos = {
-            method: 'POST',
-            body: JSON.stringify(info),
-            mode: "cors",
-            headers: {
-                "Access-Control-Allow-Origin": "*",
-                "Content-type": "application/json",
-            },
-        };
 
-        fetch("http://localhost:5000/update-user", Metadatos)
-            .then((res) => console.log(res))
-
-
-    }
-
+        defaultFetch("/update-user", "POST", info)
+        .then((res) => res.json)
+        .then((res) => {
+           localStorage.setItem("user",JSON.stringify(info))
+        });
+        }
+            
 
     return (
 
         <div className='info'>
+
             <NavPerfil />
 
             <img src={imagenPerfil} className="imgPerfil" />
@@ -46,17 +41,20 @@ export const Perfil = () => {
 
             <hr className='hr' />
 
+
             <form onSubmit={updateInfo} className='formInfo'>
 
                 <p className='pName'>Nombre de usuario</p>
 
-                <input type="text" name='full_name' className='userName' />
+                <input name='full_name' className='userNamePerfil' defaultValue={userPerfil.full_name}></input>
+
                 <p className='pBio'>Biografía</p>
 
-                <textarea cols="50" rows="10" className='bio' name='bio'></textarea>
+                <textarea cols="50" rows="7" className='bio' name='bio' defaultValue={userPerfil.bio}></textarea>
+
                 <br />
 
-                <input type="submit" className="btnInfo" guardar />
+                <input type="submit" className="btnInfo" />
 
             </form>
 
