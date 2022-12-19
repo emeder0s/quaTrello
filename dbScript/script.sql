@@ -71,6 +71,7 @@ CREATE TABLE IF NOT EXISTS messages(
         id INT AUTO_INCREMENT,
         date_ DATETIME DEFAULT now(),
         text_ TEXT NOT NULL,
+        user_name VARCHAR(50),
         fk_id_board INT,
         fk_id_user INT,
         PRIMARY KEY(id),
