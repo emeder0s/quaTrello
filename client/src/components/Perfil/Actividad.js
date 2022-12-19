@@ -1,17 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavPerfil } from './NavPerfil'
 import { useEffect } from 'react'
-import { getFetch } from '../../helpers/defaultFetch'
+
+
 
 
 export const Actividad = () => {
 
-    const [workSpacesUser, setworkSpacesUser] = ([])
-
+    const [workSpacesUser, setworkSpacesUser] = useState ([])
+    
 
     useEffect(() => {
 
-        getFetch("/show-workspace/:id")
+        fetch("http://localhost:5000/show-workspace/{:id")
             .then((res) => res.json())
             .then(spaceUser => setworkSpacesUser(spaceUser))
 

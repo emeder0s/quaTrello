@@ -8,16 +8,16 @@ import { Tarjetas } from '../components/Perfil/Tarjetas'
 import { Configuración } from '../components/Perfil/Configuracion'
 import Home from '../components/Tableros/Home'
 import { Boards } from '../components/Boards/Boards'
-import {CreateBoard} from '../components/Boards/CreateBoard'
+import { CreateBoard } from '../components/Boards/CreateBoard'
 import { Registro } from '../pages/Registro'
 import { Login } from '../pages/Login'
 import { AcountVeryfy } from '../pages/AcountVeryfy'
 import Board from '../components/Board/Board'
-import {Pruebinchi} from '../pages/Pruebinchi'
+import { Pruebinchi } from '../pages/Pruebinchi'
 
 export const Rutas = () => {
     return (
-        <BrowserRouter>
+        
             <div>
                 <Routes>
                     {/* Inicio y registro */}
@@ -26,15 +26,15 @@ export const Rutas = () => {
                     <Route path="/registro" element={<Registro />} />
 
                     <Route path="/login" element={<Login />} />
-                    <Route path="/account-verify/:token" element={<AcountVeryfy />}/>
-                    
+                    <Route path="/account-verify/:token" element={<AcountVeryfy />} />
+
                     <Route path="/boards" element={<Boards />} />
-                    
+
                     {/* Rutas del perfil del usuario */}
-                    <Route path="/perfil" element={<Perfil />} />
-                    <Route path="/perfil/actividad" element={<Actividad />} />
-                    <Route path="/perfil/tarjetas" element={<Tarjetas />} />
-                    <Route path="/perfil/configuracion" element={<Configuración />} />
+                    <Route path="/perfil/:userId" element={<Perfil />} />
+                    <Route path="/perfil/:userId/actividad" element={<Actividad />} />
+                    <Route path="/perfil/:userId/tarjetas" element={<Tarjetas />} />
+                    <Route path="/perfil/:userId/configuracion" element={<Configuración />} />
 
                     {/* Board */}
                     <Route path="/board/:board" element={<Board />} />
@@ -45,7 +45,6 @@ export const Rutas = () => {
                     <Route path="/pruebinchi" element={<Pruebinchi />} />
                 </Routes>
             </div>
-        </BrowserRouter>
 
     )
 }
