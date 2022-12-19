@@ -1,9 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { BoardContext } from '../../../providers/boardProvider';
+import { useParams } from 'react-router-dom'
 
 export const AddList = () => {
   const {setNewList} = useContext(BoardContext);
   const [showInput, setShowInput] = useState(false);
+  const { board } = useParams();
   const add = () => {
     setShowInput(!showInput);
   }
@@ -13,7 +15,7 @@ export const AddList = () => {
     
     let title = {
       name_: e.target.title.value,
-      fk_id_board: 1}
+      fk_id_board: board}
     
       setShowInput(!showInput)
       setNewList(title)

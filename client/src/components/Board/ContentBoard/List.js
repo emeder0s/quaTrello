@@ -11,7 +11,6 @@ export const List = ({ title, cards, listId }) => {
 
     const addCard = e => {
         e.preventDefault();
-    
         setCurrentListId(e.target.title.id)
         let newCard = { title: e.target.title.value, fk_id_list: e.target.title.id}
         setNewCardTitle(newCard)

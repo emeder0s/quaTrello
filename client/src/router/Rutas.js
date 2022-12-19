@@ -17,7 +17,7 @@ import {Pruebinchi} from '../pages/Pruebinchi'
 
 export const Rutas = () => {
     return (
-        <BrowserRouter>
+       
             <div>
                 <Routes>
                     {/* Inicio y registro */}
@@ -45,7 +45,7 @@ export const Rutas = () => {
                     <Route path="/pruebinchi" element={<Pruebinchi />} />
                 </Routes>
             </div>
-        </BrowserRouter>
+    
 
     )
 }
