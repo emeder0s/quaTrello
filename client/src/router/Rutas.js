@@ -31,10 +31,10 @@ export const Rutas = () => {
                     <Route path="/boards" element={<Boards />} />
                     
                     {/* Rutas del perfil del usuario */}
-                    <Route path="/perfil/:userId" element={<Perfil />} />
-                    <Route path="/perfil/:userId/actividad" element={<Actividad />} />
-                    <Route path="/perfil/:userId/tarjetas" element={<Tarjetas />} />
-                    <Route path="/perfil/:userId/configuracion" element={<Configuración />} />
+                    <Route path="/perfil/" element={<Perfil />} />
+                    <Route path="/perfil/actividad" element={<Actividad />} />
+                    <Route path="/perfil/tarjetas" element={<Tarjetas />} />
+                    <Route path="/perfil/configuracion" element={<Configuración />} />
 
                     {/* Board */}
                     <Route path="/board/:board" element={<Board />} />
