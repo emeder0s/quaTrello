@@ -9,7 +9,7 @@
   color: #172B4D;
 }
 
-.addWorkSpaceModal {
+.modalLayer .addWorkSpaceModal {
   display: flex;
   position: absolute;
   background-color: white;
@@ -21,10 +21,9 @@
   margin-right: 2%;
   border-radius: 5px;
   overflow: hidden;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.addWorkSpaceForm {
+.modalLayer .addWorkSpaceForm {
   display: flex;
   flex-flow: column wrap;
   width: 50%;
@@ -32,26 +31,42 @@
   margin-bottom: 30px;
 }
 
-.addWorkSpaceDeco {
+.modalLayer .addWorkSpaceDeco {
   display: flex;
   flex-flow: column wrap;
   width: 50%;
   background-color: #E4F7FA;
 }
 
-.addWorkSpaceModal form {
+.modalLayer .addWorkSpaceModal form {
   display: flex;
   flex-flow: column wrap;
   padding: 10px 70px;
 }
 
-.addWorkSpaceModal h2 {
+.modalLayer .addWorkSpaceModal label {
+  margin-bottom: 3px;
+}
+
+.modalLayer .addWorkSpaceModal input,
+.modalLayer .addWorkSpaceModal select,
+.modalLayer .addWorkSpaceModal textarea {
+  margin-bottom: 12px;
+  padding: 4px 8px;
+}
+
+.modalLayer .addWorkSpaceModal input::placeholder,
+.modalLayer .addWorkSpaceModal textarea::placeholder {
+  color: rgba(23, 43, 77, 0.6235294118);
+}
+
+.modalLayer .addWorkSpaceModal h2 {
   margin-bottom: 20px;
   font-weight: 500;
   font-size: 23px;
 }
 
-.addWorkSpaceModal h4 {
+.modalLayer .addWorkSpaceModal h4 {
   margin-bottom: 30px;
   color: #6B778C;
   text-align: justify;
@@ -59,7 +74,7 @@
   font-weight: 500;
 }
 
-.closeWorkSpaceModal {
+.modalLayer .closeWorkSpaceModal {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -74,6 +89,14 @@
   background-color: transparent;
   border: 0px;
   cursor: pointer;
+}
+
+.modalLayer .addWorkSpaceModal input[type=submit]:enabled {
+  background-color: #0079BF;
+  color: white;
+  padding: 16px;
+  border: 0px;
+  border-radius: 3px;
 }
 
 /*# sourceMappingURL=addWorkSpace.css.map */
