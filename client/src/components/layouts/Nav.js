@@ -10,6 +10,7 @@ import { DropdownCrear } from './nav/DropdownCrear';
 import { DropdownBuscar } from './nav/DropdownBuscar';
 import { DropdownNotoficaciones } from './nav/DropdownNotoficaciones';
 import { DropdownUser } from './nav/DropdownUser';
+import { NavLink } from 'react-router-dom';
 export const Nav = () => {
 
 
@@ -43,8 +44,8 @@ export const Nav = () => {
     <div>
       <nav className='nav-user'>
         <div>
-          <button className='logo menu'><img className='nav-logo' src={require('./quaTrello_logo.png')} alt="quaTrello logo" />
-            quaTrello</button>
+          <NavLink to='/home' className='logo menu'><img className='nav-logo' src={require('./quaTrello_logo.png')} alt="quaTrello logo" />
+            quaTrello</NavLink>
           <button className='menu' onClick={menu1}>Espacios de trabajo <FiChevronDown /></button>
           {dropdown==="menu1" && <DropdownEspacios />}
           <button className='menu' onClick={menu2}>Reciente <FiChevronDown /></button>

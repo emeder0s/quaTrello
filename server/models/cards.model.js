@@ -12,7 +12,7 @@ CardsModel = {
                 type: DataTypes.STRING,
                 allowNull: false
             },
-            description: {
+            description_: {
                 type: DataTypes.STRING,
                 allowNull: true
             },

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import boardPreview from '../../img/board-pw.svg';
+import boardPreview from '../../../img/board-pw.svg';
 import { Popover } from "@mui/material"
 import Select from "react-select"
+import { useSelector } from 'react-redux'
 
 export const CreateBoard = () => {
     const [data, setData] = useState(null);
@@ -14,28 +15,9 @@ export const CreateBoard = () => {
     const [visibility, setVisibility] = useState('Workspace');
     const [workspace, setWorkspace] = useState('');
 
-    useEffect(() => {
-        fetch(`https://api.unsplash.com/photos/random?client_id=JMjfYjVegEZWmnba38YxaDVZaPQx4fH75Dnxq3mUN1E&count=4`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(
-                        `This is an HTTP error: The status is ${response.status}`
-                    );
-                }
-                return response.json();
-            })
-            .then((actualData) => {
-                setData(actualData);
-                setError(null);
-            })
-            .catch((err) => {
-                setError(err.message);
-                setData(null);
-            })
-            .finally(() => {
-                return data && data.length ? setBackground(data[0].urls.thumb) : "";
-            });
-    }, []);
+    
+    const backgroundIMG = useSelector(state => state.boardBackground.backgrounds)
+
     const changeColor = (color) => {
         setColor(color);
         setBackground('');
@@ -80,7 +62,7 @@ export const CreateBoard = () => {
         <section className="create-board">
             <header>
                 <h3>Create board</h3>
-                <button className="close">x</button>
+                <button className="close" onClick={e=>{}}>x</button>
             </header>
             <hr></hr>
             <div className="chooseBG">
@@ -89,12 +71,12 @@ export const CreateBoard = () => {
             </div>
             <h4>Background</h4>
             <form onSubmit={handleSubmit}>
-                {data && data.length > 0 &&
+                {backgroundIMG && backgroundIMG.length > 0 &&
                     <ul className="images" >
-                        <li><button type="button" className="image #1" onClick={() => changeBg(data[0].urls.thumb)} style={{ backgroundImage: `url(${data[0].urls.thumb})` }}></button></li>
-                        <li><button type="button" className="image #2" onClick={() => changeBg(data[1].urls.thumb)} style={{ backgroundImage: `url(${data[1].urls.thumb})` }}></button></li>
-                        <li><button type="button" className="image #3" onClick={() => changeBg(data[2].urls.thumb)} style={{ backgroundImage: `url(${data[2].urls.thumb})` }}></button></li>
-                        <li><button type="button" className="image #4" onClick={() => changeBg(data[3].urls.thumb)} style={{ backgroundImage: `url(${data[3].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #1" onClick={() => changeBg(backgroundIMG[0].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[0].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #2" onClick={() => changeBg(backgroundIMG[1].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[1].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #3" onClick={() => changeBg(backgroundIMG[2].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[2].urls.thumb})` }}></button></li>
+                        <li><button type="button" className="image #4" onClick={() => changeBg(backgroundIMG[3].urls.thumb)} style={{ backgroundImage: `url(${backgroundIMG[3].urls.thumb})` }}></button></li>
                     </ul>}
                 <ul className="colors">
                     <li><button type="button" onClick={() => changeColor('#0079bf')} className="c1"></button></li>
@@ -116,7 +98,7 @@ export const CreateBoard = () => {
                     options={boardVisibility}
                     onChange={handleVisibility} />
                 <div>
-                    <button disabled={disable} className="submit" type="submit">Create</button>
+                    <button disabled className="submit" type="submit">Create</button>
                 </div>
             </form>
         </section>
