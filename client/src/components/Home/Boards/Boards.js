@@ -3,10 +3,13 @@ import { Popover } from "@mui/material"
 import { CreateBoard } from './CreateBoard';
 import user from "./userData.json"
 import {AiOutlineClockCircle} from 'react-icons/ai'
+import { useSelector } from 'react-redux';
 
 export const Boards = () => {
     const [anchor, setAnchor] = useState(null);
-    let workSpaces = Object.values(user)[2]
+
+    const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
+
     const openPopover = (e) => {
         setAnchor(e.currentTarget)
     }
@@ -14,16 +17,27 @@ export const Boards = () => {
         <div className="boards-container">
             <div className='recent'>
                 <h2><span><AiOutlineClockCircle/></span><span>Visto Recientemente</span></h2>
+                {reduxWorkspaces
+                    ? reduxWorkspaces.map((element, i) => (
+                        <div key={i} className='workspace'>
+                            <h3>{element.name_}</h3>
+                            <div className='boards'>
+                                {element.boards ? Object.values(element.boards).map((board, k) => (
+                                    <div key={k} className='box'>{board.name_}</div>
+                                )) : ""}
+                            </div>
+                        </div>
+                    )) : ""}
             </div>
             <div className='userWorkspaces'>
                 <h2>YOUR WORKSPACES</h2>
-                {workSpaces
-                    ? workSpaces.map((element, i) => (
+                {reduxWorkspaces
+                    ? reduxWorkspaces.map((element, i) => (
                         <div key={i} className='workspace'>
-                            <h3>{element.ws_name}</h3>
+                            <h3>{element.name_}</h3>
                             <div className='boards'>
                                 {element.boards ? Object.values(element.boards).map((board, k) => (
-                                    <div key={k} className='box'>{board.name}</div>
+                                    <div key={k} className='box'>{board.name_}</div>
                                 )) : ""}
                                 <button type="button" onClick={openPopover} className='add box'>Create new board</button>
                                 <Popover
@@ -38,6 +52,7 @@ export const Boards = () => {
                                         horizontal: "left"
                                     }}
                                     onClose={() => setAnchor(null)}
+                
                                 >
                                     <CreateBoard />
                                 </Popover>

@@ -1,41 +1,63 @@
 import React, { useEffect, useState } from "react";
 import boardPreview from '../../../img/board-pw.svg';
-import { Popover } from "@mui/material"
 import Select from "react-select"
 import { useSelector } from 'react-redux'
+import { defaultFetch } from '../../../helpers/defaultFetch';
+import { Navigate } from 'react-router-dom';
 
 export const CreateBoard = () => {
     const [data, setData] = useState(null);
     const [title, setTitle] = useState(null)
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [color, setColor] = useState('');
-    const [background, setBackground] = useState('')
+    const [color, setColor] = useState('rgb(0 121 191)');
+    const [background, setBackground] = useState(null)
     const [disable, setDisable] = useState('true');
     const [visibility, setVisibility] = useState('Workspace');
-    // const [workspace, setWorkspace] = useState('');
-
+    const [workspace, setWorkspace] = useState('');
+    const [navigate, setNavigate] = useState(false);
+    const [toBoard, setToBoard] = useState('');
+    
+    // Constantes alamacenaadas en el store
     const backgroundIMG = useSelector(state => state.boardBackground.backgrounds)
-
+    const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
+   
     const changeColor = (color) => {
         setColor(color);
-        setBackground('');
+        setBackground(null);
     }
     const changeBg = (bg) => {
         setBackground(bg);
-        setColor('');
+        setColor(null);
     }
     useEffect(() => {
-    }, [color, title, background, disable, visibility])
-    const workspacesFromUser = [
-        { label: 'Workspace 1', value: 'Workspace 1' }, { label: 'Workspace 2', value: 'Workspace 2' }, { label: 'Workspace 3', value: 'Workspace 3' }
-    ];
+        setWorkspace(workspacesFromUser[0].value)
+    }, [color, title, background, disable, visibility, workspace])
+    const workspacesFromUser = reduxWorkspaces.map(e => {
+        const selectores = { 'label': e.name_, 'value': e.name_ };
+        return selectores;
+    })
     const boardVisibility = [
         { label: 'Private', value: 'Private' }, { label: 'Workspace', value: 'Workspace' }, { label: 'Public', value: 'Public' }
     ];
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        let user = JSON.parse(localStorage.getItem("user"))
+        let info = {
+            name_: title,
+            visibility: visibility,
+            configuration: `{${background}, ${color}}`,
+            fk_id_workspace: user.id
+        }
+        defaultFetch("/insert-board", "POST", info)
+            .then((res) => {
+                let link = res.id
+                setToBoard(`/board/${link}`)
+                setNavigate(true)
+            });
     }
+
     const handleInputChange = (event) => {
         if (event.target.value) {
             setTitle(event.target.value)
@@ -47,16 +69,18 @@ export const CreateBoard = () => {
     const handleVisibility = ({ value }) => {
         setVisibility(value)
     }
-
+    const handleWorkspaces = ({ value }) => {
+        setWorkspace(value)
+    }
     return (
         <section className="create-board">
             <header>
                 <h3>Create board</h3>
-                <button className="close" onClick={e=>{}}>x</button>
+                <button className="close" >x</button>
             </header>
             <hr></hr>
             <div className="chooseBG">
-                <div className="board-bg" style={background ? { backgroundImage: `url(${background})` } : { backgroundColor: color }}><img src={boardPreview}></img></div>
+                <div className="board-bg" style={ background ? { backgroundImage: `url(${background})` } :{ backgroundColor: color } }><img src={boardPreview}></img></div>
 
             </div>
             <h4>Background</h4>
@@ -79,8 +103,9 @@ export const CreateBoard = () => {
                 <input required onChange={handleInputChange} className="title" type="text" />
                 <label><h4>Workspaces</h4></label>
                 <Select className="user-workspaces"
-                    defaultValue={{ label: 'Workspace 1', value: 'Workspace 1' }}
+                    defaultValue={{ label: workspacesFromUser[0].label, value: workspacesFromUser[0].value }}
                     options={workspacesFromUser}
+                    onChange={handleWorkspaces}
                 />
                 <label><h4>Visibility</h4></label>
                 <Select className="visibility"
@@ -88,9 +113,11 @@ export const CreateBoard = () => {
                     options={boardVisibility}
                     onChange={handleVisibility} />
                 <div>
-                    <button disabled ={disable} className="submit" type="submit">Create</button>
+                    <button disabled={disable} className="submit" type="submit">Create</button>
                 </div>
             </form>
+            {navigate && (<Navigate to={toBoard} replace={true} />
+      )}
         </section>
     );
 }
