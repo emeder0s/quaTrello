@@ -1,18 +1,19 @@
 import React from 'react'
-
+import { NavLink, Routes, Route, BrowserRouter, Link } from 'react-router-dom'
 export const DropdownUser = () => {
+
+  //Bajamos nombre usuario del LocalStorage
+  var user = JSON.parse(localStorage.getItem('user'))
+  console.log(user.full_name)
+
   return (
-    <div className='dropdown8'>
-    <h6 className='title'>Usuario</h6>
-    <p className='espacio'>Perfil</p>
-    <hr/>
-    <h6 className='title'>Espacios de trabajo</h6>
-    <p className='espacio'>Mi espacio 2</p>
-    <hr/>
-    <h6 className='title'>Tableros</h6>
-    <p className='espacio'>Mi tablero 1</p>
-    <p className='espacio'>Mi tablero 2</p>
-    </div>
+      <div className='dropdown8'>
+        <h6 className='title'>{user.full_name}</h6>
+        <hr />
+        <p><NavLink to="/perfil">Perfil y visibilidad</NavLink></p>
+        <p><NavLink to="/perfil/actividad"  >Actividad</NavLink></p>
+        <p><NavLink to="/perfil/tarjetas">Tarjetas</NavLink></p>
+        <p><NavLink to="/perfil/configuracion">Configuración</NavLink></p>
+      </div>
   )
 }
-

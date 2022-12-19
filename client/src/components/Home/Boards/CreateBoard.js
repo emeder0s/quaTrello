@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import boardPreview from '../img/board-pw.svg';
+import boardPreview from '../../../img/board-pw.svg';
 import { Popover } from "@mui/material"
 import Select from "react-select"
 import { useSelector } from 'react-redux'
@@ -47,8 +47,7 @@ export const CreateBoard = () => {
     const handleVisibility = ({ value }) => {
         setVisibility(value)
     }
-    
-    
+
     return (
         <section className="create-board">
             <header>

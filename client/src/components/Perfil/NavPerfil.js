@@ -7,7 +7,7 @@ export const NavPerfil = () => {
 
         <nav className="navPerfil">
             <ul className="ulPerfil">
-                <li className="liPerfil"><NavLink to="/perfil">Perfil y visibilidad</NavLink></li>
+                <li className="liPerfil"><NavLink to="/perfil/">Perfil y visibilidad</NavLink></li>
                 <li className="liPerfil"><NavLink to="/perfil/actividad" >Actividad</NavLink></li>
                 <li className="liPerfil"><NavLink to="/perfil/tarjetas">Tarjetas</NavLink></li>
                 <li className="liPerfil"><NavLink to="/perfil/configuracion">Configuración</NavLink></li>
