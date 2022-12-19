@@ -71,7 +71,7 @@
   background-color: #0075b9;
   width: 200px;
   margin: 10px;
-  background: #fff;
+  background-color: #00d1f6;
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
@@ -101,7 +101,22 @@
   box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
   transition: all 500ms ease;
   position: relative;
-  margin-top: 100px;
+  margin-top: 14px;
+  background-color: white;
+  border-radius: 5px;
+  color: #172B4D;
+  padding: 20px;
+}
+
+.modalChat {
+  width: 750px;
+  height: 650px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
+  transition: all 500ms ease;
+  position: relative;
+  margin-top: 14px;
   background-color: white;
   border-radius: 5px;
   color: #172B4D;

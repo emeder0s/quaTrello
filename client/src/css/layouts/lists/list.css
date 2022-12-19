@@ -1,13 +1,13 @@
 .list-container {
   display: flex;
   flex-direction: column;
+  overflow-x: scroll;
 }
 
 .lists-container {
   display: flex;
   flex-direction: row;
   margin-left: 20px;
-  overflow-x: scroll;
   min-height: 95%;
 }
 
