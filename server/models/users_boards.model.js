@@ -12,6 +12,10 @@ Users_boardsModel = {
                 type: DataTypes.STRING,
                 allowNull: false
             },
+            notifications: {
+                type: DataTypes.BOOLEAN,
+                allowNull: true
+            },
             fk_id_board: {
                 type: DataTypes.INTEGER,
                 allowNull: true

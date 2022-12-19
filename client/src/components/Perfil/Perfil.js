@@ -1,34 +1,27 @@
 import imagenPerfil from '../../img/imagenPerfil.png'
 import { NavPerfil } from './NavPerfil'
+import { useParams } from 'react-router-dom'
 
 import { defaultFetch } from '../../helpers/defaultFetch';
 
 export const Perfil = () => {
-
     var userPerfil = JSON.parse(localStorage.getItem("user"))
 
     const infPersonal = "Esta es una cuenta de Atlassian. Edite su información personal y los ajustes de visibilidad en su Perfil de Atlassian.Para obtener más información, consulte nuestras Condiciones del Servicio o nuestra Política de Privacidad"
 
-
-
     const updateInfo = async e => {
 
         e.preventDefault();
-
         let info = {
             full_name: e.target.full_name.value,
             bio: e.target.bio.value
         }
-
 
         defaultFetch("/update-user", "POST", info)
         .then((res) => res.json)
         .then((res) => {
            localStorage.setItem("user",JSON.stringify(info))
         });
-
-        
-
         }
             
 
