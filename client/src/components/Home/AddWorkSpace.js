@@ -24,7 +24,6 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
         }
     }, [formValues])
 
-
     // para poder actualizar los valores del formulario
     const handleChange = (e) => {
         const { name, value } = e.target

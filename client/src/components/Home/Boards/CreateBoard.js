@@ -13,9 +13,8 @@ export const CreateBoard = () => {
     const [background, setBackground] = useState('')
     const [disable, setDisable] = useState('true');
     const [visibility, setVisibility] = useState('Workspace');
-    const [workspace, setWorkspace] = useState('');
+    // const [workspace, setWorkspace] = useState('');
 
-    
     const backgroundIMG = useSelector(state => state.boardBackground.backgrounds)
 
     const changeColor = (color) => {
@@ -27,7 +26,6 @@ export const CreateBoard = () => {
         setColor('');
     }
     useEffect(() => {
-        console.log(visibility)
     }, [color, title, background, disable, visibility])
     const workspacesFromUser = [
         { label: 'Workspace 1', value: 'Workspace 1' }, { label: 'Workspace 2', value: 'Workspace 2' }, { label: 'Workspace 3', value: 'Workspace 3' }
@@ -49,15 +47,7 @@ export const CreateBoard = () => {
     const handleVisibility = ({ value }) => {
         setVisibility(value)
     }
-    // function enableSubmit(filled) {
-    //     let btn = document.querySelector('input[type="submit"]');
-    //     if (filled.value.includes('@')) {
-    //         btn.disabled = false;
-    //     }
-    //     else {
-    //         btn.disabled = true
-    //     }
-    // }
+
     return (
         <section className="create-board">
             <header>
@@ -98,7 +88,7 @@ export const CreateBoard = () => {
                     options={boardVisibility}
                     onChange={handleVisibility} />
                 <div>
-                    <button disabled className="submit" type="submit">Create</button>
+                    <button disabled ={disable} className="submit" type="submit">Create</button>
                 </div>
             </form>
         </section>
