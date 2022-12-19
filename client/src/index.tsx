@@ -1,7 +1,4 @@
 import React, { StrictMode } from 'react'
-import { BrowserRouter } from 'react-router-dom';
-import { store } from './app/store'
-import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client';
 import { Rutas } from './router/Rutas';
 import "./sass/styles.scss"
@@ -12,13 +9,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <BrowserRouter>
-      <Provider store={store}>
-        <div className='index'>
-          <Header />
-          <Rutas />
-        </div>
-      </Provider>
-    </BrowserRouter>
+    <div className='index'>
+      <Header />
+      <Rutas />
+    </div>
   </StrictMode>
 );

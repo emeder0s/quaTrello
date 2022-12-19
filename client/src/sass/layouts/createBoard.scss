@@ -1,20 +1,25 @@
-.create-board h3 {
+nav {
+    display: none !important;
+}
+
+h3 {
+    text-align: center;
     font-weight: 300;
     font-size: 14px;
-    margin: 0 auto;
+    width: 98%;
+    color: #5e6c84;
 }
-.MuiPaper-root {
-    padding: 0 1%;
-}
-.create-board h4 {
+
+h4 {
     margin: 10px 0;
     font-size: 12px;
-    color: #5e6c84
 }
 
 .create-board {
     width: 320px;
+    padding: 0 2%;
     height: auto;
+    color:#5e6c84;
 }
 
 .create-board header {
@@ -22,49 +27,49 @@
     background-color: #fff;
     padding: 3% 10%;
     margin: 0;
-    border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
-.create-board .close {
+.close {
     position: absolute;
     right: 11px;
     padding: 1px 4px;
-    background-color: #fff;
-    font-weight: 300;
-    top: 5px;
 }
 
-.create-board .chooseBG,
-.create-board .submit {
+hr {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.chooseBG,
+.submit {
     margin: 25px 0;
 }
 
-.create-board .board-bg {
+.board-bg {
     width: 200px;
     height: 120px;
-    background-color: darkslategray;
     display: flex;
     justify-content: center;
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
     border: none;
     border-radius: 3px;
 }
-.create-board .board-bg img {
+.board-bg img {
     width: 180px;
     height: 120px
 }
-.create-board button.image {
+button.image {
     background-size: cover;
 }
-.create-board ul.images,
-.create-board ul.colors {
+ul.images,
+ul.colors {
     display: flex;
     justify-content: space-between;
     list-style: none;
     margin: 18px;
 }
 
-.create-board ul.images button {
+ul.images button {
     width: 64px;
     height: 40px;
     background-color: mediumorchid;
@@ -72,53 +77,54 @@
     border-radius: 3px;
 }
 
-.create-board ul.colors button {
+ul.colors button {
     width: 40px;
     height: 32px;
     border: none;
     border-radius: 3px;
 }
 
-.create-board .chooseBG {
+.chooseBG {
     display: flex;
     justify-content: center;
 }
-.create-board .title {
-    margin: 0;
-}
-.create-board input,
-.create-board select,
-.create-board button.submit {
+
+input,
+select,
+button.submit {
     border: 1px solid #5e6c8454;
-    border-radius: 3px;
     padding: 10px;
     border-radius: 3px;
 }
-
-.create-board input.title {
+button.close {
+    background-color: white;
+    border: none;
+}
+.create-board input {
     width: 93%;
+    font-size: 16px;
 }
 
-.create-board select.actualWorkSpaces,
+.create-board select.user-workspaces, .create-board select.visibility,
 button.submit {
     width: 100%;
 }
 .create-board button.submit:enabled {
-    background-color:#0079bf ;
+    background-color: #0079bf;
     color: #fff;
 }
-.create-board .c1 {
+.c1 {
     background-color: #0079bf;
 }
-.create-board .c2 {
+.c2 {
     background-color: #d29034;
 }
-.create-board .c3 {
+.c3 {
     background-color: #519839;
 }
-.create-board .c4 {
+.c4 {
     background-color: #b04632;
 }
-.create-board .c5 {
+.c5 {
     background-color: #89609e;
 }
