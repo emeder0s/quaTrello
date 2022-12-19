@@ -31,9 +31,9 @@ const card = {
     show: async (req, res) => {
       try {
         var con = await conexion.abrir();
-        const cardM = await cardsModel.create(con);
+        const cardM = await CardsModel.create(con);
         const card = await cardM.findOne({ where: { id: req.params.id } });
-        res.json(board)
+        res.json(card)
       } catch (e) {
         console.log(e);
         res.json(false);
