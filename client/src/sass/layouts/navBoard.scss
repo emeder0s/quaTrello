@@ -11,27 +11,31 @@
 }
 
 .navBoard2 {
-  background-color: white;
+  background-color: rgb(221, 236, 226);
   font-size: 20px;
-  position:absolute;
+  position:fixed;
+  border-radius: 20px;
   left: 495px;
   top: 100px;
   margin: 0;
-  padding: 6px;
+  padding: 3px;
   border: solid 2px;
-  display: block;
   font-weight: 400;
-  margin: 0 -12px;
   padding: 6px 12px;
   text-decoration: none;
+  width: 400px;
+  height: 200px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
 }
 
 .ulNavBoard {
   list-style: none;
   margin: 0;
-  padding: 0;
+  
   cursor: pointer;
   margin: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .liVisibility {
@@ -71,13 +75,12 @@
 
 .butNavBoard {
   background-color: #0075b9;
-  width: 200px;
+  width: 220px;
   margin: 10px;
-  background-color: #00d1f6;
   padding: 10px 15px;
   border-radius: 4px;
   cursor: pointer;
-
+  color: white;
 }
 
 .navNBoard {

@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineClose } from 'react-icons/ai'
+import { useParams } from 'react-router-dom'
 import ModalShowUsers from './ModalShowUsers'
+import { useSelector, useDispatch } from 'react-redux'
+import { deleteUserID } from '../../../../features/users/userIds'
+import { deleteUserName } from '../../../../features/users/userNames'
 
 const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
 
+    const { board } = useParams()
+    const userNames = useSelector(state => state.userNames)
+    const userIds = useSelector(state => state.userIds)
+    const [showUsers, setShowUsers] = useState(false)
+    const dispatch = useDispatch()
+
     const [formValues, setFormValues] = useState({
+        role: "member",
+        fk_id_board: board,
+        fk_id_user: [],
         email: "",
         msn: "",
     })
 
-    const [addedMembersToInput, setAddedMembersToInput] = useState({})
-    const [membersAddedArray, setMembersAddedArray] = useState([])
-
-    useEffect(() => {
-        setMembersAddedArray(Object.values(addedMembersToInput))
-    }, [addedMembersToInput])
-
-    const [showUsers, setShowUsers] = useState(false)
-
     // para poder actualizar los valores del formulario
+    useEffect(() => {
+        setFormValues({ ...formValues, fk_id_user: userIds })
+    }, [userIds])
+
     const handleChange = (e) => {
         const { name, value } = e.target
         setFormValues({ ...formValues, [name]: value })
@@ -31,7 +39,11 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(membersAddedArray)
+    }
+
+    function deleteUserInvite(name) {
+        dispatch(deleteUserName(name))
+        // dispatch(deleteUserID(e))
     }
 
     return (
@@ -43,12 +55,14 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
                 </h2>
                 <div className='input-button-Container'>
                     <div className='inputContainer'>
-                        {membersAddedArray.length > 0
-                            && membersAddedArray.map((member, i) => {
+                        {userNames.length > 0
+                            && userNames.map((member, i) => {
                                 return (
                                     <div key={i} className='addedMemberToInput'>
-                                        <p datatype={member}>{member}</p>
-                                        <button datatype={member} onClick={e=>console.log(e)}><AiOutlineClose /></button>
+                                        <p>{member}</p>
+                                        <button onClick={e => deleteUserInvite(e.target.attributes.datatype.value)}>
+                                            <span datatype={member}>X</span>
+                                        </button>
                                     </div>
                                 )
                             })
@@ -61,9 +75,10 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
                             value={formValues.email}
                         />
                     </div>
-                    {membersAddedArray.length > 0 && <button type='submit' className='sendInvites'>Enviar Invitaciones</button>}
+                    {userNames.length > 0 && <button type='submit' className='sendInvites'>Enviar Invitaciones</button>}
                 </div>
-                {showUsers && <ModalShowUsers email={formValues.email} setAddedMembersToInput={setAddedMembersToInput} addedMembersToInput={addedMembersToInput} />}
+                {showUsers &&
+                    <ModalShowUsers email={formValues.email} />}
             </form>
         </div>
     )

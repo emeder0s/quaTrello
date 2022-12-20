@@ -17,7 +17,6 @@ export const fetchWorkspaces = createAsyncThunk('workspaces/fetchWorkspaces', ()
             return response.json();
         })
         .then(data => {
-            console.log(data)
             return data
         });
 })

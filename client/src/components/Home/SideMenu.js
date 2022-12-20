@@ -1,10 +1,31 @@
 import React, { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Navigate } from 'react-router-dom'
+import { getInitial } from '../../helpers/getInitial'
 
 export const SideMenu = ({ setIsFormOpen }) => {
 
+  const [navigate, setNavigate] = useState(false)
+  // const [getWorkSpace, setGetWorkSpace] = useState('')
+  const [goToBoard, setGoToBoard] = useState('')
   const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
+
+  async function goToWS(e) {
+    // setGetWorkSpace(`/show-workspace/${e.target.attributes.datatype.value}`)
+    const getWorkSpace = await fetch(`/show-workspace/${e.target.attributes.datatype.value}`)
+      .then(res => res.json())
+      .then(data => { return data })
+    if (getWorkSpace) {
+      const getBoard = await fetch(`/show-boardByWs/${getWorkSpace.id}`)
+        .then(res => res.json())
+        .then(data => { return data })
+      if (getBoard) {
+        setGoToBoard(`/board/${getBoard[0].id}`)
+        setNavigate(true)
+      }
+    }
+  }
 
   return (
     <aside className='asideHome'>
@@ -23,7 +44,12 @@ export const SideMenu = ({ setIsFormOpen }) => {
             <ul>{
               reduxWorkspaces.map((element) => {
                 return (
-                  <li key={element.id}><NavLink to='#'>{element.name_}</NavLink></li>
+                  <li key={element.id} onClick={e => goToWS(e)}>
+                    <div className='wsAvatar'>
+                      {getInitial(element.name_)}
+                    </div>
+                    <span datatype={element.id}>{element.name_}</span>
+                  </li>
                 )
               })}
             </ul>
@@ -35,6 +61,9 @@ export const SideMenu = ({ setIsFormOpen }) => {
           )
         }
       </div>
+      {navigate && (
+        <Navigate to={goToBoard} replace={true} />
+      )}
     </aside>
   )
 }
