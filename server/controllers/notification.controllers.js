@@ -44,7 +44,7 @@ const notif = {
             element_name = elementData.name_
             into_name = board.dataValues.name_
             into_id = board.dataValues.id
-            into_type = "board"
+            into_type = "tablero"
             users_to = await user_board.getUsersWithNotifTrue(elementData.fk_id_board)
         } else if (element == "tablero") {
             const workspaceM = await WorkspacesModel.create(con)
@@ -60,7 +60,7 @@ const notif = {
             const list = await listM.findOne({ where: { id: elementData.fk_id_list } })
             into_name =list.dataValues.name_
             into_id =list.dataValues.id
-            into_type = "list"
+            into_type = "lista"
             element_name = elementData.title
             var fk_id_board = await listC.wichBoard(elementData.fk_id_list)
             users_to = await user_board.getUsersWithNotifTrue(fk_id_board)
@@ -103,7 +103,7 @@ const notif = {
             element_name = elementData.title
             into_id = list.dataValues.id
             into_name = list.dataValues.title
-            into_type = "list"
+            into_type = "lista"
             sendemail.notification(user_to.dataValues.email, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type)
         }
         if (element == "workspace") {

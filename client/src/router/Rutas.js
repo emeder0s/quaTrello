@@ -13,22 +13,24 @@ import { Registro } from '../pages/Registro'
 import { Login } from '../pages/Login'
 import { AcountVeryfy } from '../pages/AcountVeryfy'
 import Board from '../components/Board/Board'
-
+import CheckLogin from '../components/checkLogin/CheckLogin'
 
 export const Rutas = () => {
+
     return (
         <div>
             <Routes>
                 {/* Inicio y registro */}
                 <Route path="*" element={<Error />} />
                 <Route path="/home" element={<Home />} />
+                <Route path="/" element={<CheckLogin />} />
                 <Route path="/registro" element={<Registro />} />
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/account-verify/:token" element={<AcountVeryfy />} />
 
                 <Route path="/boards" element={<Boards />} />
-                
+
                 {/* Rutas del perfil del usuario */}
                 <Route path="/perfil" element={<Perfil />} />
                 <Route path="/perfil/actividad" element={<Actividad />} />
