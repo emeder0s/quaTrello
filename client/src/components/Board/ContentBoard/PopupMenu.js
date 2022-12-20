@@ -28,7 +28,7 @@ export const PopupMenu = ({setPopupShow, popupShow}) => {
     const moveCard = e => {
         console.log(e.target.id)
         defaultFetch("http://localhost:5000/move-to-list", "POST", { id: currentCard2, fk_id_list:e.target.id}).then((res) => { console.log(res) });
-        setRefresh("D")
+        setRefresh("EE")
     }
 
     if (listss) { return (
