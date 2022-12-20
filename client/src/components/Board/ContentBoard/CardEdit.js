@@ -32,19 +32,21 @@ export const CardEdit = ({ showCardEdit, setShowCardEdit, currentCard, setCurren
         setTitle(e.target.value)
         console.log(e.target.value)
         defaultFetch("http://localhost:5000/update-card", "POST", {id: currentCard, title:e.target.value}).then((res) => { console.log(res) });
-        
+        setRefresh(e.target.value)
     }
 
-    const updateCard = () => {
-
+    const deleteCard = () => {
+        defaultFetch("http://localhost:5000/delete-card", "DELETE", {id: currentCard}).then((res) => { console.log(res) });
+        setRefresh("Borrar")
+        setShowCardEdit(!showCardEdit);
     }
     if (cardData) {return (
         ( 
         
         <div className='carEditMenu'>
                  <div className='listTitle'>
-                 <p>{description}</p>
                      <input className='cardName' name="title" defaultValue={cardData.title} onBlur={changeName}></input>
+                     <button onClick={deleteCard}className='borrar'>Borrar</button>
                      <button className='close' onClick={add}>&#x2715;</button>
                  </div>
                  {description ?

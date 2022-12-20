@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { FiMoreHorizontal } from "react-icons/fi";
 import { BoardContext } from '../../../providers/boardProvider';
 import { CardEdit } from './CardEdit';
+import { ListMenu } from './ListMenu';
 import { PopupMenu } from './PopupMenu';
 
 export const List = ({ title, cards, listId }) => {
@@ -10,10 +11,11 @@ export const List = ({ title, cards, listId }) => {
     const { setNewCardTitle, setCurrentListId, setRefresh } = useContext(BoardContext)
     const [currentCard, setCurrentcard] = useState();
     const [popupShow, setPopupShow] = useState(false);
+    const [menuShow, setMenuShow] = useState(false);
     const add = () => {
         setShowInput2(!showInput2);
     }
-
+    localStorage.setItem("CurrentList",listId)
     const addCard = e => {
         e.preventDefault();
         setCurrentListId(e.target.title.id)
@@ -33,6 +35,10 @@ export const List = ({ title, cards, listId }) => {
         setPopupShow(!popupShow)
     }
 
+    const showListConfig = (e) => {
+        console.log(e.target.id)
+        setMenuShow(!menuShow)
+    }
 
 
     if (showInput2) {
@@ -59,6 +65,8 @@ export const List = ({ title, cards, listId }) => {
         <>
             {popupShow &&
             <PopupMenu setPopupShow={setPopupShow} popupShow={popupShow}/>}
+            {menuShow &&
+            <ListMenu setMenuShow={setMenuShow} menuShow={menuShow} id={listId}/>}
             {(showCardEdit) ?
                 <div className='cardEdit'>
                     <CardEdit setShowCardEdit={setShowCardEdit} showCardEdit={showCardEdit} currentCard={currentCard} setCurrentcard={setCurrentcard} />
@@ -68,7 +76,7 @@ export const List = ({ title, cards, listId }) => {
             <div className='list' key={title}>
                 <div className='listTitle'>
                     <h6>{title}</h6>
-                    <button className='btnMenuList'><FiMoreHorizontal /></button>
+                    <button className='btnMenuList' onClick={showListConfig}><FiMoreHorizontal /></button>
                 </div>
                 {cards.length !== 0 ? cards.map((card, i) => (
                     <div key={i} className='cardTitle'>
