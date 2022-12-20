@@ -110,7 +110,11 @@ const user_card = {
             await conexion.cerrar(con);
         }
     },
-
+    /**
+       * Funcion que permite obtener los usuarios suscritos a notificaciones
+       * @param {INTEGER} fk_id_card 
+       * @returns Array de usuarios suscritos a notificaciones
+     */
     getUsersWithNotifTrue: async (fk_id_card) => {
         try {
             var con = await conexion.abrir();

@@ -40,7 +40,7 @@ const user_board = {
         try {
             var con = await conexion.abrir();
             const user_boardM = await User_boardModel.create(con);
-            let users_on_board = await user_boardM.findOne({ where: { fk_id_board: req.body.fk_id_board, fk_id_user: userr.getIdFromCookie(req)} });
+            let users_on_board = await user_boardM.findOne({ where: { fk_id_board: req.body.fk_id_board, fk_id_user: userr.getIdFromCookie(req) } });
             res.json(users_on_board["role_"]);
         } catch (error) {
             res.json(error);
@@ -143,6 +143,11 @@ const user_board = {
             await conexion.cerrar(con);
         }
     },
+    /**
+     * Funcion que permite obtener los usuarios suscritos a notificaciones
+     * @param {INTEGER} fk_id_board 
+     * @returns Array de usuarios suscritos a notificaciones
+     */
     getUsersWithNotifTrue: async (fk_id_board) => {
         try {
             var con = await conexion.abrir();
