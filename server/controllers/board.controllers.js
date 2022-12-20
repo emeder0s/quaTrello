@@ -2,7 +2,9 @@ const conexion = require("../dataBases/mysql");
 const BoardsModel = require("../models/boards.model");
 //const userboard = require ("./user_board.controllers");
 const user = require("./user.controllers");
-const notif = require("./notification.controllers")
+const notif = require("./notification.controllers");
+const user_board = require("./user_board.controllers");
+
 
 const board = {
   /**
@@ -24,6 +26,7 @@ const board = {
         await listM.create({ name_: "En proceso", fk_id_board: newBoard.dataValues.id });
         await listM.create({ name_: "Hecho", fk_id_board: newBoard.dataValues.id });
         await notif.mail(req, "creado un", "tablero", newBoard.dataValues, con) // Envia una notificacion a los usuarios que estan suscritos.
+        await user_board.insertUserSesion(newBoard.dataValues.id, con, req);
         res.json(newBoard);
       } else {
         res.json({ msn: "Existe con ese nombre" });
