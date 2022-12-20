@@ -22,7 +22,7 @@ const user_card = {
             const { fk_id_card, fk_id_user } = req.body;
             const user_card = await user_cardM.create({ fk_id_card, fk_id_user })
             await notif.addUserMail(req, "te ha añadido a la", "tarjeta", user_card.dataValues, fk_id_user, con)
-            res.json(card);
+            res.json(true);
         } catch (error) {
             res.json(error);
         } finally {
