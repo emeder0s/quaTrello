@@ -6,14 +6,6 @@ const sendemail = require("./email.controllers");
 const Sequelize = require("sequelize")
 const Op = Sequelize.Op;
 
-/* Abrir y cerrar conexion
-
-var con = await conexion.abrir();
-const Usr = await Users.create(con);
-await conexion.cerrar(con); 
-
-*/
-
 
 const user = {
   /**
@@ -61,7 +53,7 @@ const user = {
    * Devuelve la id del usuario que tiene sesion iniciada
    * @param {json} req 
    * @param {json} res 
-   * @returns 
+   * @returns {integer}
    */
   getIdFromCookie: (req) => {
     let jwtVerify = jwt.verify(req.cookies.session, "m1c4s4");
@@ -199,6 +191,7 @@ const user = {
   /**
    * Devuelve en un JSON la informacion de un usuario buscado por ID.
    * @param {JSON} id
+   * @returns {JSON}
    */
   getUserbyId: async (id) => {
     try {

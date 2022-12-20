@@ -15,27 +15,30 @@ const Board = () => {
   const [newCardTitle, setNewCardTitle] = useState([]);
   const [newList, setNewList] = useState("");
   const [currentListId, setCurrentListId] = useState("");
+  const [refresh, setRefresh] = useState([]);
+  
+ 
 
   useEffect(() => {
     //Info del tablero - para colores, etc.
-    fetch(`/show-board/${board}`).then((res) => res.json())
+    fetch(`http://localhost:5000/show-board/${board}`).then((res) => res.json())
       .then((res) => {
         setCurrentBoard(res);
       })
 
     //Listas y sus tarjetas
-    fetch(`/lists/${board}`).then((res) => res.json())
+    fetch(`http://localhost:5000/lists/${board}`).then((res) => res.json())
       .then((res) => {
         setUserLists(res);
       })
-  }, [])
+  }, [refresh])
 
   useEffect(() => {
 
     if (newList) {
       defaultFetch("http://localhost:5000/insert-list", "POST", newList).then((res) => { console.log(res) });
       //Listas y sus tarjetas
-      fetch(`/lists/${board}`).then((res) => res.json())
+      fetch(`http://localhost:5000/lists/${board}`).then((res) => res.json())
         .then((res) => {
           setUserLists(res);
         })
@@ -64,7 +67,8 @@ const Board = () => {
         <BoardContext.Provider value={{
           newCardTitle, setNewCardTitle,
           newList, setNewList,
-          userLists, currentListId, setCurrentListId
+          userLists, currentListId, setCurrentListId,
+          setRefresh
         }}>
           <div className='lists-container'>
             {userLists.map((list, index) => (
