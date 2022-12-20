@@ -7,13 +7,18 @@ export const userIdsSlice = createSlice({
     initialState,
     reducers: {
         addUserID: (state, action) => {
-            console.log(state, action)
             state.push(action.payload)
-        }
+        },
+        deleteUserID: (state, action) => {
+            const idFound = state.find(id => id == action.payload)
+            if (idFound) {
+                state.splice(state.indexOf(idFound), 1)
+            }
+        },
     }
 })
 
-export const { addUserID } = userIdsSlice.actions
+export const { addUserID, deleteUserID } = userIdsSlice.actions
 
 // Exportamos por defecto el reducer que es lo que quiere luego el store
 export default userIdsSlice.reducer

@@ -11,9 +11,9 @@ insert into workspaces VALUES (null, 'WS 2', now(), 'privado', '{}');
 insert into workspaces VALUES (null, 'WS 3', now(), 'privado', '{}');
 
 
-insert into boards VALUES (null,'Board 1','privado','{}',1,1);
-insert into boards VALUES (null,'Board 2','privado','{}',1,2);
-insert into boards VALUES (null,'Board 3','privado','{}',2,3);
+insert into boards VALUES (null,'Board 1',now(),'privado','{}',1,1);
+insert into boards VALUES (null,'Board 2',now(),'privado','{}',1,2);
+insert into boards VALUES (null,'Board 3',now(),'privado','{}',2,3);
 
 insert into lists VALUES (null,'List 1',1);
 insert into lists VALUES (null,'List 2',1);
@@ -63,5 +63,3 @@ insert into activities (`text_`, `fk_id_card`, `fk_id_user`) VALUES ('Text 2',2,
 insert into activities (`text_`, `fk_id_card`, `fk_id_user`) VALUES ('Text 3',3,4);
 insert into activities (`text_`, `fk_id_card`, `fk_id_user`) VALUES ('Text 4',4,3);
 insert into activities (`text_`, `fk_id_card`, `fk_id_user`) VALUES ('Text 5',5,2);
-
-

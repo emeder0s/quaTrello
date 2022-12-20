@@ -25,7 +25,7 @@ const userWorkspace = {
    * @param {int} fk_id_user id del usuario
    * @param {int} fk_id_workspace id de workspace
    */
-  insert: async (req,role_, fk_id_user, fk_id_workspace) => {
+  insert: async (req, role_, fk_id_user, fk_id_workspace) => {
     try {
       const notif = require("./notification.controllers")
       var con = await conexion.abrir();
