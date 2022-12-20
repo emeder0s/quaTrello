@@ -87,8 +87,10 @@ const notif = {
         var element_id, element_name, into_name, into_id, into_type;
         const user_to = await userM.findOne({ where: { id: id_user_to } });
         if (element == "tablero") {
+            const boardM = await BoardsModel.create(con)
             const workspaceM = await WorkspacesModel.create(con)
-            const workspace = await workspaceM.findOne({ where: { id: elementData.fk_id_workspace } })
+            const board = await boardM.findOne({where:{id:elementData.fk_id_board}})
+            const workspace = await workspaceM.findOne({ where: { id: board.dataValues.fk_id_workspace } })
             element_id = elementData.id
             element_name = elementData.name_
             into_name = workspace.dataValues.name_
@@ -98,7 +100,9 @@ const notif = {
         }
         if (element == "tarjeta") {
             const listM = await ListsModel.create(con)
-            const list = await listM.findOne({ where: { id: elementData.fk_id_list } })
+            const cardM = await CardsModel.create(con);
+            const card = await cardM.findOne({where:{id:elementData.fk_id_card}})
+            const list = await listM.findOne({ where: { id: card.dataValues.fk_id_list } })
             element_id = elementData.id
             element_name = elementData.title
             into_id = list.dataValues.id
