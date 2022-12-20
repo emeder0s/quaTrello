@@ -42,7 +42,7 @@
 .create-board .board-bg {
     width: 200px;
     height: 120px;
-    background-color: darkslategray;
+    // background-color: rgb(0 121 191);
     display: flex;
     justify-content: center;
     box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
@@ -56,6 +56,7 @@
 .create-board button.image {
     background-size: cover;
 }
+
 .create-board ul.images,
 .create-board ul.colors {
     display: flex;
