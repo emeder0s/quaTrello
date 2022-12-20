@@ -2,12 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = []
 
-function filterArray(array, filtro) {
-    console.log(array, filtro)
-    const filtered = array.filter(element => element !== filtro)
-    return filtered
-}
-
 export const userNameSlice = createSlice({
     name: 'userNames',
     initialState,
@@ -16,8 +10,10 @@ export const userNameSlice = createSlice({
             state.push(action.payload)
         },
         deleteUserName: (state, action) => {
-            console.log(state, action)
-            // const nameFound = state.find 
+            const nameFound = state.find(name => name === action.payload)
+            if(nameFound){
+                state.splice(state.indexOf(nameFound), 1)
+            }
         },
     }
 })

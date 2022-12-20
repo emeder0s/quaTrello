@@ -22,7 +22,7 @@ export const PopupMenu = ({setPopupShow, popupShow}) => {
     const add = () => {
         setPopupShow(!popupShow)
         console.log("ENTRA")
-        defaultFetch()
+        // defaultFetch()
     }
 
     const moveCard = e => {

@@ -39,7 +39,7 @@ export const SideMenu = ({ setIsFormOpen }) => {
           <span>Espacios de trabajo</span>
           <button className='addWorkSpaceButton' onClick={() => setIsFormOpen(true)}>+</button>
         </div>
-        {reduxWorkspaces
+        {reduxWorkspaces.length > 0
           ? (
             <ul>{
               reduxWorkspaces.map((element) => {
