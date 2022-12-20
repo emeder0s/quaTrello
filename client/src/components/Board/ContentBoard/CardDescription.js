@@ -30,7 +30,7 @@ export const CardDescription = (description, currentCard, setDescription) => {
         let currentCardExtra = JSON.parse(localStorage.getItem('currentCard'));
         console.log(currentCardExtra)
         defaultFetch("http://localhost:5000/update-card", "POST", { id: currentCardExtra, description_: e.target.title.value }).then((res) => { console.log(res) });
-        setRefresh("D")
+        setRefresh(e.target.title.value)
     }
     return (
         <div><div><h6><span><FiAlignLeft /></span>Descripción</h6>

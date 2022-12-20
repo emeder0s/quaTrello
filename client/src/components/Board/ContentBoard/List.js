@@ -22,6 +22,7 @@ export const List = ({ title, cards, listId }) => {
         let newCard = { title: e.target.title.value, fk_id_list: e.target.title.id }
         setNewCardTitle(newCard)
         setShowInput2(!showInput2);
+        setRefresh(listId);
     }
 
     const cardEdit = (e) => {

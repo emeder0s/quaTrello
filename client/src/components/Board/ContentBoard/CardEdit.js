@@ -37,7 +37,7 @@ export const CardEdit = ({ showCardEdit, setShowCardEdit, currentCard, setCurren
 
     const deleteCard = () => {
         defaultFetch("http://localhost:5000/delete-card", "DELETE", {id: currentCard}).then((res) => { console.log(res) });
-        setRefresh("Borrar")
+        setRefresh(showCardEdit)
         setShowCardEdit(!showCardEdit);
     }
     if (cardData) {return (

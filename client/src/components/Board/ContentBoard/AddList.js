@@ -3,7 +3,7 @@ import { BoardContext } from '../../../providers/boardProvider';
 import { useParams } from 'react-router-dom'
 
 export const AddList = () => {
-  const {setNewList} = useContext(BoardContext);
+  const {setNewList, setRefresh} = useContext(BoardContext);
   const [showInput, setShowInput] = useState(false);
   const { board } = useParams();
   const add = () => {
@@ -19,6 +19,7 @@ export const AddList = () => {
     
       setShowInput(!showInput)
       setNewList(title)
+      setRefresh(title)
 
   }
 
