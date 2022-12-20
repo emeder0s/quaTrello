@@ -30,7 +30,7 @@ export const Login = () => {
                     <br />
                     <input type="password" name='pass' required></input>
                     <br />
-                    <button type="submit">Regístrate es gratuito</button>
+                    <button type="submit">Login</button>
                 </form>
             </div>
         </div>

@@ -7,6 +7,7 @@ import { getInitial } from '../../helpers/getInitial'
 export const SideMenu = ({ setIsFormOpen }) => {
 
   const [navigate, setNavigate] = useState(false)
+  const [isButtonBoardActive, setIsButtonBoardActive] = useState('active')
   // const [getWorkSpace, setGetWorkSpace] = useState('')
   const [goToBoard, setGoToBoard] = useState('')
   const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
@@ -29,10 +30,12 @@ export const SideMenu = ({ setIsFormOpen }) => {
 
   return (
     <aside className='asideHome'>
-      <ul>
-        <li><NavLink to='/home'>Tableros</NavLink></li>
-        <li><NavLink to='#'>Plantillas</NavLink></li>
-        <li><NavLink to='#'>Inicio</NavLink></li>
+      <ul className='asideOptions'>
+        <li onClick={e => setIsButtonBoardActive('active')} className={isButtonBoardActive}>
+          <NavLink to='/home'>Tableros</NavLink>
+        </li>
+        <li onClick={e => setIsButtonBoardActive('inactive')}><NavLink to='#'>Plantillas</NavLink></li>
+        <li onClick={e => setIsButtonBoardActive('inactive')}><NavLink to='#'>Inicio</NavLink></li>
       </ul>
       <div>
         <div className='addWorkSpaceLi'>

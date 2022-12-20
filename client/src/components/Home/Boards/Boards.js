@@ -28,16 +28,14 @@ export const Boards = () => {
         if (keyA > keyB) return -1;
         return 0;
     }) 
-    // console.log(JSON.parse(orderedBoards[0].configuration).background);
     return (
         <div className="boards-container">
             {navigate && (<Navigate to={toBoard} replace={true} />)}
             <div className='recent'>
                 <h2><span><AiOutlineClockCircle /></span><span>Visto Recientemente</span></h2>
                 <div className='boards-recent'>
-                    {orderedBoards
+                    {orderedBoards.length > 0
                         ? orderedBoards.slice(0, 3).map((e, k) => (
-                            // console.log((JSON.parse(e.configuration)).background)
                             <button 
                             type ="button" 
                             key={k}
@@ -45,24 +43,24 @@ export const Boards = () => {
                                 { backgroundImage: `url(${(JSON.parse(e.configuration)).background})` } :{ backgroundColor: `${(JSON.parse(e.configuration))}.color` }}
                             onClick ={() => handleBoardClick(e.id)} 
                             className='box'>{e.name_}</button>
-                        )) : ""
+                        )) : <p>Aun no tienes historial de trabajo</p>
                     }
                 </div>
             </div>
             <div className='userWorkspaces'>
                 <h2>YOUR WORKSPACES</h2>
-                {reduxWorkspaces
+                {reduxWorkspaces.length > 0
                     ? reduxWorkspaces.map((element, i) => (
                         <div key={i} className='workspace'>
                             <h3>{element.name_}</h3>
                             <div className='boards'>
                                 {element.boards ? Object.values(element.boards).map((board, k) => (
-                                    // console.log(JSON.parse(element.boards[k].configuration).background)
                                     <button
                                     type ="button"
                                     key={k}
-                                    style= {element.boards[k].configuration ? 
-                                        { backgroundImage: `url(${(JSON.parse(element.boards[k].configuration).background)})` } :{ backgroundColor: `${(JSON.parse(element.boards[k].configuration))}.color` }}
+                                    style= {element.boards[k].configuration 
+                                        ? { backgroundImage: `url(${(JSON.parse(element.boards[k].configuration).background)})` } 
+                                        : { backgroundColor: `${(JSON.parse(element.boards[k].configuration))}.color` }}
                                     // style= {element.boards[k].configuration ? { backgroundImage: `url(${background})` } :{ backgroundColor: color }}
                                     onClick ={() => handleBoardClick(element.boards[k].id)} 
                                     className='box'>{board.name_}</button>
@@ -88,7 +86,7 @@ export const Boards = () => {
 
                             </div>
                         </div>
-                    )) : ""}
+                    )) : <p>Aun no tienes espacios de trabajo, crea alguno para empezar a trabajar con tu equipo</p>}
             </div>
 
         </div>
