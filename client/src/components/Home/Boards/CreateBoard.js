@@ -4,12 +4,12 @@ import Select from "react-select"
 import { useSelector } from 'react-redux'
 import { defaultFetch } from '../../../helpers/defaultFetch';
 import { Navigate } from 'react-router-dom';
-
+/**
+ * Componente funcional para seleccionar las caracteristicas de 
+ * @returns 
+ */
 export const CreateBoard = () => {
-    const [data, setData] = useState(null);
     const [title, setTitle] = useState(null)
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
     const [color, setColor] = useState('rgb(0 121 191)');
     const [background, setBackground] = useState(null)
     const [disable, setDisable] = useState('true');
@@ -17,9 +17,8 @@ export const CreateBoard = () => {
     const [workspace, setWorkspace] = useState('');
     const [navigate, setNavigate] = useState(false);
     const [toBoard, setToBoard] = useState('');
-    const [anchorEl, setAnchorEl] = useState('');
 
-    // Constantes alamacenaadas en el store
+    // Constantes alamacenadas en el store de Redux
     const backgroundIMG = useSelector(state => state.boardBackground.backgrounds)
     const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
 
@@ -32,8 +31,11 @@ export const CreateBoard = () => {
         setColor(null);
     }
     useEffect(() => {
-        console.log(workspace);
+       
     }, [color, title, background, disable, visibility, workspace])
+    /**
+     * Estas dos constantes muestran las etiquetas y valores de los selects
+     */
     const workspacesFromUser = reduxWorkspaces.map(e => {
         const selectores = { 'label': e.name_, 'value': e.id };
         return selectores;
@@ -41,16 +43,18 @@ export const CreateBoard = () => {
     const boardVisibility = [
         { label: 'Private', value: 'Private' }, { label: 'Workspace', value: 'Workspace' }, { label: 'Public', value: 'Public' }
     ];
-
+    /**\
+     *  Funcion que hace el insert a la base de datos de un nuevo tablero
+     * y te lleva al mismo
+     */
     const handleSubmit = (event) => {
         event.preventDefault();
         let info = {
             name_: title,
             visibility: visibility,
-            configuration: JSON.stringify({background,color}),
+            configuration: JSON.stringify({ background, color }),
             fk_id_workspace: workspace
         }
-        console.log(info)
         defaultFetch("/insert-board", "POST", info)
             .then((res) => {
                 let link = res.id
@@ -77,7 +81,6 @@ export const CreateBoard = () => {
         <section className="create-board">
             <header>
                 <h3>Create board</h3>
-                <button className="close" onClick={() => setAnchorEl(null)} >x</button>
             </header>
             <hr></hr>
             <div className="chooseBG">
@@ -103,13 +106,15 @@ export const CreateBoard = () => {
                 <label><h4>Board title</h4></label>
                 <input required onChange={handleInputChange} className="title" type="text" />
                 <label><h4>Workspaces</h4></label>
-                <Select className="user-workspaces"
-                    defaultValue={{ label: workspacesFromUser[0].label, value: workspacesFromUser[0].value }}
-                    options={workspacesFromUser}
-                    onChange={handleWorkspaces}
-                />
+                    <Select
+                        required
+                        className="user-workspaces"
+                        defaultValue={{ label: "Choose a Workspace", value: " " }}
+                        options={workspacesFromUser}
+                        onChange={handleWorkspaces}
+                    />
                 <label><h4>Visibility</h4></label>
-                <Select className="visibility"
+                <Select required className="visibility"
                     defaultValue={{ label: 'Workspace', value: 'Workspace' }}
                     options={boardVisibility}
                     onChange={handleVisibility} />

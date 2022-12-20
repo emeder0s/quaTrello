@@ -72,7 +72,7 @@ export const List = ({ title, cards, listId }) => {
                 <div className='cardEdit'>
                     <CardEdit setShowCardEdit={setShowCardEdit} showCardEdit={showCardEdit} currentCard={currentCard} setCurrentcard={setCurrentcard} />
                 </div>
-                : console.log("No entra")}
+                : console.log()}
 
             <div className='list' key={title}>
                 <div className='listTitle'>

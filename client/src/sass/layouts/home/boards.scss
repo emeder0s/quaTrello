@@ -54,21 +54,24 @@
     height: 90px;
     background-color: #0279BF;
     color: white;
+    text-shadow: 1px 1px 28px #00000061;
     font-weight: bold;
     margin: 0 16px 20px 0;
-    padding: 1% 4% 4% 1%;
+    padding: 1% 11% 11% 1%;
     border-radius: 3px;
     border: none;
 }
+
 .boards-container .add.add {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #091e420a;
+    text-shadow: 1px 1px 5px #00000047;
     color: #172B4D;
     font-weight: 350;
     width: 14vw;
-    height: 90px;
+    height: 11vh;
     border: none;  
     padding: 0px 8px;
 }
