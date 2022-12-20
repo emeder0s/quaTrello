@@ -6,14 +6,6 @@ const sendemail = require("./email.controllers");
 const Sequelize = require("sequelize")
 const Op = Sequelize.Op;
 
-/* Abrir y cerrar conexion
-
-var con = await conexion.abrir();
-const Usr = await Users.create(con);
-await conexion.cerrar(con); 
-
-*/
-
 
 const user = {
   /**

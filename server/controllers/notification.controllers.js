@@ -131,9 +131,6 @@ const notif = {
         const user_name_from = userf.dataValues.full_name;
         const element_name = card.dataValues.title
         const users_to = await user_card.getUsersWithNotifTrue(fk_id_card)
-        console.log("entra")
-        console.log(element_name)
-        console.log(users_to)
         await users_to.forEach(user => {
             sendemail.comment(user.email, user_name_from, text_,element_name, fk_id_card)
         });
