@@ -61,8 +61,8 @@ export const Boards = () => {
                                     <button
                                     type ="button"
                                     key={k}
-                                    style= {element.boards[k].configuration ? 
-                                        { backgroundImage: `url(${(JSON.parse(element.boards[k].configuration).background)})` } :{ backgroundColor: `${(JSON.parse(element.boards[k].configuration).background)}.color` }}
+                                    // style= {element.boards[k].configuration ? 
+                                    //     { backgroundImage: `url(${(JSON.parse(element.boards[k].configuration).background)})` } :{ backgroundColor: `${(JSON.parse(element.boards[k].configuration).background)}.color` }}
                                     // style= {element.boards[k].configuration ? { backgroundImage: `url(${background})` } :{ backgroundColor: color }}
                                     onClick ={() => handleBoardClick(element.boards[k].id)} 
                                     className='box'>{board.name_}</button>
