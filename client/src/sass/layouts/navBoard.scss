@@ -81,6 +81,7 @@
   border-radius: 4px;
   cursor: pointer;
   color: white;
+  text-align: center;
 }
 
 .navNBoard {
@@ -89,18 +90,6 @@
   justify-content: space-between;
   height: 70px;
 }
-
-
-.memberNavBoard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 95.2vh;
-  color: #172B4D;
-}
-
-
 
 
 
@@ -174,5 +163,35 @@ contenedorModal{
 }
 
 
+.memberNavBoard{
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  margin: 0;
+  width: 250px;
+  
+}
 
+
+.memberNavBoard tr{
+  background-color: #ebecf0;
+  padding: 20px;
+  border-radius: 5px;
+  border: solid rgb(17, 17, 114) 2px;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+
+}
+
+.membersNavRole{
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  background-color: #ebecf0;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: rgb(116, 193, 205);
+}
 

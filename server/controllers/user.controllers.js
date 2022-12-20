@@ -68,6 +68,7 @@ const user = {
   update: async (req, res) => {
     try {
       let id = user.getIdFromCookie(req)
+
       console.log("antes")
       const { full_name, bio } = req.body;
       var con = await conexion.abrir();
