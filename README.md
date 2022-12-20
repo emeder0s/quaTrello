@@ -51,6 +51,7 @@
 | `POST` | `/update-card` | Actualiza una tarjeta. El id se pasa en el body | { id: identificador de la tarjeta a editar , title: título de tarjeta, description_:descripción de la tarjeta, checklist_ la checklist con sus campos, configuration_ la configuración con sus campos, date_: la fecha en la que tiene que estar la tarjeta termianda}  | boolean (true si todo va bien, falso si algo falla) |
 | `DELETE` | `/delete-card` | Borra una tarjeta. El id se pasa en el body | { id: de la tarjeta a borrar }  | boolean (true si todo va bien, falso si algo falla) |
 | `GET`| `/cards/:list`| Devuelve todas las tarjetas de una lista | req.params.list | todas las tarjetas de una lista (si todo va bien)/ false (si algo falla) |
+| `POST`| `/move-to-list` | Cambia el id de la lista al que se mueve la tarjeta | id: identificador de la tarjeta, fk_id_list: el id de la lista donde se cambia| boolean (true si todo va bien, falso si algo falla) | 
 
 ### Controlador de messages
 | Tipo de petición | End Point | Descripción   | req.body | res |
