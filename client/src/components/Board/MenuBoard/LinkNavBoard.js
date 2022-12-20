@@ -3,7 +3,8 @@ import { NameBoard } from "./NameBoard";
 import { VisibilityNavBoard } from "./VisibilityNavBoard";
 import { ShareNavBoard } from "./ShareNavBoard";
 import { MembersNavBoard } from "./MembersNavBoard";
-
+import { useDispatch } from "react-redux";
+import { fetchWorkspaces } from "../../../features/workspaces/workspacesSlice";
 
 
 
@@ -13,35 +14,35 @@ export const LinkNavBoard = () => {
     const [isModalShareOpen, setIsModalShareOpen] = useState(false)
     // const [nameBoardUser, setNameBoardUser] = useState([])
 
+    const [nameBoardNav, setNameBoardNav] = useState([])
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+
+        dispatch(fetchWorkspaces())
+        let token = window.location.pathname.split("/")[2];
+
+        fetch(`/show-board/${token}`)
+            .then((res) => res.json())
+            .then((res) => {
+                setNameBoardNav(res);
+            });
+
+    }, [])
 
     const showWindow = (menu) => {
 
         navBoard !== menu ? setNavBoard(menu) : setNavBoard(false);
-        
+
     }
 
-    // useEffect(() => {
-
-    //     // let token = window.location.pathname.split("/")[2];
-    //     // console.log(token)
-
-    //     // fetch(`/show-board/${token}`)
-    //     fetch("/show-board/show-board/3")
-    //         .then((res) => res.json())
-    //         .then((res) => {
-    //             setNameBoardUser(res);
-    //         });
-
-
-
-    // }, [])
 
 
     return (
         <div className="divNavBoard">
             <nav className="navNBoard">
-                <input type="text" defaultValue={<NameBoard/>} className="butNavBoard" />
-                
+                <input type="text" defaultValue={nameBoardNav.name_} className="butNavBoard" />
+
                 <button className='butNavBoard' onClick={() => showWindow("menu2")}>visibilidad</button>
                 {navBoard === "menu2" && <VisibilityNavBoard />}
 

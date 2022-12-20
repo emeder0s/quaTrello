@@ -2,11 +2,6 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = []
 
-function filterArray(array, filtro) {
-    const filtered = array.filter(element => element !== filtro)
-    return filtered
-}
-
 export const userIdsSlice = createSlice({
     name: 'userIds',
     initialState,
@@ -15,8 +10,10 @@ export const userIdsSlice = createSlice({
             state.push(action.payload)
         },
         deleteUserID: (state, action) => {
-            console.log(state, action)
-            state = filterArray(state, action.payload)
+            const idFound = state.find(id => id == action.payload)
+            if (idFound) {
+                state.splice(state.indexOf(idFound), 1)
+            }
         },
     }
 })

@@ -12,8 +12,8 @@ const Home = () => {
 
     const dispatch = useDispatch()
     useEffect(() => {
-        dispatch(fetchBackgrounds())
         dispatch(fetchWorkspaces())
+        dispatch(fetchBackgrounds())
     }, [])
 
     return (

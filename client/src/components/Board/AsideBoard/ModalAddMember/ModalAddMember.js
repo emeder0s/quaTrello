@@ -5,6 +5,7 @@ import ModalShowUsers from './ModalShowUsers'
 import { useSelector, useDispatch } from 'react-redux'
 import { deleteUserID } from '../../../../features/users/userIds'
 import { deleteUserName } from '../../../../features/users/userNames'
+import { defaultFetch } from '../../../../helpers/defaultFetch'
 
 const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
 
@@ -15,7 +16,7 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
     const dispatch = useDispatch()
 
     const [formValues, setFormValues] = useState({
-        role: "member",
+        role_: "member",
         fk_id_board: board,
         fk_id_user: [],
         email: "",
@@ -25,6 +26,7 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
     // para poder actualizar los valores del formulario
     useEffect(() => {
         setFormValues({ ...formValues, fk_id_user: userIds })
+        console.log(formValues)
     }, [userIds])
 
     const handleChange = (e) => {
@@ -36,14 +38,22 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
             setShowUsers(false)
         }
     }
+    function deleteUserInvite(name, id) {
+        dispatch(deleteUserName(name))
+        dispatch(deleteUserID(id))
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
-    }
+        formValues.fk_id_user.forEach(id => {
+            let data = {
+                role_: "member",
+                fk_id_board: board,
+                fk_id_user: id,
+            }
 
-    function deleteUserInvite(name) {
-        dispatch(deleteUserName(name))
-        // dispatch(deleteUserID(e))
+            defaultFetch('/insertUserBoard', 'POST', data).then(res => console.log(res))
+        })
     }
 
     return (
@@ -60,8 +70,8 @@ const ModalAddMember = ({ setIsModalAddMemberOpen }) => {
                                 return (
                                     <div key={i} className='addedMemberToInput'>
                                         <p>{member}</p>
-                                        <button onClick={e => deleteUserInvite(e.target.attributes.datatype.value)}>
-                                            <span datatype={member}>X</span>
+                                        <button onClick={e => deleteUserInvite(e.target.attributes.datatype.value, e.target.attributes.class.value)}>
+                                            <span datatype={member} className={userIds[i]}>X</span>
                                         </button>
                                     </div>
                                 )

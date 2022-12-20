@@ -38,11 +38,7 @@ export const Login = () => {
                     <br />
                     <input type="password" name='pass' required></input>
                     <br />
-                    {
-                        
-                    (login_err)? <div style={{ height: '3vh', fontSize : "2vw", padding: 10 }}><LoginError/></div>:""
-                    }
-                    <button type="submit">Regístrate es gratuito</button>
+                    <button type="submit">Log in</button>
                 </form>
             </div>
         </div>

@@ -147,7 +147,7 @@ const workspace = {
         res.json(workspaces);
     }catch(e){
         console.log(e);
-        res.json(false);
+        res.json(e);
     }
   }, 
 

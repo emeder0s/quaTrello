@@ -1,10 +1,18 @@
 import imagenPerfil from '../../img/imagenPerfil.png'
 import { NavPerfil } from './NavPerfil'
-
+import { useDispatch } from 'react-redux';
+import { fetchWorkspaces } from '../../features/workspaces/workspacesSlice';
+import { useEffect } from 'react';
 
 import { defaultFetch } from '../../helpers/defaultFetch';
 
 export const Perfil = () => {
+
+    const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(fetchWorkspaces())
+    }, [])
+
     var userPerfil = JSON.parse(localStorage.getItem("user"))
 
     const infPersonal = "Esta es una cuenta de Atlassian. Edite su información personal y los ajustes de visibilidad en su Perfil de Atlassian.Para obtener más información, consulte nuestras Condiciones del Servicio o nuestra Política de Privacidad"
@@ -23,7 +31,7 @@ export const Perfil = () => {
            localStorage.setItem("user",JSON.stringify(info))
         });
         }
-            
+    
 
     return (
 
