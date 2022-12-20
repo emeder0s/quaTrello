@@ -1,3 +1,4 @@
+
 .info {
   padding-top: 100px;
   flex-direction: column;
@@ -25,7 +26,7 @@
   margin-bottom: 20px;
 }
 
-.textUserNamePerfil{
+.textUserNamePerfil {
   text-align: center;
   width: 550px;
   height: 30px;
@@ -58,11 +59,13 @@
   align-items: center;
   margin: 0 auto;
   background-color: rgb(203, 211, 216);
-  font-size:medium;
+  font-size: medium;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
 }
 
 .ulPerfil {
   list-style-type: none;
+
 
 }
 
@@ -71,6 +74,10 @@
   float: left;
   text-align: center;
   width: 25em;
+}
+
+.liPerfil:hover{
+  background-color: beige;
 }
 
 .liPerfil a {
@@ -91,7 +98,7 @@
   padding: 20px;
   align-items: center;
   margin: 0 auto;
-  font-size:x-large;
+  font-size: x-large;
 
 }
 
@@ -108,7 +115,7 @@
 }
 
 .pAce {
-  font-size:x-large;
+  font-size: x-large;
   margin-bottom: 10px;
   margin-top: 10px;
 }
@@ -125,6 +132,55 @@
   padding-top: 20px;
 }
 
-.formInfo input{
+.formInfo input {
+  color: black;
+}
+
+.hrAct {
+  margin: 0 auto;
+  width: 600px;
+  margin-bottom: 30px;
+  margin-top: 20px;
+}
+
+.h3Act {
+  margin-top: 20px;
+}
+
+
+.trSpaces {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding: 15px;
+  background-color: rgb(241, 240, 255);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.tableAct {
+  font-size: medium;
+  margin: 0 auto;
+  width: 750px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 10px 0px;
+}
+
+.tdSpaces2 {
+  color: brown;
+  font-size: 20px;
+}
+
+.workspaceTar {
+  font-size: x-large;
+  margin: 0 auto;
+  width: 700px;
+  margin-top: 20px;
+  background-color: rgb(241, 240, 255);
+  color: brown;
+}
+
+.boxPerfil {
   color: black;
 }

@@ -107,6 +107,7 @@ const list = {
   /**
    * Funcion que devuelve el tablero al que pertenece una lista
    * @param {INTEGER} id 
+   * @returns {INTEGER} id del tablero
    */
   wichBoard:  async (id) => {
     try{

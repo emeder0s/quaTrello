@@ -13,6 +13,7 @@ const userWorkspace = {
   getWorkspacesByUser: async (fk_id_user) => {
     var con = await conexion.abrir();
     const userWorkspacesM = await UserWorkspacesModel.create(con);
+    console.log("Esto es getworkspacebyuser")
     const userWorkspaces = await userWorkspacesM.findAll({ where: { fk_id_user } });
     await conexion.cerrar(con);
     return userWorkspaces;
@@ -24,7 +25,7 @@ const userWorkspace = {
    * @param {int} fk_id_user id del usuario
    * @param {int} fk_id_workspace id de workspace
    */
-  insert: async (role_, fk_id_user, fk_id_workspace) => {
+  insert: async (req,role_, fk_id_user, fk_id_workspace) => {
     try {
       const notif = require("./notification.controllers")
       var con = await conexion.abrir();
@@ -37,6 +38,11 @@ const userWorkspace = {
       await conexion.cerrar(con);
     }
   },
+  /**
+   * Funcion que permite obtener los usuarios suscritos a notificaciones
+   * @param {INTEGER} fk_id_workspace 
+   * @returns Array de usuarios suscritos a notificaciones
+   */
   getUsers_WorkspaceWithNotifTrue: async (fk_id_workspace) => {
     try {
       var con = await conexion.abrir();
