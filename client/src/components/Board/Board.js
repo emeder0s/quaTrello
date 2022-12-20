@@ -7,6 +7,9 @@ import { AddList } from './ContentBoard/AddList'
 import { List } from './ContentBoard/List'
 import { BoardContext } from '../../providers/boardProvider'
 import { defaultFetch } from '../../helpers/defaultFetch'
+import "../../css/layouts/chat_board.css";
+import Offcanvas from 'react-bootstrap/Offcanvas';
+import {Chat} from "./Chat/Chat"
 
 const Board = () => {
   const { board } = useParams();
@@ -16,8 +19,11 @@ const Board = () => {
   const [newList, setNewList] = useState("");
   const [currentListId, setCurrentListId] = useState("");
   const [refresh, setRefresh] = useState([]);
-  
- 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
 
   useEffect(() => {
     //Info del tablero - para colores, etc.
@@ -48,11 +54,11 @@ const Board = () => {
   useEffect(() => {
     if (newCardTitle) {
       defaultFetch("http://localhost:5000/insert-card", "POST", newCardTitle).then((res) => { console.log(res) });
-       //Listas y sus tarjetas
-       fetch(`/lists/${board}`).then((res) => res.json())
-       .then((res) => {
-         setUserLists(res);
-       })
+      //Listas y sus tarjetas
+      fetch(`/lists/${board}`).then((res) => res.json())
+        .then((res) => {
+          setUserLists(res);
+        })
     }
 
   }, [newCardTitle])
@@ -77,6 +83,15 @@ const Board = () => {
             <AddList />
           </div>
         </BoardContext.Provider>
+        <button className='btn_chat' onClick={handleShow}>Chat</button>
+        <Offcanvas show={show} onHide={handleClose} placement="end">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Chat {currentBoard.name_}</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Chat idBoard={board}/>
+          </Offcanvas.Body>
+        </Offcanvas>
       </div>
     </div>
   )
