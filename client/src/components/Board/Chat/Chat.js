@@ -90,27 +90,28 @@ export const Chat = (props) => {
         <div className="container mt-3">
             <div className="card mt-3 mb-3 shadow border-0" id="content-chat">
                 <div className="card-body">
-                    {storedMessages ? storedMessages.map((message, index) => (
-                        <div key={index} className={`d-flex p-3 ${message.fk_id_user === user.id ? "justify-content-end" : "justify-content-start"}`}>
-                            <div className={`card mb-3 shadow border-1 ${message.fk_id_user === user.id ? "bg-primary bg-opacity-25" : "bg-light"}`}>
-                                <div className="card-body">
-                                    <small className="text-muted">{message.fk_id_user === user.id ? "Yo" : message.user_name}: {message["text_"]}</small>
+                    <div id="mensajes">
+                        {storedMessages ? storedMessages.map((message, index) => (
+                            <div key={index} className={`d-flex p-3 ${message.fk_id_user === user.id ? "justify-content-end" : "justify-content-start"}`}>
+                                <div className={`card mb-3 shadow border-1 ${message.fk_id_user === user.id ? "bg-primary bg-opacity-25" : "bg-light"}`}>
+                                    <div className="card-body">
+                                        <small className="text-muted">{message.fk_id_user === user.id ? "Yo" : message.user_name}: {message["text_"]}</small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )) : null}
+                        )) : null}
 
-                    {messages.map((message, index) => (
-                        <div key={index} className={`d-flex p-3 ${message.fk_id_user === user.id ? "justify-content-end" : "justify-content-start"}`}>
-                            <div className={`card mb-3 shadow border-1 ${message.fk_id_user === user.id ? "bg-primary bg-opacity-25" : "bg-light"}`}>
-                                <div className="card-body">
-                                    <small className="text-muted">{message.fk_id_user === user.id ? "Yo" : message.fk_id_user}: {message["text_"]}</small>
+                        {messages.map((message, index) => (
+                            <div key={index} className={`d-flex p-3 ${message.fk_id_user === user.id ? "justify-content-end" : "justify-content-start"}`}>
+                                <div className={`card mb-3 shadow border-1 ${message.fk_id_user === user.id ? "bg-primary bg-opacity-25" : "bg-light"}`}>
+                                    <div className="card-body">
+                                        <small className="text-muted">{message.fk_id_user === user.id ? "Yo" : message.fk_id_user}: {message["text_"]}</small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
-
-                    <form onSubmit={handlerSubmit}>
+                        ))}
+                    </div>
+                    <form id="inputchat" onSubmit={handlerSubmit}>
                         <div className="d-flex">
                             <input type="text" className="form-control" placeholder="Mensaje..." onChange={e => setMessage(e.target.value)} value={message} />
                             <button className="btn btn-primary mx-3" type="submit">Enviar</button>

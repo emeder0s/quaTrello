@@ -1,9 +1,23 @@
-.d-flex.p-3.justify-content-end{
+.d-flex.p-3.justify-content-end {
     display: flex;
     justify-content: flex-end;
 }
 
-.d-flex.p-3.justify-content-start{
+.d-flex.p-3.justify-content-start {
     display: flex;
     justify-content: flex-start;
+}
+
+#inputchat {
+    position: fixed;
+    top: 90%;
+    right: 46px;
+    background-color: white;
+    padding-bottom: 17%;
+    padding-top: 6px;
+    padding-left: 18px;
+}
+
+#mensajes{
+    padding-bottom: 13%;
 }

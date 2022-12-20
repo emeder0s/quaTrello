@@ -50,18 +50,15 @@ const user_board = {
     },
 
 
-    insertUserSesion: async (id_board) => {
+    insertUserSesion: async (id_board, con, req) => {
         try {
-            var con = await conexion.abrir();
             const user_boardM = await User_boardModel.create(con);
-            return await user_boardM.create({ role_: "admin", fk_id_board: id_board, fk_id_user: userr.getIdFromCookie(req) });
+            const u = await user_boardM.create({ role_: "admin", fk_id_board: id_board, fk_id_user: userr.getIdFromCookie(req) });
+            return u
         } catch (error) {
-            return error;
-        } finally {
-            await conexion.cerrar(con);
-        }
+            console.log(error);
+        } 
     },
-
 
     /**
      * Muestra todos los usuarios que estan en el tablero junto con su rol en ese tablero.
