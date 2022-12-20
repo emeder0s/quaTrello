@@ -1,6 +1,6 @@
 import imagenPerfil from '../../img/imagenPerfil.png'
 import { NavPerfil } from './NavPerfil'
-import { useParams } from 'react-router-dom'
+
 
 import { defaultFetch } from '../../helpers/defaultFetch';
 
