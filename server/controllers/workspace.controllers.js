@@ -39,8 +39,8 @@ const workspace = {
         const workspaceM = await WorkspacesModel.create(con); 
         if (await workspace.availableWorkspaceName(name_,user.getIdFromCookie(req))) {
             var ws = await workspaceM.create({ name_, visibility,last_access: new Date(), configuration });
-            await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.dataValues.id)
-            res.json(true);
+            await userWorkspace.insert(req,"admin",user.getIdFromCookie(req),ws.dataValues.id)
+            res.json(ws.dataValues);
         }else{
             res.json({msn:"Existe con ese nombre"});
         }
@@ -155,6 +155,7 @@ const workspace = {
   getName: async (id) =>{
       var con = await conexion.abrir();
       const workspaceM = await WorkspacesModel.create(con);
+      console.log("Esto es getname")
       const workspace = await workspaceM.findOne({ where: {id} });
       await conexion.cerrar(con);
       return workspace.dataValues.name_;
@@ -168,8 +169,9 @@ const workspace = {
  */
   availableWorkspaceName: async (name_,id) =>{
     const workspaces = await userWorkspace.getWorkspacesByUser(id);
+    console.log(workspaces)
     const names = await Promise.all(workspaces.map(async w => {
-          return await workspace.getName(w.dataValues.id);
+          return await workspace.getName(w.dataValues.fk_id_workspace);
       })
     )
     return !names.includes(name_.replace("  "," ").trim());
