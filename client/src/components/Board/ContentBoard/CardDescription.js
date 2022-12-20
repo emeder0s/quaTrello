@@ -5,7 +5,7 @@ import { BoardContext } from '../../../providers/boardProvider';
 export const CardDescription = (description, currentCard, setDescription) => {
     const [showInput, setShowInput] = useState(false);
     const [cardData2, setCardData2] = useState(false);
-    const { setRefresh } = useContext(BoardContext)
+    const { setRefresh } = useContext(BoardContext);
     let descrip = (JSON.parse(localStorage.getItem("cardData"))).description_
 
     useEffect(() => {
@@ -13,7 +13,6 @@ export const CardDescription = (description, currentCard, setDescription) => {
 
         fetch(`http://localhost:5000/show-card/${currentCard}`).then((res) => res.json())
             .then((res) => {
-                console.log(res)
                 setCardData2(res);
             })
 

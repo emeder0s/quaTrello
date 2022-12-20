@@ -21,10 +21,10 @@ const Board = () => {
 
   useEffect(() => {
     //Info del tablero - para colores, etc.
-    fetch(`http://localhost:5000/show-board/${board}`).then((res) => res.json())
+    /*fetch(`http://localhost:5000/show-board/${board}`).then((res) => res.json())
       .then((res) => {
         setCurrentBoard(res);
-      })
+      })*/
 
     //Listas y sus tarjetas
     fetch(`http://localhost:5000/lists/${board}`).then((res) => res.json())
