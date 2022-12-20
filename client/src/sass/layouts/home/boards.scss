@@ -39,7 +39,7 @@
     text-align: left;
     font-size: 14px;
 }
-.boards-container .boards {
+.boards-container .boards, .boards-container .boards-recent {
     display: flex;
     flex-wrap: wrap;
     margin: 16px 16px 0;
@@ -47,7 +47,7 @@
     min-width: 288px;
     width: 100%;
 }
-.boards-container .box { 
+.boards-container button.box { 
     box-sizing: border-box;
     cursor: pointer;
     width: 14vw;
@@ -58,6 +58,7 @@
     margin: 0 16px 20px 0;
     padding: 1% 4% 4% 1%;
     border-radius: 3px;
+    border: none;
 }
 .boards-container .add.add {
     display: flex;

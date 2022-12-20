@@ -17,11 +17,12 @@ export const CreateBoard = () => {
     const [workspace, setWorkspace] = useState('');
     const [navigate, setNavigate] = useState(false);
     const [toBoard, setToBoard] = useState('');
-    
+    const [anchorEl, setAnchorEl] = useState('');
+
     // Constantes alamacenaadas en el store
     const backgroundIMG = useSelector(state => state.boardBackground.backgrounds)
     const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
-   
+
     const changeColor = (color) => {
         setColor(color);
         setBackground(null);
@@ -31,10 +32,10 @@ export const CreateBoard = () => {
         setColor(null);
     }
     useEffect(() => {
-        setWorkspace(workspacesFromUser[0].value)
+        console.log(workspace);
     }, [color, title, background, disable, visibility, workspace])
     const workspacesFromUser = reduxWorkspaces.map(e => {
-        const selectores = { 'label': e.name_, 'value': e.name_ };
+        const selectores = { 'label': e.name_, 'value': e.id };
         return selectores;
     })
     const boardVisibility = [
@@ -43,13 +44,13 @@ export const CreateBoard = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        let user = JSON.parse(localStorage.getItem("user"))
         let info = {
             name_: title,
             visibility: visibility,
-            configuration: `{${background}, ${color}}`,
-            fk_id_workspace: user.id
+            configuration: JSON.stringify({background,color}),
+            fk_id_workspace: workspace
         }
+        console.log(info)
         defaultFetch("/insert-board", "POST", info)
             .then((res) => {
                 let link = res.id
@@ -76,11 +77,11 @@ export const CreateBoard = () => {
         <section className="create-board">
             <header>
                 <h3>Create board</h3>
-                <button className="close" >x</button>
+                <button className="close" onClick={() => setAnchorEl(null)} >x</button>
             </header>
             <hr></hr>
             <div className="chooseBG">
-                <div className="board-bg" style={ background ? { backgroundImage: `url(${background})` } :{ backgroundColor: color } }><img src={boardPreview}></img></div>
+                <div className="board-bg" style={background ? { backgroundImage: `url(${background})` } : { backgroundColor: color }}><img src={boardPreview}></img></div>
 
             </div>
             <h4>Background</h4>
@@ -117,7 +118,7 @@ export const CreateBoard = () => {
                 </div>
             </form>
             {navigate && (<Navigate to={toBoard} replace={true} />
-      )}
+            )}
         </section>
     );
 }
