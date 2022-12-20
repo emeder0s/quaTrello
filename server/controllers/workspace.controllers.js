@@ -157,6 +157,7 @@ const workspace = {
   getName: async (id) =>{
       var con = await conexion.abrir();
       const workspaceM = await WorkspacesModel.create(con);
+      console.log("Esto es getname")
       const workspace = await workspaceM.findOne({ where: {id} });
       await conexion.cerrar(con);
       return workspace.dataValues.name_;
@@ -170,6 +171,7 @@ const workspace = {
  */
   availableWorkspaceName: async (name_,id) =>{
     const workspaces = await userWorkspace.getWorkspacesByUser(id);
+    console.log(workspaces)
     const names = await Promise.all(workspaces.map(async w => {
           return await workspace.getName(w.dataValues.fk_id_workspace);
       })

@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { defaultFetch } from '../helpers/defaultFetch';
-import Cookies from 'universal-cookie';
+import React, { useState, useEffect } from 'react';
 import "../css/layouts/pruebinchi.css";
+import io from 'socket.io-client'
+var socket = io.connect('http://localhost:5001');
 
 export const Pruebinchi = () => {
   const [user, setUser] = useState('');
@@ -9,7 +9,7 @@ export const Pruebinchi = () => {
   const [messages, setMessages] = useState([]);
   const [storedMessages, setStoredMessages] = useState();
 
-  /* useEffect(() =>{
+  useEffect(() =>{
     const receivedMessage = (message) =>{
       setMessages([...messages, message])
     }
@@ -17,7 +17,7 @@ export const Pruebinchi = () => {
     return () => {
       socket.off('message', receivedMessage)
     }
-  }, [messages]) */
+  }, [messages])
 
   useEffect(() => {
     getUser();
@@ -70,6 +70,7 @@ export const Pruebinchi = () => {
       fk_id_user: user.id,
       user_name: user.full_name.split(' ')[0]
     }
+    socket.emit('message', message, newMessage.fk_id_user,  newMessage.user_name,  newMessage.fk_id_board)
     console.log(newMessage);
     setMessages([...messages, newMessage])
     //Limpiamos el mensaje
