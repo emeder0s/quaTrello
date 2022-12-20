@@ -1,0 +1,15 @@
+.btn_chat{
+    border-radius: 100%;
+    position: absolute;
+    height: 50px;
+    width: 50px;
+    top: 88%;
+    right: 50px;
+    background-color: #0075b9;
+    color: white;
+}
+
+.btn_chat:hover{
+    background-color: #0075b99d;
+    color: black;
+}
