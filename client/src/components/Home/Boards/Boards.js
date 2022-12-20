@@ -4,19 +4,33 @@ import { CreateBoard } from './CreateBoard';
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-
+/**
+ * Componente funcional Boards
+ * @returns 
+ * Devuelve los workspaces del usuario logeado, con los boards de cada WS y la posibilidad de 
+ * crear un tablero nuevo
+ */
 export const Boards = () => {
     const [anchor, setAnchor] = useState(null);
     const [navigate, setNavigate] = useState(false);
     const [toBoard, setToBoard] = useState('');
     const reduxWorkspaces = useSelector(state => state.workspaces.workspaces)
+    /**
+     * maneja la apertura del popover 
+     * @param {*} e Establece el parametro como el ancla para el popover
+     */
     const openPopover = (e) => {
         setAnchor(e.currentTarget)
     }
+    /**
+     * Crea los enlaces y dirige hacia la pagina del board clicado
+     * @param {*} link id del board
+     */
     const handleBoardClick = (link) => {
         setToBoard(`/board/${link}`)
         setNavigate(true)
     }
+    /// Con esto ordenamos los tableros recientes por fecha, para que se actualiceen correctamente
     const allUserBoards = reduxWorkspaces.map(element => (
         (Object.values(element.boards).map((board) => (board)))
     ));
@@ -39,8 +53,9 @@ export const Boards = () => {
                             <button 
                             type ="button" 
                             key={k}
-                            style= {e.configuration ? 
-                                { backgroundImage: `url(${(JSON.parse(e.configuration)).background})` } :{ backgroundColor: `${(JSON.parse(e.configuration))}.color` }}
+                            style= { (JSON.parse(e.configuration)).background ? 
+                                { backgroundImage: `url(${(JSON.parse(e.configuration)).background})` } :{ backgroundColor: `${(JSON.parse(e.configuration)).color}` }
+                            }
                             onClick ={() => handleBoardClick(e.id)} 
                             className='box'>{e.name_}</button>
                         )) : <p>Aun no tienes historial de trabajo</p>
@@ -54,19 +69,19 @@ export const Boards = () => {
                         <div key={i} className='workspace'>
                             <h3>{element.name_}</h3>
                             <div className='boards'>
+                                {console.log(element)}
                                 {element.boards ? Object.values(element.boards).map((board, k) => (
                                     <button
                                     type ="button"
                                     key={k}
-                                    style= {element.boards[k].configuration 
-                                        ? { backgroundImage: `url(${(JSON.parse(element.boards[k].configuration).background)})` } 
-                                        : { backgroundColor: `${(JSON.parse(element.boards[k].configuration))}.color` }}
-                                    // style= {element.boards[k].configuration ? { backgroundImage: `url(${background})` } :{ backgroundColor: color }}
+                                    style= {JSON.parse(element.boards[k].configuration).background ? 
+                                        { backgroundImage: `url(${(JSON.parse(element.boards[k].configuration).background)})` } :{ backgroundColor: `${(JSON.parse(element.boards[k].configuration)).color}` }}
                                     onClick ={() => handleBoardClick(element.boards[k].id)} 
                                     className='box'>{board.name_}</button>
                                 )) : ""}
-                                <button type="button" onClick={openPopover} className='add box'>Create new board</button>
+                                <button type="button" id ={element.id}  onClick={openPopover} className='add box'>Create new board</button>
                                 <Popover
+                                    id = {element.id}
                                     open={Boolean(anchor)}
                                     anchorEl={anchor}
                                     anchorOrigin={{
@@ -78,8 +93,6 @@ export const Boards = () => {
                                         horizontal: "left"
                                     }}
                                     onClose={() => setAnchor(null)}
-
-
                                 >
                                     <CreateBoard />
                                 </Popover>
