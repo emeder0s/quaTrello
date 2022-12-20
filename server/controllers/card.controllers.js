@@ -49,12 +49,13 @@ const card = {
    */
   update: async (req, res) => {
     try{
+      const notif = require("./notification.controllers")
         const { id, title, description_, checklist, configuration, date_ } = req.body;
         var con = await conexion.abrir();
         const cardM = await CardsModel.create(con);
         const card = await cardM.findOne({ where: { id } });
         if (card) {
-            await cardM.update({ title,  },{ where: { id } });
+            await cardM.update({ title,description_, checklist, configuration, date_ },{ where: { id } });
             const newCard = await cardM.findOne({ where: { id } });
             await notif.mail(req, "modificado la", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
             res.json(true);
