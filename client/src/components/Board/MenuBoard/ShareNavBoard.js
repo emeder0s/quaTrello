@@ -22,7 +22,7 @@ export const ShareNavBoard = ({ showWindow, setIsModalShareOpen }) => {
             <div >
                 <button onClick={e => setIsModalShareOpen(false)} className="butModal">x</button>
                 <label htmlFor="btn-modal" onClick={(e) => setIsModalShareOpen(true)}><div className=".modal">{modalContent}</div></label>
-                {setIsModalShareOpen && console.log("HOLA")}
+                {setIsModalShareOpen}
 
             </div>
         </div>

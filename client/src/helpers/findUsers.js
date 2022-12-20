@@ -5,14 +5,14 @@ import { getFetch } from "./defaultFetch";
 
 export const findUsers = async (formData, setUserExists, setUsers) => {
     const res = await getFetch('/searchUser', 'post', formData)
-    let usersArray = [];
-    res.map(user => {
-      usersArray.push(user.full_name)
-    })
+    // let usersArray = [];
+    // res.map(user => {
+    //   usersArray.push(user)
+    // })
 
     if (res.length > 0) {
       setUserExists(true)
-      setUsers(usersArray)
+      setUsers(res)
     } else {
       setUserExists(false)
     }
