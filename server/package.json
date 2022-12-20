@@ -8,7 +8,6 @@
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "start": "nodemon server.js",
     "doc": "jsdoc -c jsdoc.json"
-
   },
   "keywords": [],
   "author": "",
@@ -30,7 +29,7 @@
     "mysql2": "^2.3.3",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
-    "selenium-webdriver": "^4.7.0",
+    "selenium-webdriver": "^4.7.1",
     "sequelize": "^6.25.6",
     "socket.io": "^4.5.4"
   }
