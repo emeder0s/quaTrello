@@ -1,7 +1,7 @@
 conexion = {
   abrir: async () => {
       const Sequelize = require('sequelize')
-      const sequelize = new Sequelize('quatrello', 'root', 'root', {
+      const sequelize = new Sequelize('quatrello', 'root', 'rootroot', {
           host: 'localhost',
           timezone: '+01:00',
           dialect: 'mysql',
