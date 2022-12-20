@@ -115,12 +115,12 @@ const card = {
    */
   moveToList: async (req, res) => {
     try{
-      const { id, newList } = req.body;
+      const { id, fk_id_list } = req.body;
       var con = await conexion.abrir();
       const cardM = await CardsModel.create(con);
       const ws = await cardM.findOne({ where: { id } });
       if (ws) {
-          await cardM.update({ fk_id_list:newList}, { where: { id } });
+          await cardM.update({ fk_id_list}, { where: { id } });
           res.json(true);
       }else{
           res.json({msn:"no existe"});
