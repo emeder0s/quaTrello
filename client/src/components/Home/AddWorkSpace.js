@@ -40,13 +40,15 @@ const AddWorkSpace = ({ setIsFormOpen }) => {
         e.preventDefault()
         console.log(formValues)
         const ws = await defaultFetch('/insert-workspace', 'POST', formValues)
-        // const goToBoard = await fetch(`/show-boardByWs/${ws.id}`)
-        //     .then(res =>{ return res.json()})
-        console.log(ws.id)
-        // console.log(goToBoard.id)
-        setBoard(`/board/${ws.id}`)
-        // setBoard(`/board/${goToBoard.id}`)
-        setNavigate(true)
+        if(ws){
+            const goToBoard = await fetch(`/show-boardByWs/${ws.id}`)
+                .then(res => res.json())
+                .then(data => {
+                    return(data)
+                })
+                setBoard(`/board/${goToBoard[0].id}`)
+                setNavigate(true)
+        }
     }
 
     return (
