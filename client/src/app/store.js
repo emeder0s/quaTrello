@@ -3,13 +3,16 @@ import { configureStore } from '@reduxjs/toolkit'
 import tasksReducer from '../features/tasks/taskSlice'
 import backgroundSlice from '../features/backgrounds/backgroundSlice'
 import workspacesSlice from '../features/workspaces/workspacesSlice'
+import userIdsReducer from '../features/users/userIds'
+import userNameReducer  from '../features/users/userNames'
 
-// Dividimos el estado de multiples archivos para manternerlo. 
 // El store guarda los diferentes estados de la app
 export const store = configureStore({
-  reducer:{
+  reducer: {
     tasks: tasksReducer,
     boardBackground: backgroundSlice,
-    workspaces: workspacesSlice
+    workspaces: workspacesSlice,
+    userIds: userIdsReducer,
+    userNames: userNameReducer
   }
 })

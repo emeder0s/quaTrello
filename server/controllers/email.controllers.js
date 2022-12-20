@@ -1,27 +1,31 @@
 var nodemailer = require('nodemailer');
 
 const smtpConfig = {
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: "quatrellothebridge@gmail.com",
-    pass: "kvygzxqgdachkjoe"
-  }
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: "quatrellothebridge@gmail.com",
+        pass: "kvygzxqgdachkjoe"
+    }
 };
 const transporter = nodemailer.createTransport(smtpConfig);
 
 const email = {
-
-  emailToRegister: async (jwt, email) => {
-    var username = email.split("@")[0]
-    console.log("eviando correo")
-    var mailOptions = {
-      from: 'quatrellothebridge@gmail.com',
-      to: email,
-      subject: 'Verifica tu correo electrónico para quaTrello',
-      text: "",
-      html: `<!doctype html>
+    /**
+     * Envia un email al usuario que desea registrarse para verificar que el email realmente pertenece al usuario.
+     * @param {STRING} jwt JSON web token generado para insertar en la url del enlace de verificación.
+     * @param {STRING} email email del usuario.
+     */
+    emailToRegister: async (jwt, email) => {
+        var username = email.split("@")[0]
+        console.log("eviando correo")
+        var mailOptions = {
+            from: 'quatrellothebridge@gmail.com',
+            to: email,
+            subject: 'Verifica tu correo electrónico para quaTrello',
+            text: "",
+            html: `<!doctype html>
                 <html ⚡4email>
                   <head>
                     <meta charset="utf-8">
@@ -92,31 +96,30 @@ const email = {
           </table>
                   </body>
                 </html>`
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email enviado: ' + info.response);
-        console.log(info.accepted)
-      }
-      return info
-    });
-  },
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email enviado: ' + info.response);
+                console.log(info.accepted)
+            }
+        });
+    },
 
-  /**
-   * Envia un correo electrónico con el enlace de recuperación de contraseña
-   * @param {string} infoJwt - json web token generado con el email del usuario
-   * @param {string} user_email - dirección de email del usuario que ha solicitado la contraseña.
-   */
-  passrequest: async (infoJwt, user_email) => {
+    /**
+     * Envia un correo electrónico con el enlace de recuperación de contraseña
+     * @param {string} infoJwt - json web token generado con el email del usuario
+     * @param {string} user_email - dirección de email del usuario que ha solicitado la contraseña.
+     */
+    passrequest: async (infoJwt, user_email) => {
 
-    var mailOptions = {
-      from: 'quatrellothebridge@gmail.com',
-      to: user_email,
-      subject: 'Cambio de contraseña: Comprobacion de identidad',
-      text: "",
-      html: `<!doctype html>
+        var mailOptions = {
+            from: 'quatrellothebridge@gmail.com',
+            to: user_email,
+            subject: 'Cambio de contraseña: Comprobacion de identidad',
+            text: "",
+            html: `<!doctype html>
             <html ⚡4email>
               <head>
                 <meta charset="utf-8">
@@ -126,29 +129,28 @@ const email = {
 
               </body>
             </html>`
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email enviado: ' + info.response);
-        console.log(info.accepted)
-      }
-      return info
-    });
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email enviado: ' + info.response);
+                console.log(info.accepted)
+            }
+        });
 
-  },
-  /**
-   * Envia un email de confirmación de cambio de contraseña.
-   * @param {string} user_email - dirección de email del usuario.
-   */
-  passconfirm: async (user_email) => {
-    var mailOptions = {
-      from: 'quatrellothebridge@gmail.com',
-      to: user_email,
-      subject: 'Confirmación de cambio de contraseña',
-      text: "",
-      html: `<!doctype html>
+    },
+    /**
+     * Envia un email de confirmación de cambio de contraseña.
+     * @param {string} user_email - dirección de email del usuario.
+     */
+    passconfirm: async (user_email) => {
+        var mailOptions = {
+            from: 'quatrellothebridge@gmail.com',
+            to: user_email,
+            subject: 'Confirmación de cambio de contraseña',
+            text: "",
+            html: `<!doctype html>
           <html ⚡4email>
             <head>
               <meta charset="utf-8">
@@ -160,25 +162,36 @@ const email = {
               <p>Gracias por confiar en quaTrello.</p>
             </body>
           </html>`
-    };
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email enviado: ' + info.response);
-        console.log(info.accepted)
-      }
-      return info
-    });
-  },
-
-  notification: async (user_email_to, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type) => {
-    var mailOptions = {
-      from: 'quatrellothebridge@gmail.com',
-      to: user_email_to,
-      subject: 'Actividad reciente',
-      text: "",
-      html: `<!doctype html>
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email enviado: ' + info.response);
+                console.log(info.accepted)
+            }
+        });
+    },
+    /**
+     * Envia una notificación al usuario.
+     * @param {STRING} user_email_to 
+     * @param {STRING} user_name_from 
+     * @param {STRING} operation 
+     * @param {STRING} element 
+     * @param {STRING} element_name 
+     * @param {INTEGER} element_id 
+     * @param {STRING} into_name 
+     * @param {INTEGER} into_id 
+     * @param {STRING} into_type 
+     * @returns 
+     */
+    notification: async (user_email_to, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type) => {
+        var mailOptions = {
+            from: 'quatrellothebridge@gmail.com',
+            to: user_email_to,
+            subject: 'Actividad reciente',
+            text: "",
+            html: `<!doctype html>
           <html ⚡4email>
             <head>
               <meta charset="utf-8">
@@ -308,26 +321,33 @@ const email = {
         </table>
             </body>
           </html>`
-    };
-    var info_email;
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email enviado: ' + info.response);
-        console.log(info.accepted)
-      }
-      info_email = info
-    });
-    return info_email
-  },
-  notification_workspace: async (user_email_to, user_name_from, operation, element, element_name, element_id, into_name, into_id, into_type) => {
-    var mailOptions = {
-      from: 'quatrellothebridge@gmail.com',
-      to: user_email_to,
-      subject: 'Actividad reciente',
-      text: "",
-      html: `<!doctype html>
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email enviado: ' + info.response);
+                console.log(info.accepted)
+            }
+        });
+    },
+    /**
+     * Envia una notificación al usuario cuando se produce una modificación en un espacio de trabajo.
+     * @param {STRING} user_email_to 
+     * @param {STRING} user_name_from 
+     * @param {STRING} operation 
+     * @param {STRING} element 
+     * @param {STRING} element_name 
+     * @param {INTEGER} element_id 
+     * @returns 
+     */
+    notification_workspace: async (user_email_to, user_name_from, operation, element, element_name, element_id) => {
+        var mailOptions = {
+            from: 'quatrellothebridge@gmail.com',
+            to: user_email_to,
+            subject: 'Actividad reciente',
+            text: "",
+            html: `<!doctype html>
           <html ⚡4email>
             <head>
               <meta charset="utf-8">
@@ -457,26 +477,34 @@ const email = {
         </table>
             </body>
           </html>`
-    };
-    var info_email;
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email enviado: ' + info.response);
-        console.log(info.accepted)
-      }
-      info_email = info
-    });
-    return info_email
-  },
-   comment: async (user_email_to, user_name_from,text_, element_name, element_id) => {
-    var mailOptions = {
-      from: 'quatrellothebridge@gmail.com',
-      to: user_email_to,
-      subject: 'Actividad reciente',
-      text: "",
-      html: `<!doctype html>
+        };
+        var info_email;
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email enviado: ' + info.response);
+                console.log(info.accepted)
+            }
+            info_email = info
+        });
+    },
+    /**
+     * Envia una notificación cuando un usuario pone un comentario en una tarjeta.
+     * @param {STRING} user_email_to 
+     * @param {STRING} user_name_from 
+     * @param {STRING} text_ 
+     * @param {STRING} element_name 
+     * @param {INTEGER} element_id 
+     * @returns 
+     */
+    comment: async (user_email_to, user_name_from, text_, element_name, element_id) => {
+        var mailOptions = {
+            from: 'quatrellothebridge@gmail.com',
+            to: user_email_to,
+            subject: 'Actividad reciente',
+            text: "",
+            html: `<!doctype html>
       <html ⚡4email>
       
       <head>
@@ -622,19 +650,16 @@ const email = {
       </body>
       
       </html>`
-    };
-    var info_email;
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email enviado: ' + info.response);
-        console.log(info.accepted)
-      }
-      info_email = info
-    });
-    return info_email
-  },
+        };
+        transporter.sendMail(mailOptions, function (error, info) {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email enviado: ' + info.response);
+                console.log(info.accepted)
+            }
+        });
+    },
 };
 
 module.exports = email;

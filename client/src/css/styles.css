@@ -378,12 +378,27 @@ header {
 }
 
 .asideHome ul li {
+  display: flex;
+  align-items: center;
   width: 100%;
   margin-bottom: 4px;
   padding: 5px;
   font-size: 15px;
+  cursor: pointer;
   font-weight: bold;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.asideHome ul li .wsAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  margin-left: 3px;
+  background-color: #DFE1E6;
+  height: 30px;
+  width: 30px;
+  border-radius: 999px;
 }
 
 .asideHome ul:first-child li:last-child {
@@ -430,7 +445,7 @@ header {
   color: #172B4D;
 }
 
-.addWorkSpaceModal {
+.modalLayer .addWorkSpaceModal {
   display: flex;
   position: absolute;
   background-color: white;
@@ -442,10 +457,13 @@ header {
   margin-right: 2%;
   border-radius: 5px;
   overflow: hidden;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.addWorkSpaceForm {
+.modalLayer .addWorkSpaceModal .wave {
+  transform: rotate(90deg);
+}
+
+.modalLayer .addWorkSpaceForm {
   display: flex;
   flex-flow: column wrap;
   width: 50%;
@@ -453,26 +471,46 @@ header {
   margin-bottom: 30px;
 }
 
-.addWorkSpaceDeco {
+.modalLayer .addWorkSpaceDeco {
   display: flex;
   flex-flow: column wrap;
   width: 50%;
   background-color: #E4F7FA;
 }
 
-.addWorkSpaceModal form {
+.modalLayer .addWorkSpaceDeco img {
+  margin-top: 50px;
+}
+
+.modalLayer .addWorkSpaceModal form {
   display: flex;
   flex-flow: column wrap;
   padding: 10px 70px;
 }
 
-.addWorkSpaceModal h2 {
+.modalLayer .addWorkSpaceModal label {
+  margin-bottom: 3px;
+}
+
+.modalLayer .addWorkSpaceModal input,
+.modalLayer .addWorkSpaceModal select,
+.modalLayer .addWorkSpaceModal textarea {
+  margin-bottom: 12px;
+  padding: 4px 8px;
+}
+
+.modalLayer .addWorkSpaceModal input::placeholder,
+.modalLayer .addWorkSpaceModal textarea::placeholder {
+  color: rgba(23, 43, 77, 0.6235294118);
+}
+
+.modalLayer .addWorkSpaceModal h2 {
   margin-bottom: 20px;
   font-weight: 500;
   font-size: 23px;
 }
 
-.addWorkSpaceModal h4 {
+.modalLayer .addWorkSpaceModal h4 {
   margin-bottom: 30px;
   color: #6B778C;
   text-align: justify;
@@ -480,7 +518,7 @@ header {
   font-weight: 500;
 }
 
-.closeWorkSpaceModal {
+.modalLayer .closeWorkSpaceModal {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -495,6 +533,14 @@ header {
   background-color: transparent;
   border: 0px;
   cursor: pointer;
+}
+
+.modalLayer .addWorkSpaceModal input[type=submit]:enabled {
+  background-color: #0079BF;
+  color: white;
+  padding: 16px;
+  border: 0px;
+  border-radius: 3px;
 }
 
 .home {
@@ -1259,7 +1305,6 @@ contenedorModal {
 .list-container {
   display: flex;
   flex-direction: column;
-  overflow-x: scroll;
 }
 
 .lists-container {
@@ -1438,6 +1483,107 @@ contenedorModal {
   background-color: white;
   width: 100px;
   height: 100px;
+}
+
+.cardEdit {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 95vw;
+  height: 95.2vh;
+  background-color: rgba(103, 103, 103, 0.289);
+  color: #172B4D;
+}
+
+.carEditMenu {
+  position: absolute;
+  background-color: #ebecf0;
+  flex-flow: row wrap;
+  width: 600px;
+  align-self: center;
+  top: 50px;
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 3px;
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding: 20px;
+}
+
+.carEditMenu h5 {
+  font-weight: 400;
+  font-size: 20px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.carEditMenu h6 {
+  font-size: 15px;
+  color: gray;
+  font-weight: 400;
+  margin: 10px;
+}
+
+.carEditMenu input {
+  border: none;
+  border-bottom: 1px solid #b6b6b8;
+  height: 50px;
+  border-radius: 3px;
+  font-size: 15px;
+  margin: 3px;
+  width: 92%;
+  padding: 6px;
+  color: gray;
+}
+
+.carEditMenu input:focus {
+  outline: none;
+  border: 2px solid #026aa7;
+}
+
+.guardar {
+  background-color: #026aa7;
+  border: none;
+  color: white;
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 5px 4px 4px;
+}
+
+.cancelar {
+  background-color: #ebecf0;
+  border: none;
+  color: rgb(137, 137, 137);
+  font-size: 14px;
+  padding: 3px 10px;
+  border-radius: 3px;
+  padding: 7px;
+  margin: 5px 4px 4px;
+}
+
+.cancelar:hover {
+  background-color: #d2d1d1;
+}
+
+.carEditMenu span {
+  margin-right: 15px;
+}
+
+input.cardName {
+  background-color: #ebecf0;
+  border-bottom: #ebecf0;
+  height: fit-content;
+  color: rgb(92, 92, 92);
+}
+
+input.cardName:focus {
+  outline: none;
+  border: 2px solid #026aa7;
+  background-color: white;
+  padding: 3px;
 }
 
 /*# sourceMappingURL=styles.css.map */
