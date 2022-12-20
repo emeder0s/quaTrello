@@ -27,7 +27,7 @@ const workspace = {
   },
   /**
    * Inserta un workspace en la base de datos, si el usuario no tiene
-   * otro workspace con el mismo nombre
+   * otro workspace con el mismo nombre y crea un board por defecto
    * @param {json} req  la petición
    * @param {json} res  la respuesta a la petición
    */
@@ -39,8 +39,10 @@ const workspace = {
         const workspaceM = await WorkspacesModel.create(con); 
         if (await workspace.availableWorkspaceName(name_,user.getIdFromCookie(req))) {
             var ws = await workspaceM.create({ name_, visibility,last_access: new Date(), configuration });
-            await userWorkspace.insert(req,"admin",user.getIdFromCookie(req),ws.dataValues.id)
-            res.json(ws.dataValues);
+            ws = ws.dataValues;
+            await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.id);
+            const defaultboard = await board.insertDefault(ws.id,user.getIdFromCookie(req))
+            res.json(ws);
         }else{
             res.json({msn:"Existe con ese nombre"});
         }

@@ -34,6 +34,28 @@ const board = {
       await conexion.cerrar(con);
     }
   },
+/**
+ * Genera el board por defecto con sus listas por defecto
+ * @param {int} fk_id_workspace 
+ * @param {int} fk_id_user 
+ * @returns 
+ */
+  insertDefault: async (fk_id_workspace,fk_id_user) => {
+    try {
+      var con = await conexion.abrir();
+      const boardM = await BoardsModel.create(con);
+      var newBoard = await boardM.create({ name_:"Tu primer tablero", last_access: new Date(),visibility:"public", fk_id_workspace, fk_id_user }); //fk_id_user es la id del usuario que crea el tablero
+      const listM = await ListsModel.create(con);
+      await listM.create({ name_: "Lista de tareas", fk_id_board: newBoard.dataValues.id });
+      await listM.create({ name_: "En proceso", fk_id_board: newBoard.dataValues.id });
+      await listM.create({ name_: "Hecho", fk_id_board: newBoard.dataValues.id });
+      return(newBoard.dataValues);
+    } catch (e) {
+        console.log(e);
+    } finally {
+      await conexion.cerrar(con);
+    }
+  },
 
   /**
    * Muestra un tablero a parti de su ID 
