@@ -23,7 +23,7 @@ export const getFetch = async (endPoint, metodo, datos) => {
       "Content-type": "application/json",
     },
   };
-  console.log(metaData)
+  // console.log(metaData)
   const res = (await fetch(endPoint, metaData)).json();
   return res;
 }

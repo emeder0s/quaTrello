@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { getInitial } from '../../../../helpers/getInitial'
 import { findUsers } from '../../../../helpers/findUsers'
+import { useDispatch, useSelector } from 'react-redux'
+import { addUserName } from '../../../../features/users/userNames'
+import { addUserID } from '../../../../features/users/userIds'
 
-const ModalShowUsers = ({ email, setAddedMembersToInput, addedMembersToInput}) => {
+const ModalShowUsers = ({ email }) => {
 
   const [userExists, setUserExists] = useState(false)
   const [users, setUsers] = useState([])
+  const dispatch = useDispatch()
+  const userNames = useSelector(state => state.userNames)
 
   var formData = new FormData()
   useEffect(() => {
@@ -16,7 +21,15 @@ const ModalShowUsers = ({ email, setAddedMembersToInput, addedMembersToInput}) =
   }, [email])
 
   function addUserToList(user) {
-      setAddedMembersToInput({...addedMembersToInput, [user]: user})
+    const find = userNames.find(name => {
+      if (name === user.full_name ) {
+        return true
+      }
+    })
+    if(!find){
+      dispatch(addUserName(user.full_name))
+      dispatch(addUserID(user.id))
+    }
   }
 
   if (!userExists) {
@@ -33,14 +46,13 @@ const ModalShowUsers = ({ email, setAddedMembersToInput, addedMembersToInput}) =
     <div className='modalShowUsers'>
       <ul className='usersFound'>
         {/* Hay que hacer un map de los usuarios recogidos en el fetch */}
-        {/* {users} */}
         {users.length && users.map((user, i) => {
           return (
-            <div key={i} className='userFound' onClick={e => addUserToList(user)}>
+            <div key={i} className='userFound' datatype={user.id} onClick={e => addUserToList(user)}>
               <div className='userFoundAvatar'>
-                {getInitial(user)}
+                {getInitial(user.full_name)}
               </div>
-              <div>{user}</div>
+              <div>{user.full_name}</div>
             </div>
           )
         })}

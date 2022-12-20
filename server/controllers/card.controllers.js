@@ -57,7 +57,7 @@ const card = {
         if (card) {
             await cardM.update({ title,description_, checklist, configuration, date_ },{ where: { id } });
             const newCard = await cardM.findOne({ where: { id } });
-            await notif.mail(req, "modificado la", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
+            //await notif.mail(req, "modificado la", "tarjeta", newCard.dataValues, con) //envia una notificacion a los usuarios que están suscritos
             res.json(true);
         }else{
             res.json({msn:"no existe"});
