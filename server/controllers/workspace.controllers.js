@@ -40,7 +40,9 @@ const workspace = {
         if (await workspace.availableWorkspaceName(name_,user.getIdFromCookie(req))) {
             var ws = await workspaceM.create({ name_, visibility,last_access: new Date(), configuration });
             ws = ws.dataValues;
-            await userWorkspace.insert("admin",user.getIdFromCookie(req),ws.id);
+            console.log(user.getIdFromCookie(req));
+            console.log(ws.id);
+            await userWorkspace.insert(req,"admin",user.getIdFromCookie(req),ws.id);
             const defaultboard = await board.insertDefault(ws.id,user.getIdFromCookie(req))
             res.json(ws);
         }else{
@@ -145,7 +147,7 @@ const workspace = {
         res.json(workspaces);
     }catch(e){
         console.log(e);
-        res.json(false);
+        res.json(e);
     }
   }, 
 

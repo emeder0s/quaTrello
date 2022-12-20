@@ -24,31 +24,33 @@
     padding: 20px;
 }
 
-.carEditMenu h5{
+.carEditMenu h5 {
     font-weight: 400;
     font-size: 20px;
     color: gray;
     margin-bottom: 10px;
 }
-.carEditMenu h6{
+
+.carEditMenu h6 {
     font-size: 15px;
     color: gray;
     font-weight: 400;
-    margin:10px;
-}
-.carEditMenu input{
-    border: none;
-border-bottom: 1px solid #b6b6b8;
-height: 50px;
-border-radius: 3px;
-font-size: 15px;
-margin: 3px;
-width: 92%;
-padding: 6px;
-color: gray;
+    margin: 10px;
 }
 
-.carEditMenu input:focus{
+.carEditMenu input {
+    border: none;
+    border-bottom: 1px solid #b6b6b8;
+    height: 50px;
+    border-radius: 3px;
+    font-size: 15px;
+    margin: 3px;
+    width: 92%;
+    padding: 6px;
+    color: gray;
+}
+
+.carEditMenu input:focus {
     outline: none;
     border: 2px solid #026aa7;
 }
@@ -65,7 +67,7 @@ color: gray;
 }
 
 .cancelar {
-    background-color:  #ebecf0;
+    background-color: #ebecf0;
     border: none;
     color: rgb(137, 137, 137);
     font-size: 14px;
@@ -75,7 +77,7 @@ color: gray;
     margin: 5px 4px 4px;
 }
 
-.cancelar:hover{
+.cancelar:hover {
     background-color: #d2d1d1;
 }
 
@@ -84,20 +86,20 @@ color: gray;
 }
 
 input.cardName {
-    background-color:#ebecf0;
+    background-color: #ebecf0;
     border-bottom: #ebecf0;
     height: fit-content;
     color: rgb(92, 92, 92);
 }
 
-input.cardName:focus{
+input.cardName:focus {
     outline: none;
     border: 2px solid #026aa7;
     background-color: white;
-    padding:3px;
+    padding: 3px;
 }
 
-.carEditMenu2{
+.carEditMenu2 {
     position: absolute;
     background-color: #ebecf0;
     flex-flow: row wrap;
@@ -114,19 +116,76 @@ input.cardName:focus{
 }
 
 
-.carEditMenu2 h6{
+.carEditMenu2 h6 {
     font-weight: 400;
     font-size: 15px;
     color: gray;
     margin-bottom: 10px;
 }
-.carEditMenu2 p{
+
+.carEditMenu2 p {
     font-size: 12px;
     color: gray;
     font-weight: 400;
-    margin:5px auto 5px auto;
+    margin: 5px auto 5px auto;
 }
 
-.carEditMenu2 p:hover{
+.carEditMenu2 p:hover {
     background-color: #d2d1d1;
+}
+
+.activities h6 {
+    font-size: 15px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #b6b6b8;
+    border-radius: 3px;
+    font-size: 15px;
+    margin: 3px;
+    width: 92%;
+    padding: 6px;
+    color: gray;
+    padding-left: 10px;
+}
+
+.activities p {
+    margin: 10px;
+}
+
+.activities h4 {
+    color: rgb(96, 96, 96);
+    margin: 10px;
+    font-size: 15px;
+}
+
+.listMove {
+    font-size: 15px;
+    margin-bottom: 15px;
+    background-color: white;
+    border: none;
+    border-bottom: 1px solid #b6b6b8;
+    border-radius: 3px;
+    font-size: 15px;
+    width: 92%;
+    padding: 6px;
+    color: gray;
+    padding-left: 10px;
+}
+
+
+.listMove p {
+    font-size: 15px;
+}
+
+.borrar {
+    background-color: #e94558;
+    border: none;
+    color: white;
+    font-size: 14px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    padding: 7px;
+    margin: 5px 4px 4px;
 }

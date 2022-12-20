@@ -31,7 +31,7 @@ export const getInitial = (word) => {
     })
 
     if (wordArray.length > 0) {
-        return initials
+        return initials.splice(0, 2)
     } else {
         return word[0]
     }

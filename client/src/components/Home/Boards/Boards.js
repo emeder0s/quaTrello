@@ -48,7 +48,7 @@ export const Boards = () => {
             <div className='recent'>
                 <h2><span><AiOutlineClockCircle /></span><span>Visto Recientemente</span></h2>
                 <div className='boards-recent'>
-                    {orderedBoards
+                    {orderedBoards.length > 0
                         ? orderedBoards.slice(0, 3).map((e, k) => (
                             <button 
                             type ="button" 
@@ -58,13 +58,13 @@ export const Boards = () => {
                             }
                             onClick ={() => handleBoardClick(e.id)} 
                             className='box'>{e.name_}</button>
-                        )) : ""
+                        )) : <p>Aun no tienes historial de trabajo</p>
                     }
                 </div>
             </div>
             <div className='userWorkspaces'>
                 <h2>YOUR WORKSPACES</h2>
-                {reduxWorkspaces
+                {reduxWorkspaces.length > 0
                     ? reduxWorkspaces.map((element, i) => (
                         <div key={i} className='workspace'>
                             <h3>{element.name_}</h3>
@@ -99,7 +99,7 @@ export const Boards = () => {
 
                             </div>
                         </div>
-                    )) : ""}
+                    )) : <p>Aun no tienes espacios de trabajo, crea alguno para empezar a trabajar con tu equipo</p>}
             </div>
 
         </div>

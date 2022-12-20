@@ -7,13 +7,18 @@ export const userNameSlice = createSlice({
     initialState,
     reducers: {
         addUserName: (state, action) => {
-            console.log(state, action)
             state.push(action.payload)
-        }
+        },
+        deleteUserName: (state, action) => {
+            const nameFound = state.find(name => name === action.payload)
+            if(nameFound){
+                state.splice(state.indexOf(nameFound), 1)
+            }
+        },
     }
 })
 
-export const { addUserName } = userNameSlice.actions
+export const { addUserName, deleteUserName } = userNameSlice.actions
 
 // Exportamos por defecto el reducer que es lo que quiere luego el store
 export default userNameSlice.reducer
