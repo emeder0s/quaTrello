@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node ./selenium-test/tests.js",
     "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build",
     "start": "nodemon server.js"
   },
@@ -27,7 +27,7 @@
     "mysql2": "^2.3.3",
     "nodemailer": "^6.8.0",
     "nodemon": "^2.0.20",
-    "selenium-webdriver": "^4.7.0",
+    "selenium-webdriver": "^4.7.1",
     "sequelize": "^6.25.6"
   }
 }
