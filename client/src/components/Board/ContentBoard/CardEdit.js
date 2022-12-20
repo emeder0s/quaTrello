@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from 'react'
-import { BsChevronCompactLeft } from 'react-icons/bs';
+import React, { useEffect, useState, useContext } from 'react'
 import { defaultFetch } from '../../../helpers/defaultFetch';
+import { BoardContext } from '../../../providers/boardProvider';
 import { Activities } from './Activities';
 
 import { CardDescription } from './CardDescription';
-export const CardEdit = ({ showCardEdit, setShowCardEdit, currentCard }) => {
+export const CardEdit = ({ showCardEdit, setShowCardEdit, currentCard, setCurrentCard}) => {
 
     const [cardEdition, setCardEdition] = useState({ id: 0, title: "", description_: "", checklist_: "", configuration_: "", date_: "" })
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [cardData, setCardData] = useState();
+    const { setRefresh} = useContext(BoardContext);
 
     useEffect(() => {
         //Info de la tarjeta 

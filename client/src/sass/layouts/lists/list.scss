@@ -156,12 +156,27 @@
     background-color: white;
 }
 
+.cardTitle2 {
+    
+    border: none;
+    border-radius: 3px;
+    font-size: 15px;
+    margin: 3px;
+    width: 220px;
+    padding: 1px;
+    color: gray;
+    background-color: white;
+}
 .cardTitle p {
     margin:6px;
     font-size: 12px;
 }
 
 .cardTitle:hover {
+    background-color: #f4f5f7;
+}
+
+.cardTitle2:hover {
     background-color: #f4f5f7;
 }
 
@@ -177,3 +192,8 @@
 .btnMenuCard:hover{
     background-color: #dddddd;
 }
+
+.popup {
+    background-color: #dddddd;
+}
+

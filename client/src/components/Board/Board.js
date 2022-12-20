@@ -15,6 +15,9 @@ const Board = () => {
   const [newCardTitle, setNewCardTitle] = useState([]);
   const [newList, setNewList] = useState("");
   const [currentListId, setCurrentListId] = useState("");
+  const [refresh, setRefresh] = useState([]);
+  
+ 
 
   useEffect(() => {
     //Info del tablero - para colores, etc.
@@ -28,7 +31,7 @@ const Board = () => {
       .then((res) => {
         setUserLists(res);
       })
-  }, [])
+  }, [refresh])
 
   useEffect(() => {
 
@@ -64,7 +67,8 @@ const Board = () => {
         <BoardContext.Provider value={{
           newCardTitle, setNewCardTitle,
           newList, setNewList,
-          userLists, currentListId, setCurrentListId
+          userLists, currentListId, setCurrentListId,
+          setRefresh
         }}>
           <div className='lists-container'>
             {userLists.map((list, index) => (

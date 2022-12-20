@@ -1,9 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { FiAlignLeft } from 'react-icons/fi'
 import { defaultFetch } from '../../../helpers/defaultFetch';
+import { BoardContext } from '../../../providers/boardProvider';
 export const CardDescription = (description, currentCard, setDescription) => {
     const [showInput, setShowInput] = useState(false);
+    const [cardData2, setCardData2] = useState(false);
+    const { setRefresh } = useContext(BoardContext)
     let descrip = (JSON.parse(localStorage.getItem("cardData"))).description_
+
+    useEffect(() => {
+        //Info de la tarjeta 
+
+        fetch(`http://localhost:5000/show-card/${currentCard}`).then((res) => res.json())
+            .then((res) => {
+                console.log(res)
+                setCardData2(res);
+            })
+
+    }, [])
+
     const add = () => {
         setShowInput(!showInput);
     }
@@ -12,13 +27,11 @@ export const CardDescription = (description, currentCard, setDescription) => {
         e.preventDefault();
         console.log(currentCard)
         console.log(e.target.title.value)
-       
-            let currentCardExtra = JSON.parse(localStorage.getItem('currentCard'));
-            console.log(currentCardExtra)
-            defaultFetch("http://localhost:5000/update-card", "POST", { id: currentCardExtra, description_: e.target.title.value }).then((res) => { console.log(res) });
 
-      
-
+        let currentCardExtra = JSON.parse(localStorage.getItem('currentCard'));
+        console.log(currentCardExtra)
+        defaultFetch("http://localhost:5000/update-card", "POST", { id: currentCardExtra, description_: e.target.title.value }).then((res) => { console.log(res) });
+        setRefresh("D")
     }
     return (
         <div><div><h6><span><FiAlignLeft /></span>Descripción</h6>
