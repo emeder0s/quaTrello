@@ -1,0 +1,75 @@
+.asideHome {
+  display: flex;
+  flex-flow: column wrap;
+  width: 200px;
+  margin-top: 50px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 200px;
+}
+
+.asideHome ul {
+  display: flex;
+  flex-flow: column wrap;
+  list-style: none;
+  width: 100%;
+}
+
+.asideHome ul li {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 4px;
+  padding: 5px;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.asideHome ul li .wsAvatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 8px;
+  margin-left: 3px;
+  background-color: #DFE1E6;
+  height: 30px;
+  width: 30px;
+  border-radius: 999px;
+}
+
+.asideHome ul:first-child li:last-child {
+  padding-bottom: 10px;
+  border-bottom: 1.5px solid #E1E1E2;
+}
+
+.asideHome ul li a {
+  text-decoration: none;
+  color: #172B4D;
+}
+
+.addWorkSpaceLi {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.addWorkSpaceLi span {
+  font-weight: 500;
+  color: #5E6C84;
+  font-size: 13px;
+  margin-left: 0px;
+}
+
+.addWorkSpaceLi .addWorkSpaceButton {
+  margin-right: 0px;
+  background-color: white;
+  border: 0px;
+  font-size: 25px;
+  color: #5E6C84;
+}
+
+/*# sourceMappingURL=aside.css.map */

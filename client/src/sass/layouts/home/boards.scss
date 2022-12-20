@@ -1,0 +1,77 @@
+.boards-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+.boards-container .recent{
+    margin-bottom: 50px;
+}
+
+.boards-container .recent h2{
+    display: flex;
+    align-items: center;
+    color: #172B4D;
+    font-weight: 700;
+}
+
+.boards-container .recent h2 span:first-child{
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+}
+.boards-container .recent h2 span:last-child{
+    margin-left: 10px;
+}
+
+.boards-container .workspace{
+    margin-bottom: 40px;
+}
+
+.boards-container h2 {
+    color: #5E6C84;
+    text-align: left;
+    font-size: 16px;
+}
+.boards-container h3 {
+    color: #172B4D;
+    text-align: left;
+    font-size: 14px;
+}
+.boards-container .boards, .boards-container .boards-recent {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 16px 16px 0;
+    max-width: 1200px;
+    min-width: 288px;
+    width: 100%;
+}
+.boards-container button.box { 
+    box-sizing: border-box;
+    cursor: pointer;
+    width: 14vw;
+    height: 90px;
+    background-color: #0279BF;
+    color: white;
+    text-shadow: 1px 1px 28px #00000061;
+    font-weight: bold;
+    margin: 0 16px 20px 0;
+    padding: 1% 11% 11% 1%;
+    border-radius: 3px;
+    border: none;
+}
+
+.boards-container .add.add {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #091e420a;
+    text-shadow: 1px 1px 5px #00000047;
+    color: #172B4D;
+    font-weight: 350;
+    width: 14vw;
+    height: 11vh;
+    border: none;  
+    padding: 0px 8px;
+}

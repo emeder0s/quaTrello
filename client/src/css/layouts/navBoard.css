@@ -1,0 +1,153 @@
+.divNavBoard {
+  margin-left: 30px;
+  height: 20px;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.navBoard {
+  display: flex;
+  justify-content: space-around;
+}
+
+.navBoard2 {
+  background-color: white;
+  font-size: 20px;
+  position: absolute;
+  left: 495px;
+  top: 100px;
+  margin: 0;
+  padding: 6px;
+  border: solid 2px;
+  display: block;
+  font-weight: 400;
+  margin: 0 -12px;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+.ulNavBoard {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  margin: 20px;
+}
+
+.liVisibility {
+  height: 25px;
+  background-color: white;
+  font-size: 20px;
+}
+
+.liVisibility:hover {
+  background-color: rgb(190, 201, 201);
+}
+
+.navBoard3 {
+  background-color: white;
+  font-size: 20px;
+  position: absolute;
+  left: 1250px;
+  top: 50px;
+  margin: 0;
+  padding: 6px;
+  border: solid 2px;
+  display: block;
+  font-weight: 400;
+  margin: 0 -12px;
+  padding: 6px 12px;
+  text-decoration: none;
+}
+
+.titleBoard {
+  text-align: center;
+  height: 25px;
+  background-color: rgb(218, 162, 232);
+  font-size: 20px;
+}
+
+.butNavBoard {
+  background-color: #0075b9;
+  width: 200px;
+  margin: 10px;
+  background-color: #00d1f6;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.navNBoard {
+  width: 1500PX;
+  display: flex;
+  justify-content: space-between;
+  height: 70px;
+}
+
+.memberNavBoard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 95.2vh;
+  color: #172B4D;
+}
+
+.modal {
+  width: 750px;
+  height: 650px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
+  transition: all 500ms ease;
+  position: relative;
+  margin-top: 14px;
+  background-color: white;
+  border-radius: 5px;
+  color: #172B4D;
+  padding: 20px;
+}
+
+.modalChat {
+  width: 750px;
+  height: 650px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 1px 7px 25px rgba(0, 0, 0, 0.6);
+  transition: all 500ms ease;
+  position: relative;
+  margin-top: 14px;
+  background-color: white;
+  border-radius: 5px;
+  color: #172B4D;
+  padding: 20px;
+}
+
+.butModal {
+  cursor: pointer;
+  width: 20px;
+  margin-left: 95%;
+}
+
+.formModal {
+  display: flex;
+  flex-direction: column;
+  height: 20px;
+  margin: 20px;
+}
+
+.formModal input {
+  padding: 10px;
+  margin-top: 10px;
+}
+
+contenedorModal {
+  width: 100px;
+}
+
+.formModal span {
+  color: #172B4D;
+  font-size: 30px;
+}
+
+/*# sourceMappingURL=navBoard.css.map */

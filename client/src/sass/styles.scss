@@ -1,0 +1,44 @@
+//-------------- General Styles ---------------
+@import './base/generalStyles.scss';
+@import './base/default';
+
+//--------------- Boards ----------------
+@import './layouts/home/boards.scss';
+
+// Navbar and header
+@import "./layouts/navbar/nav.scss";
+@import "./layouts/navbar/header.scss";
+@import "./layouts/navbar/dropdown.scss";
+@import "./layouts/navbar/navLogin.scss";
+
+// Aside and form
+@import './layouts/home/aside';
+@import './layouts/home/addWorkSpace.scss';
+@import './layouts/home/home';
+
+//----------------- Perfil ------------------
+@import "./layouts/perfil.scss";
+@import "./layouts/configuracion.scss";
+
+//---------------- Board --------------------
+@import './layouts/board/board.scss';
+@import './layouts/createBoard.scss';
+
+// NavBoard
+@import './layouts/navBoard.scss';
+
+// Aside
+@import './layouts/board/aside/asideBoard.scss';
+@import './layouts/board/aside/invisibleAside.scss';
+@import './layouts/board/aside/visibleAside.scss';
+
+// Aside Modal
+@import './layouts/board/aside/modal/modalAddMemb';
+@import './layouts/board/aside/modal/modalSelectConfig.scss';
+@import './layouts/board/aside/modal/modalShowUsers';
+//Warning
+@import './layouts/warning.scss';
+//Lists
+@import './layouts/lists/list.scss';
+@import './layouts/lists/newCardMenu.scss';
+@import './layouts/lists/cardEdit.scss';

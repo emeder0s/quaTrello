@@ -1,0 +1,125 @@
+.create-board h3 {
+    font-weight: 300;
+    font-size: 14px;
+    margin: 0 auto;
+}
+.MuiPaper-root {
+    padding: 0 1%;
+}
+.create-board h4 {
+    margin: 10px 0;
+    font-size: 12px;
+    color: #5e6c84
+}
+
+.create-board {
+    width: 320px;
+    height: auto;
+}
+
+.create-board header {
+    display: flex;
+    background-color: #fff;
+    padding: 3% 10%;
+    margin: 0;
+    border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.create-board .close {
+    position: absolute;
+    right: 11px;
+    padding: 1px 4px;
+    background-color: #fff;
+    font-weight: 300;
+    top: 5px;
+}
+
+.create-board .chooseBG,
+.create-board .submit {
+    margin: 25px 0;
+}
+
+.create-board .board-bg {
+    width: 200px;
+    height: 120px;
+    // background-color: rgb(0 121 191);
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 7px 15px rgba(0, 0, 0, 0.15);
+    border: none;
+    border-radius: 3px;
+}
+.create-board .board-bg img {
+    width: 180px;
+    height: 120px
+}
+.create-board button.image {
+    background-size: cover;
+}
+
+.create-board ul.images,
+.create-board ul.colors {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 18px;
+}
+
+.create-board ul.images button {
+    width: 64px;
+    height: 40px;
+    background-color: mediumorchid;
+    border: none;
+    border-radius: 3px;
+}
+
+.create-board ul.colors button {
+    width: 40px;
+    height: 32px;
+    border: none;
+    border-radius: 3px;
+}
+
+.create-board .chooseBG {
+    display: flex;
+    justify-content: center;
+}
+.create-board .title {
+    margin: 0;
+}
+.create-board input,
+.create-board select,
+.create-board button.submit {
+    border: 1px solid #5e6c8454;
+    border-radius: 3px;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.create-board input.title {
+    width: 93%;
+}
+
+.create-board select.actualWorkSpaces,
+button.submit {
+    width: 100%;
+}
+.create-board button.submit:enabled {
+    background-color:#0079bf ;
+    color: #fff;
+}
+.create-board .c1 {
+    background-color: #0079bf;
+}
+.create-board .c2 {
+    background-color: #d29034;
+}
+.create-board .c3 {
+    background-color: #519839;
+}
+.create-board .c4 {
+    background-color: #b04632;
+}
+.create-board .c5 {
+    background-color: #89609e;
+}

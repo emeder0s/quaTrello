@@ -1,0 +1,10 @@
+.warning {
+  color: red;
+  border: 1px solid red;
+  margin: 10px 30% 10px 30%;
+  text-align: center;
+  width: fit-content;
+  padding: 20px;
+}
+
+/*# sourceMappingURL=warning.css.map */
