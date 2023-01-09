@@ -92,7 +92,7 @@ export const Chat = (props) => {
                 <div className="card-body">
                     <div id="mensajes">
                         {storedMessages ? storedMessages.map((message, index) => (
-                            <div key={index} className={`d-flex p-3 ${message.fk_id_user === user.id ? "justify-content-end" : "justify-content-start"}`}>
+                            <div key={index} className={`d-flex ${message.fk_id_user === user.id ? "justify-content-end" : "justify-content-start"}`}>
                                 <div className={`card mb-3 shadow border-1 ${message.fk_id_user === user.id ? "bg-primary bg-opacity-25" : "bg-light"}`}>
                                     <div className="card-body">
                                         <small className="text-muted">{message.fk_id_user === user.id ? "Yo" : message.user_name}: {message["text_"]}</small>

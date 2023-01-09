@@ -64,7 +64,6 @@ const Board = () => {
 
   }, [newCardTitle])
 
-
   return (
     <div className='board'>
       <AsideBoard />
@@ -89,7 +88,7 @@ const Board = () => {
           <Offcanvas.Header closeButton>
             <Offcanvas.Title>Chat {currentBoard.name_}</Offcanvas.Title>
           </Offcanvas.Header>
-          <Offcanvas.Body>
+          <Offcanvas.Body id="cuerpochat">
             <Chat idBoard={board}/>
           </Offcanvas.Body>
         </Offcanvas>
